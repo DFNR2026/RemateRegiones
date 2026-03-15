@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Datos sensibles
+config.py
+
+# Perfil Playwright (browser session data)
+.playwright_profile/
+
+# Claude Code
+.claude/
+
+# OCR (ya no se usa con DOCX)
+.tessdata/
+
+# Archivos de trabajo (no código)
+Diarios/
+Descargas/
+logs/
+Reportes/
+
+# Base de datos interna (contiene historial específico del usuario)
+causas_ojv.xlsx
+
+# Reportes sueltos en raíz
+Reporte_*.xlsx
+
+# Cache abandonado
+tasacion_cache.db
+
+# Archivos de test/debug
+TEST_*.docx
+causas_antes.json
+causas_despues.json
