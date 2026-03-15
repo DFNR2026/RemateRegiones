@@ -1,0 +1,118 @@
+╔══════════════════════════════════════════════════════════════╗
+║     LÉEME ANTES DE INICIAR — Remates Judiciales Chile       ║
+╚══════════════════════════════════════════════════════════════╝
+
+Este sistema analiza remates judiciales del Diario P&L, descarga
+mandamientos desde la Oficina Judicial Virtual (OJV), extrae montos
+de deuda y genera un reporte Excel.
+
+════════════════════════════════════════════════════════════════
+  PASO 1: INSTALAR PYTHON
+════════════════════════════════════════════════════════════════
+
+Descargar Python 3.10+ desde https://www.python.org/downloads/
+IMPORTANTE: Marcar "Add Python to PATH" durante la instalación.
+
+Verificar en CMD:
+  python --version
+
+════════════════════════════════════════════════════════════════
+  PASO 2: INSTALAR DEPENDENCIAS
+════════════════════════════════════════════════════════════════
+
+Abrir CMD en la carpeta del proyecto y ejecutar:
+
+  pip install pymupdf pandas openpyxl playwright numpy requests rapidfuzz anthropic python-docx
+
+Después instalar los navegadores de Playwright:
+
+  playwright install chromium
+
+════════════════════════════════════════════════════════════════
+  PASO 3: CONFIGURAR API KEY
+════════════════════════════════════════════════════════════════
+
+El sistema usa la API de Claude (Anthropic) para parsear los avisos.
+
+1. Ir a https://console.anthropic.com/ y crear una cuenta
+2. Generar una API key
+3. En la carpeta del proyecto:
+   - Copiar "config_template.py" y renombrarlo a "config.py"
+   - Abrir "config.py" con un editor de texto
+   - Reemplazar "sk-ant-XXXXXXXXXX" con tu API key real
+
+  ⚠ NUNCA subir config.py a GitHub — contiene tu clave privada.
+    El .gitignore ya lo excluye automáticamente.
+
+════════════════════════════════════════════════════════════════
+  PASO 4: CREAR CARPETAS
+════════════════════════════════════════════════════════════════
+
+Crear estas carpetas dentro de la carpeta del proyecto (si no existen):
+
+  Diarios\       ← aquí va el DOCX semanal del Diario P&L
+  Descargas\     ← aquí se guardan los PDFs descargados de OJV
+  Reportes\      ← aquí se generan los reportes Excel
+  logs\          ← aquí se guardan los logs de ejecución
+
+════════════════════════════════════════════════════════════════
+  PASO 5: BASE DE DATOS DE TRIBUNALES
+════════════════════════════════════════════════════════════════
+
+El archivo "causas_ojv.xlsx" contiene la hoja REFERENCIA con los
+233 tribunales oficiales del país.
+
+1. Renombrar "causas_ojv_template.xlsx" a "causas_ojv.xlsx"
+   (el template viene con REFERENCIA completa y CAUSAS vacía)
+2. Sin este archivo, el sistema no puede mapear tribunales a
+   cortes de apelaciones.
+
+════════════════════════════════════════════════════════════════
+  CÓMO USAR
+════════════════════════════════════════════════════════════════
+
+1. Coloca el DOCX semanal del Diario P&L en la carpeta "Diarios\"
+2. Doble click en "EJECUTAR_REMATES.bat"
+3. El sistema:
+   - Parsea todos los avisos de remate (~3-5 min)
+   - Busca cada causa en la OJV y descarga mandamientos (~20 min)
+   - Extrae montos de deuda de los PDFs
+   - Genera reporte Excel y lo abre automáticamente
+4. El reporte queda en "Reportes\"
+
+════════════════════════════════════════════════════════════════
+  CREDENCIALES Y LOGINS
+════════════════════════════════════════════════════════════════
+
+  Anthropic API key     → config.py (ÚNICO dato sensible)
+  OJV (Poder Judicial)  → NO requiere login, es público
+  Diario P&L            → NO requiere login en el sistema
+
+════════════════════════════════════════════════════════════════
+  SOLUCIÓN DE PROBLEMAS
+════════════════════════════════════════════════════════════════
+
+  "python no se reconoce como comando"
+  → Reinstalar Python marcando "Add Python to PATH"
+
+  "No module named 'anthropic'"
+  → Ejecutar: pip install anthropic
+
+  "Playwright: browser not found"
+  → Ejecutar: playwright install chromium
+
+  "REFERENCIA cargada: 0 tribunales"
+  → Falta causas_ojv.xlsx o la hoja REFERENCIA está vacía
+
+  El .bat dice "No se encontró ningún .docx"
+  → Verificar que el DOCX esté en la carpeta Diarios\
+
+════════════════════════════════════════════════════════════════
+  NOTAS
+════════════════════════════════════════════════════════════════
+
+- El sistema funciona en cualquier carpeta y disco (C:, D:, etc.)
+- Cada ejecución guarda un log en logs\ para diagnóstico
+- El historial de causas procesadas se acumula en causas_ojv.xlsx
+  para no reprocesar semanas anteriores
+- Costo estimado por ejecución semanal: ~$3 USD en API de Claude

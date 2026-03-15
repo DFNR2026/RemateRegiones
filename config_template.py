@@ -1,26 +1,43 @@
-# config_template.py — Copiar como config.py y rellenar con valores reales
+# TEMPLATE — Copiar como config.py y completar credenciales
 # NO subir config.py a GitHub (está en .gitignore)
-
+"""
+Configuración global del sistema de análisis de remates judiciales.
+"""
 import os
 
-# === RUTAS ===
-BASE_DIR = r"D:\Remates"
-DIARIOS_DIR = os.path.join(BASE_DIR, "Diarios")
-DESCARGAS_DIR = os.path.join(BASE_DIR, "Descargas")
-CAUSAS_XLSX = os.path.join(BASE_DIR, "causas_ojv.xlsx")
+# === RUTAS (auto-detectadas, no cambiar) ===
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DIARIOS_DIR            = os.path.join(BASE_DIR, "Diarios")
+DIARIOS_PROCESADOS_DIR = os.path.join(BASE_DIR, "Diarios_Procesados")
+DESCARGAS_DIR          = os.path.join(BASE_DIR, "Descargas")
+REPORTES_DIR           = os.path.join(BASE_DIR, "Reportes")
+CAUSAS_XLSX   = os.path.join(BASE_DIR, "causas_ojv.xlsx")
 
-# === API KEYS ===
-ANTHROPIC_API_KEY = "sk-ant-XXXXXXXXXX"  # Claude API (Sonnet 4.6 para M1)
+# === CLAVES API ===
+ANTHROPIC_API_KEY = "sk-ant-XXXXXXXXXX"  # <-- PEGAR TU API KEY DE ANTHROPIC AQUÍ
 
-# === CONSTANTES ===
-CORTES_RM = ["C.A. de Santiago", "C.A. de San Miguel"]
+# === EXCEL SHEETS ===
+SHEET_REFERENCIA = "REFERENCIA"
+SHEET_CAUSAS = "CAUSAS"
 
-DEMANDANTES_EXCLUIDOS = [
-    "Banco Estado",
-    "Banco del Estado",
-]
+# === FILTROS ===
+DEMANDANTES_EXCLUIDOS = ["banco estado", "banco del estado", "banco del estado de chile"]
 
-# Causas con cuadernos restringidos/inaccesibles en OJV
+# === REGIÓN METROPOLITANA ===
+CORTES_RM = {"C.A. de Santiago", "C.A. de San Miguel"}
+
+# === CAUSAS IGNORADAS (blacklist manual) ===
+# Causas que existen en OJV pero no pueden procesarse (cuadernos restringidos, etc.)
 CAUSAS_IGNORADAS = [
-    # "C-1838-2024",  # ejemplo
+    "C-1838-2024",  # Cuadernos restringidos en OJV (timeout dropdown)
 ]
+
+# === OJV ===
+OJV_URL = "https://oficinajudicialvirtual.pjud.cl"
+
+# === EL MERCURIO DIGITAL ===
+MERCURIO_USER     = ""   # <-- RUT sin puntos ni guión
+MERCURIO_PASS     = ""   # <-- Contraseña El Mercurio Digital
+MERCURIO_BASE_URL = "https://digital.elmercurio.com"
+CAPTURAS_DIR      = os.path.join(BASE_DIR, "Capturas")
+PROCESADAS_DIR    = os.path.join(BASE_DIR, "Procesadas")

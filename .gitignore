@@ -1,36 +1,48 @@
+# Credenciales y configuración local
+config.py
+
+# Datos de trabajo (cambian cada ejecución)
+causas_ojv.xlsx
+causas_antes.json
+causas_despues.json
+tasacion_cache.db
+
+# Carpetas de datos (contenido excluido, .gitkeep preservado)
+Diarios/*
+!Diarios/.gitkeep
+Descargas/*
+!Descargas/.gitkeep
+Reportes/*
+!Reportes/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Reportes generados
+Reporte_*.xlsx
+TEST_*.docx
+
 # Python
 __pycache__/
 *.pyc
 *.pyo
+.pytest_cache/
 
-# Datos sensibles
-config.py
-
-# Perfil Playwright (browser session data)
+# Playwright
 .playwright_profile/
+playwright_profile/
 
-# Claude Code
+# IDE
+.vscode/
+.idea/
 .claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # OCR (ya no se usa con DOCX)
 .tessdata/
 
-# Archivos de trabajo (no código)
-Diarios/
-Descargas/
-logs/
-Reportes/
-
-# Base de datos interna (contiene historial específico del usuario)
-causas_ojv.xlsx
-
-# Reportes sueltos en raíz
-Reporte_*.xlsx
-
-# Cache abandonado
-tasacion_cache.db
-
-# Archivos de test/debug
-TEST_*.docx
-causas_antes.json
-causas_despues.json
+# Backups
+backup_*/
