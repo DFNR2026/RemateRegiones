@@ -1,0 +1,29 @@
+2026-03-20 18:13:41,496 [M1v2] Iniciando Modulo 1 v2 (DOCX) -- archivo: D:\Remates\SANDBOX_V2_EDGE_CASES.docx
+2026-03-20 18:13:41,496 [M1v2] Log: D:\Remates\v2_experimental\logs\v2_20260320_181341.log
+2026-03-20 18:13:41,508 [M1v2] REFERENCIA cargada: 233 tribunales
+2026-03-20 18:13:41,509 [M1v2] Historial: IGNORADO --0 ROLes previos
+2026-03-20 18:13:41,511 [M1v2] Bloques brutos: 22
+2026-03-20 18:13:41,511 [M1v2] Bloques expandidos: 22 | Pre-filtro sin ROL: 1 | Con ROL: 21
+2026-03-20 18:13:41,514 [M1v2]   [C-1800-2025] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-20 18:13:41,514 [M1v2]   [C-1800-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-20 18:13:47,740 [M1v2]   [C-1060-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-20 18:13:53,638 [M1v2]   [C-1138-2024] Comuna extraida del tribunal: 'Antofagasta'
+2026-03-20 18:13:53,670 [M1v2]   [C-14752-2023] Comuna extraida del tribunal: 'Santiago'
+2026-03-20 18:13:53,700 [M1v2]   [C-1831-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-20 18:13:59,535 [M1v2]   [C-240-2025] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-20 18:13:59,535 [M1v2]   [C-240-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-20 18:14:05,245 [M1v2]   [C-3746-2024] Direccion regex descartada (corta/sin numero): 'el primer subterráneo, todos del Edificio Trilogía Sur, Torre I'
+2026-03-20 18:14:05,245 [M1v2]   [C-3746-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-20 18:14:11,409 [M1v2] ============================================================
+2026-03-20 18:14:11,410 [M1v2] Módulo 1 v2 completado:
+2026-03-20 18:14:11,410 [M1v2]   Bloques totales:           22
+2026-03-20 18:14:11,411 [M1v2]   Pre-filtro sin ROL:        1
+2026-03-20 18:14:11,412 [M1v2]   Sin ROL post-parse:        9
+2026-03-20 18:14:11,414 [M1v2]   Filtrados año < 2018:      0
+2026-03-20 18:14:11,415 [M1v2]   Filtrados Banco Estado:    2
+2026-03-20 18:14:11,416 [M1v2]   Duplicados (semana):       0
+2026-03-20 18:14:11,416 [M1v2]   Sin tribunal:              0
+2026-03-20 18:14:11,417 [M1v2]   Sin dirección:             0
+2026-03-20 18:14:11,418 [M1v2]   CAUSAS NUEVAS:             10
+2026-03-20 18:14:11,418 [M1v2]   Llamadas API Haiku:        5
+2026-03-20 18:14:11,419 [M1v2] ============================================================

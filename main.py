@@ -9,6 +9,8 @@ Uso:
     python main.py --sin-ojv    # omite M2 (usa PDFs ya descargados en Descargas/)
     python main.py --hasta 3    # detiene el pipeline después del Módulo N
     python main.py --silencio   # suprime logs de módulos (solo muestra resúmenes)
+    python main.py --docx "RESUMEN.docx"          # DOCX semanal (v2 Regex+Haiku por defecto)
+    python main.py --v1 --docx "RESUMEN.docx"     # DOCX semanal forzando Sonnet (v1)
 
 # ===========================================================================
 # ANTES DE CADA CORRIDA DE PRUEBA — limpiar estado previo:
@@ -93,7 +95,7 @@ sys.stderr = _TeeWriter(sys.__stderr__, _log_fh)
 # Imports de módulos del proyecto
 # ─────────────────────────────────────────────────────────────────
 from modulo1_parser       import parsear_diarios, parsear_docx_semanal
-from modulo1_mercurio     import extraer_mercurio
+
 from modulo2_ojv          import procesar_causas_ojv
 from modulo3_extractor    import extraer_montos
 from modulo5_reporte      import generar_reporte, actualizar_historial
@@ -214,7 +216,8 @@ Ejemplos:
   python main.py --silencio             # solo resúmenes, sin logs de módulos
   python main.py --limpiar-historial    # M1 ignora historial CAUSAS (testing)
   python main.py --diarios "D:\\Remates\\Diarios test"  # carpeta alternativa de PDFs
-  python main.py --docx "D:\\Remates\\RESUMEN.docx"     # DOCX semanal consolidado
+  python main.py --docx "D:\\Remates\\RESUMEN.docx"     # DOCX semanal (v2 por defecto)
+  python main.py --v1 --docx "D:\\Remates\\RESUMEN.docx"  # DOCX forzando Sonnet (v1)
         """,
     )
     parser.add_argument("--demo",     action="store_true",
@@ -232,9 +235,9 @@ Ejemplos:
                         help="Carpeta alternativa de PDFs de entrada (default: Diarios/)")
     parser.add_argument("--docx",     type=str, default=None, metavar="RUTA",
                         help="Ruta al DOCX semanal consolidado (reemplaza PDFs diarios)")
-    parser.add_argument("--fecha",    type=str, default=None, metavar="YYYY-MM-DD",
-                        help="Usar Módulo 1-Mercurio Digital en vez del parser de PDFs. "
-                             "Extrae avisos de la edición digital de la fecha indicada.")
+    parser.add_argument("--v1",       action="store_true",
+                        help="Forzar parser v1 (Sonnet) para DOCX. "
+                             "Por defecto --docx usa v2 (Regex+Haiku, ~60x mas barato).")
     args = parser.parse_args()
 
     if args.silencio:
@@ -258,10 +261,11 @@ Ejemplos:
         else:
             modulo_inicio = 1
 
-        # ── Módulo 1: Parser PDFs  o  DOCX semanal  o  Mercurio Digital ─
+        # ── Módulo 1: Parser PDFs  o  DOCX semanal ──────────────────
         if modulo_inicio <= 1 <= args.hasta:
-            if args.docx:
-                _sep("MÓDULO 1 — Parsear DOCX semanal del Diario P&L")
+            if args.docx and args.v1:
+                # Forzar v1 (Sonnet) para DOCX
+                _sep("MÓDULO 1 v1 — Parsear DOCX semanal (Sonnet)")
                 print(f"  [M1] Archivo DOCX: {args.docx}")
                 if args.limpiar_historial:
                     print("  [M1] Modo testing: historial CAUSAS ignorado (Excel intacto)")
@@ -270,14 +274,20 @@ Ejemplos:
                     args.docx,
                     ignorar_historial=args.limpiar_historial,
                 )
-                _ok(1, f"{len(causas)} causas nuevas (DOCX semanal)", time.time() - t)
-            elif args.fecha:
-                _sep("MÓDULO 1 — Extractor El Mercurio Digital")
-                print(f"  [M1] Fecha edición digital: {args.fecha}")
-                print(f"  [M1] Log detallado: logs/mercurio_*.log")
+                _ok(1, f"{len(causas)} causas nuevas (v1 Sonnet)", time.time() - t)
+            elif args.docx:
+                # Default: v2 (Regex+Haiku) para DOCX
+                from v2_experimental.modulo1_v2 import parsear_docx_v2
+                _sep("MÓDULO 1 v2 — Parsear DOCX semanal (Regex+Haiku)")
+                print(f"  [M1v2] Archivo DOCX: {args.docx}")
+                if args.limpiar_historial:
+                    print("  [M1v2] Modo testing: historial CAUSAS ignorado (Excel intacto)")
                 t = time.time()
-                causas = extraer_mercurio(fecha=args.fecha)
-                _ok(1, f"{len(causas)} causas nuevas (Mercurio Digital)", time.time() - t)
+                causas = parsear_docx_v2(
+                    args.docx,
+                    ignorar_historial=args.limpiar_historial,
+                )
+                _ok(1, f"{len(causas)} causas nuevas (v2 Regex+Haiku)", time.time() - t)
             else:
                 _sep("MÓDULO 1 — Parsear PDFs del Diario P&L")
                 if args.limpiar_historial:
