@@ -112,6 +112,8 @@ def _limpiar_tribunal(nombre_raw: str) -> str:
     if not nombre_raw:
         return nombre_raw
     t = nombre_raw
+    # Fix 14: Normalizar ordinal con ceros: "01°" -> "1°", "02°" -> "2°"
+    t = re.sub(r'^0*(\d+)\s*[°º]', lambda m: f"{int(m.group(1))}°", t)
     # Fix 6: Truncar en keywords de remate/legal que no son parte del tribunal
     t = _RE_TRIBUNAL_CORTE.sub('', t)
     # Truncar en coma o punto seguido de espacio (fin natural del nombre)
@@ -133,8 +135,46 @@ def _limpiar_tribunal(nombre_raw: str) -> str:
 
 
 # ────────────────────────────────────────────────────────────────
-# Claude Haiku --solo para dirección/comuna
+# Claude Haiku -- dirección/comuna + tribunal fallback (Fix 13)
 # ────────────────────────────────────────────────────────────────
+
+# Fix 13: Prompt corto para tribunal cuando regex falla
+_PROMPT_TRIBUNAL = (
+    "Del siguiente texto de aviso de remate judicial chileno, "
+    "extrae UNICAMENTE el nombre del tribunal.\n\n"
+    "REGLAS:\n"
+    "- El tribunal es un Juzgado (Civil, Letras, etc.) de una ciudad.\n"
+    "- Incluye el ordinal y la ciudad. Ej: '2° Juzgado Civil de Santiago'.\n"
+    "- Si no hay tribunal claro, responde null.\n\n"
+    "Responde SOLO con JSON: {{\"tribunal\": \"...\"}}\n\n"
+    "Texto: {bloque}"
+)
+
+
+def _extraer_tribunal_haiku(bloque: str) -> str:
+    """Llama a Claude Haiku para extraer tribunal. Retorna string o ''."""
+    global _api_calls
+    try:
+        client = _get_claude_client()
+        respuesta = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=100,
+            messages=[{
+                "role": "user",
+                "content": _PROMPT_TRIBUNAL.format(bloque=bloque),
+            }],
+        )
+        _api_calls += 1
+        texto = respuesta.content[0].text.strip()
+        idx = texto.find("{")
+        if idx == -1:
+            return ""
+        campos, _ = json.JSONDecoder().raw_decode(texto, idx)
+        if isinstance(campos, dict):
+            return str(campos.get("tribunal") or "").strip()
+    except Exception as e:
+        log.warning(f"Haiku tribunal API error: {e}")
+    return ""
 
 _anthropic_client: anthropic.Anthropic | None = None
 
@@ -467,10 +507,20 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
 
     rol_completo = f"C-{rol}-{anio}"
 
-    # ── 2. Tribunal: regex puro (v1 strategies + v2 fallback) ──
+    # ── 2. Tribunal: regex puro (v1 strategies + v2 fallback + Haiku) ──
     tribunal_raw = extraer_tribunal_texto(bloque)
-    if not tribunal_raw:
+    if tribunal_raw:
+        log.info(f"  [{rol_completo}] Tribunal regex v1: '{tribunal_raw}'")
+    else:
         tribunal_raw = _extraer_tribunal_v2(bloque)
+        if tribunal_raw:
+            log.info(f"  [{rol_completo}] Tribunal regex v2: '{tribunal_raw}'")
+        else:
+            # Fix 13: Haiku como ultimo recurso para tribunal
+            log.info(f"  [{rol_completo}] Regex no encontro tribunal -- llamando Haiku...")
+            tribunal_raw = _extraer_tribunal_haiku(bloque)
+            if tribunal_raw:
+                log.info(f"  [{rol_completo}] Tribunal Haiku: '{tribunal_raw}'")
     tribunal_raw = _limpiar_tribunal(tribunal_raw)
 
     # Filtro partidor/árbitro
@@ -558,7 +608,6 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
         "tribunal_raw": tribunal_raw,
         "demandante": demandante,
         "demandado": "",  # v2 no extrae demandado (no crítico para pipeline)
-        "fecha_remate": "",  # v2 no extrae fecha_remate (no crítico)
         "direccion": direccion,
         "comuna": comuna,
         "tipo_propiedad": tipo_propiedad,

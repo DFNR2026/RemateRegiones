@@ -1,6 +1,6 @@
 # PROGRESO — Sistema de Análisis de Remates Judiciales Chile
 
-Última actualización: 2026-03-14 (migración DOCX semanal, ordinal recovery, city recovery, 29°-30° Santiago)
+Última actualización: 2026-03-20 (v2 Regex+Haiku default, 15 fixes, Colina en REFERENCIA)
 
 ---
 
@@ -13,52 +13,49 @@ Configuración global del proyecto: rutas, claves API, constantes.
 - `DEMANDANTES_EXCLUIDOS`, `CORTES_RM`
 - `CAUSAS_IGNORADAS` — blacklist de causas con cuadernos restringidos/inaccesibles en OJV
 
-### `modulo1_parser.py` ✅ COMPLETADO
+### `modulo1_parser.py` ✅ COMPLETADO (v1 — Sonnet, fallback con `--v1`)
 Parser de avisos de remate desde PDFs diarios O DOCX semanal consolidado.
-
-**Qué hace:**
-1. Lee hoja REFERENCIA de `causas_ojv.xlsx` (233 tribunales → cortes)
-2. Lee hoja CAUSAS (historial de ROLes procesados)
-3. **Modo DOCX (principal desde 2026-03-14):** Lee `.docx` semanal con `python-docx`, separa por encabezados de fecha (`16 MARZO`, `17 MARZO`, etc.), cada párrafo no-vacío es una causa completa
-4. **Modo PDF (fallback):** Para cada PDF en `Diarios/`: extrae texto con PyMuPDF, separa en bloques por marcadores
-5. Filtra bloques de jueces árbitros/partidores (masculino Y femenino, tolerante a errores OCR)
-6. Por cada bloque: envía a Claude API (`claude-sonnet-4-6`) para extraer ROL, tribunal, demandante, dirección y comuna
-7. **Post-procesamiento `_limpiar_tribunal()`**: une guiones silábicos, elimina direcciones físicas del nombre del tribunal, normaliza capitalización
-8. **Filtro post-extracción**: si Claude devuelve tribunal tipo "Jueza Partidora...", "Juez Árbitro...", la causa se descarta
-9. Deduplica por ROL entre bloques de la semana y contra historial
-10. Filtra: Banco Estado, causas pre-2018
-11. Mapea tribunal → corte con **RapidFuzz** (`fuzz.token_set_ratio`, umbral 80.0)
-12. **Validación ordinal post-matching**: si el número ordinal no coincide, rechaza el match e **intenta recovery** filtrando REFERENCIA por tribunales con el ordinal correcto
-13. **`_extraer_ordinal()`**: reconoce ordinales numéricos (1°, 2º, 29°) Y textuales ("Primer", "Séptimo", "Vigésimo Noveno", etc.) via diccionario texto→número
-14. **Validación de ciudad post-matching**: compara ciudades entre tribunal del PDF y tribunal candidato (con normalización de tildes). Si difieren, penaliza 0.7x. Si cae bajo umbral, **intenta city recovery** filtrando REFERENCIA por tribunales que contengan la ciudad del PDF
-15. **Retry dirección**: si Claude no extrajo dirección pero sí ROL, hace un segundo intento con prompt focalizado
-16. Determina region_rm según corte (C.A. de Santiago o C.A. de San Miguel)
-17. **Campo `fecha_publicacion`**: extraído del encabezado de fecha del DOCX (ej: "16 MARZO 2026")
+Usa Claude Sonnet 4.6 para extracción de todos los campos.
 
 **Output:** Lista de dicts con campos: `rol, año, corte, tribunal, demandante, demandado, direccion, comuna, region_rm, fecha_publicacion`
 
+### `v2_experimental/modulo1_v2.py` ✅ DEFAULT (v2 — Regex+Haiku)
+Parser optimizado que reemplaza a v1 como default para `--docx`.
+- **Estrategia Regex-Flow + Haiku**: ROL/tribunal/demandante con regex puro, dirección/comuna con Haiku solo cuando regex falla
+- **Costo**: ~$0.05/run vs ~$3/run (v1) — ahorro ~60x
+- **Velocidad**: ~3-4x más rápido que v1
+- **Match rate vs v1**: 85.7% (diferencias son en detalle de dirección, no en campos críticos)
+
+**15 fixes aplicados (Fix 1-15, Fix 17-18):**
+- Fix 1: Corte DESCONOCIDA por falta de buscar_corte
+- Fix 2: Dirección regex captura basura (validación longitud + dígito)
+- Fix 3: Demandante regex no captura bancos (BCI, Scotiabank, etc.)
+- Fix 4: Aplanar texto (\n→espacio) antes de regex
+- Fix 5: Validación dirección con números en palabras ("número", "lote", etc.)
+- Fix 6: Tribunal captura texto de más (truncar en keywords remate)
+- Fix 7: Logging propio a v2_experimental/logs/
+- Fix 8: Comuna con artículo ("La Serena" no "Serena")
+- Fix 9: Demandante slash/unquoted caratulada
+- Fix 10: Haiku retorna dirección + comuna
+- Fix 11: Comuna exceso captura ("Bulnes sector..." → "Bulnes")
+- Fix 12: Comuna vacía → extraer de tribunal normalizado (REFERENCIA)
+- Fix 13: Haiku fallback para tribunal cuando regex v1+v2 fallan
+- Fix 14: Ordinal "01°" → "1°" normalización
+- Fix 15: Juzgado de Letras de Colina agregado a REFERENCIA
+- Fix 17: fecha_remate revertido (no se usa en pipeline)
+- Fix 18: Logging tribunal regex v1/v2/Haiku para diagnóstico
+
 **Resultados run producción DOCX (semana 16-20 marzo 2026):**
-- 184 bloques procesados → 55 causas nuevas
-- 117 sin ROL (bloques de ruido: encabezados, publicidad, párrafos vacíos)
-- 10 filtradas Banco Estado, 2 filtradas pre-2018
-- 51/55 documentos descargados de OJV (92.7%)
-- 51/51 montos extraídos (100%)
-- 1 sola causa con corte DESCONOCIDA (C-240-2025 Linares, edge case de score 79.2%)
+- 184 bloques procesados → 63 causas nuevas
+- 58/63 documentos descargados de OJV (92%)
+- 234 tribunales en REFERENCIA (incluye 29°/30° Santiago + Colina)
+- 1 sola causa con corte DESCONOCIDA (C-240-2025 Linares)
 
-**Fixes aplicados (2026-03-14, migración DOCX):**
-- **Nueva función `parsear_docx_semanal()`**: lee DOCX con `python-docx`, convive con `parsear_diarios()` como fallback
-- **Encoding fix**: reemplazado `→` (U+2192) por `->` en logs para compatibilidad con consola Windows cp1252
-- **Ordinal recovery**: cuando ORDINAL MISMATCH rechaza el top match, re-busca en subset de REFERENCIA filtrado por ordinal correcto
-- **Ordinales textuales**: diccionario "Primer"→1, "Séptimo"/"Sétimo"→7, "Vigésimo Noveno"→29, etc.
-- **City recovery**: cuando CITY MISMATCH rechaza, re-busca filtrando REFERENCIA por ciudad del PDF
-- **Normalización tildes en ciudades**: `unicodedata.normalize()` para comparar "quilpué" == "quilpue"
-- **Tribunales agregados a REFERENCIA**: 29° y 30° Juzgado Civil de Santiago (faltaban, lista iba hasta 28°)
-
-**Fixes históricos:**
-- Upgrade Haiku → Sonnet 4.6 (eliminó alucinaciones graves)
-- Claude API reemplazó regex frágil para extracción de campos
+**Fixes históricos v1:**
+- Encoding fix: `→` → `->` para Windows cp1252
+- Ordinal/City recovery en buscar_corte()
+- Ordinales textuales hasta "Trigésimo"
 - RapidFuzz reemplazó difflib SequenceMatcher
-- Filtro jueces partidores ampliado a femenino + tolerancia OCR
 
 ### `modulo2_ojv.py` ✅ COMPLETADO
 Wrapper del motor OJV para el pipeline.
@@ -91,9 +88,10 @@ Orquestador M1 → M2 → M3 → M5.
 
 **Uso:**
 ```
-python main.py --docx "ruta.docx"             # DOCX semanal (modo principal)
+python main.py --docx "ruta.docx"             # DOCX semanal (v2 Regex+Haiku por defecto)
+python main.py --v1 --docx "ruta.docx"        # DOCX forzando Sonnet (v1)
 python main.py --docx "ruta.docx" --limpiar-historial  # test sin afectar producción
-python main.py                                  # PDFs diarios (fallback)
+python main.py                                  # PDFs diarios (fallback, usa v1 Sonnet)
 python main.py --sin-ojv                        # omite M2
 python main.py --hasta N                        # detiene tras Módulo N
 python main.py --silencio                       # solo resúmenes
@@ -104,7 +102,7 @@ python main.py --silencio                       # solo resúmenes
 
 ### `causas_ojv.xlsx`
 BD interna con dos hojas:
-- **REFERENCIA**: 233 filas con mapeo tribunal → corte (actualizada 2026-03-14: +29° y 30° Santiago)
+- **REFERENCIA**: 234 filas con mapeo tribunal → corte (actualizada 2026-03-20: +29°/30° Santiago, +Colina)
 - **CAUSAS**: historial ROLes procesados
 
 ### `limpiar_cache.py`
@@ -140,10 +138,12 @@ Limpieza de caché antes de test runs.
 
 ## Costos API
 
-- **Run DOCX semanal (184 bloques):** ~$3 USD en tokens Sonnet 4.6
-- **Tiempo M1:** ~5 min (184 llamadas API secuenciales)
-- **Tiempo M2:** ~21 min (51 causas en OJV)
-- **Tiempo total pipeline:** ~27 min
+- **Run DOCX semanal v2 (184 bloques):** ~$0.05 USD en tokens Haiku (solo ~50% de causas necesitan Haiku)
+- **Run DOCX semanal v1 (184 bloques):** ~$3 USD en tokens Sonnet 4.6 (fallback con `--v1`)
+- **Tiempo M1 v2:** ~30s (regex puro + ~30 llamadas Haiku)
+- **Tiempo M1 v1:** ~5 min (184 llamadas API secuenciales)
+- **Tiempo M2:** ~21 min (51-58 causas en OJV)
+- **Tiempo total pipeline v2:** ~22 min
 
 ---
 

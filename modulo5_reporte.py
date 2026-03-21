@@ -139,7 +139,6 @@ _COLUMNAS = [
     ("Tipo Proc.",      "tipo_procedimiento", 13,  None),
     ("Deuda (CLP)",     "monto_deuda_clp",    17,  '#,##0'),
     ("Fechas Public.",  "fechas_publicacion", 18,  None),
-    ("Fecha Remate",    "fecha_remate",       14,  None),
     ("Motivo Fallo",    "motivo_fallo",       32,  None),
 ]
 

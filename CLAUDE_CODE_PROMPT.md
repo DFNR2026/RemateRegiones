@@ -1,5 +1,5 @@
 # PROYECTO: Sistema Automatizado de Análisis de Remates Judiciales - Chile
-# Versión 6 del prompt maestro (actualizado 2026-03-14)
+# Versión 7 del prompt maestro (actualizado 2026-03-20)
 
 ## CONTEXTO DEL NEGOCIO
 
@@ -21,12 +21,14 @@ Soy un inversionista inmobiliario chileno que analiza remates judiciales de prop
 ```
 D:\Remates\
 ├── main.py                ← orquestador que encadena los módulos
-├── modulo1_parser.py      ← parser DOCX/PDFs (Claude API Sonnet 4.6) + deduplicación + filtros
+├── modulo1_parser.py      ← parser v1 (Sonnet 4.6) — fallback con --v1
+├── v2_experimental/
+│   └── modulo1_v2.py      ← parser v2 (Regex+Haiku) — DEFAULT para --docx
 ├── modulo2_ojv.py         ← consulta OJV via Playwright + extracción litigantes
 ├── modulo3_extractor.py   ← extrae montos de deuda desde PDFs descargados
 ├── modulo5_reporte.py     ← reporte final Excel con formato condicional
 ├── ojv_remates.py         ← motor OJV base (v10.0) — usado por modulo2_ojv.py
-├── causas_ojv.xlsx        ← BASE DE DATOS INTERNA (REFERENCIA 233 tribunales + historial CAUSAS)
+├── causas_ojv.xlsx        ← BASE DE DATOS INTERNA (REFERENCIA 234 tribunales + historial CAUSAS)
 ├── config.py              ← claves API (Anthropic), rutas, constantes, CAUSAS_IGNORADAS
 ├── limpiar_cache.py       ← limpieza de caché antes de test runs
 ├── logs/                  ← un .log por ejecución (dual-logging TeeWriter)
@@ -52,48 +54,44 @@ La tasación automatizada fue **descartada definitivamente**. Los comparables a 
 
 ## MÓDULO 1: Parser DOCX/PDFs + Deduplicación
 
-### Fuente principal: DOCX semanal (desde 2026-03-14)
+### Parser v2 (DEFAULT): Regex-Flow + Haiku
+
+**Archivo:** `v2_experimental/modulo1_v2.py` — se activa automáticamente con `--docx`.
+
+**Estrategia de costo:** ROL/tribunal/demandante se extraen con regex puro (0 API calls). Solo dirección/comuna usan Claude Haiku como fallback cuando regex falla (~50% de causas). Tribunal usa Haiku solo si ambos regex (v1+v2) fallan.
+
+**Costo:** ~$0.05/run vs ~$3/run (v1) — ahorro ~60x.
+
+**Pipeline v2:**
+1. Pre-filtro: bloques sin ROL se descartan GRATIS (regex)
+2. ROL: regex `C-XXXXX-YYYY`
+3. Tribunal: `extraer_tribunal_texto()` (v1) → `_extraer_tribunal_v2()` (4 patrones extra) → Haiku fallback
+4. Demandante: `_extraer_demandante_v2()` (bancos, caratulada, slash patterns)
+5. Dirección/comuna: `extraer_direccion_comuna()` (v1 regex) → `_extraer_comuna_v2()` (artículos) → Haiku fallback
+6. Validación dirección: longitud >10 + dígito o palabra numérica
+7. Comuna post-limpieza: truncar "sector"/"localidad"/"lugar"
+8. Tribunal → Corte: `buscar_corte()` (RapidFuzz, ordinal/city recovery)
+9. Comuna fallback: extraer ciudad del `tribunal_norm` (REFERENCIA)
+10. Filtros: Banco Estado, pre-2018, RM, partidores/árbitros
+
+### Parser v1 (fallback con `--v1`): Claude Sonnet
+
+**Archivo:** `modulo1_parser.py` — se activa con `--v1 --docx` o modo PDFs diarios.
+Usa Claude Sonnet 4.6 para extracción de TODOS los campos.
+
+### Fuente principal: DOCX semanal
 
 **Input:** Un archivo `.docx` semanal consolidado del Diario P&L (ej: `RESUMEN_16_AL_20_MARZO.docx`)
 
-**Estructura del DOCX:**
-```
-Párrafo: "RESUMEN NACIONAL"                         ← IGNORAR (título)
-Párrafo: "REMATES SEMANA DEL 16 AL 20 MARZO 2026"   ← Extraer año
-Párrafo: "16 MARZO"                                  ← Encabezado de fecha
-Párrafo: "EXTRACTO Remate. 1º Juzgado..."           ← Una causa completa
-Párrafo: (vacío)                                     ← IGNORAR
-Párrafo: "17 MARZO"                                  ← Encabezado de fecha
-...
-```
-
-**Motor de extracción:** Claude API (`claude-sonnet-4-6`). API key en `config.py`.
-
 **Procesamiento DOCX:**
-1. Leer con `python-docx`, separar párrafos por encabezados de fecha (regex: `r'^\d{1,2}\s+(ENERO|...|DICIEMBRE)$'`)
-2. Cada párrafo no-vacío que no sea título ni fecha = un bloque de causa
+1. Leer con `python-docx`, separar párrafos por encabezados de fecha
+2. Cada párrafo no-vacío = un bloque de causa
 3. Si un párrafo contiene 2+ ROLes, splitear en sub-bloques
 4. Extraer `fecha_publicacion` del encabezado + año del título
 
-### Fuente fallback: PDFs diarios
+### Fuente fallback: PDFs diarios (siempre usa v1 Sonnet)
 
 **Input:** Archivos PDF en `D:\Remates\Diarios\` (uno por día)
-- Extrae texto con PyMuPDF, separa en bloques por marcadores
-
-### Pipeline común (ambas fuentes)
-
-5. Filtro jueces partidores/árbitros pre-extracción
-6. Enviar bloque a Claude API: extraer ROL, tribunal, demandante, demandado, dirección, comuna
-7. **`_limpiar_tribunal()`**: une guiones silábicos, elimina direcciones físicas, normaliza capitalización
-8. Filtro partidor/árbitro post-extracción
-9. Deduplicar entre bloques de la semana + contra historial CAUSAS
-10. Filtros: Banco Estado, causas pre-2018
-11. **Matching tribunal → corte con RapidFuzz** (`token_set_ratio`, umbral 80):
-    - **Validación ordinal**: si ordinal no coincide → **recovery** (re-busca solo entre tribunales con ordinal correcto)
-    - **`_extraer_ordinal()`**: reconoce numéricos (1°, 29°) Y textuales ("Séptimo"→7, "Vigésimo Noveno"→29)
-    - **Validación de ciudad**: compara ciudades normalizadas (sin tildes). Si difieren → penaliza 0.7x → si cae bajo umbral → **city recovery** (re-busca solo entre tribunales con la ciudad del PDF)
-12. **Retry dirección**: segundo intento con prompt focalizado si dirección=None
-13. Clasificar región: C.A. de Santiago / C.A. de San Miguel = RM. Todo lo demás = Regiones.
 
 **Output:** Lista de dicts:
 ```python
@@ -159,9 +157,10 @@ Párrafo: "17 MARZO"                                  ← Encabezado de fecha
 ## ORQUESTADOR (main.py)
 
 ```
-python main.py --docx "ruta.docx"                          # DOCX semanal (principal)
+python main.py --docx "ruta.docx"                          # DOCX semanal (v2 Regex+Haiku por defecto)
+python main.py --v1 --docx "ruta.docx"                     # DOCX forzando Sonnet (v1)
 python main.py --docx "ruta.docx" --limpiar-historial      # test sin afectar producción
-python main.py                                              # PDFs diarios (fallback)
+python main.py                                              # PDFs diarios (fallback, usa v1 Sonnet)
 python main.py --sin-ojv                                    # omite M2
 python main.py --hasta N                                    # detiene tras Módulo N
 python main.py --silencio                                   # solo resúmenes
@@ -171,7 +170,7 @@ python main.py --silencio                                   # solo resúmenes
 
 ---
 
-## HOJA REFERENCIA (233 tribunales)
+## HOJA REFERENCIA (234 tribunales)
 
 | CORTE | TRIBUNAL |
 |---|---|
@@ -179,7 +178,8 @@ python main.py --silencio                                   # solo resúmenes
 | C.A. de Santiago | 1º Juzgado Civil de Santiago |
 | C.A. de Santiago | 29º Juzgado Civil de Santiago |
 | C.A. de Santiago | 30º Juzgado Civil de Santiago |
-| ... (233 tribunales en total) |
+| C.A. de Santiago | Juzgado de Letras de Colina |
+| ... (234 tribunales en total) |
 
 **Regla RM:** "C.A. de Santiago" o "C.A. de San Miguel" = RM. Todo lo demás = Regiones.
 
@@ -206,21 +206,25 @@ pymupdf (fitz), pandas, openpyxl, playwright, numpy, requests, rapidfuzz, anthro
 9. **Reporte separado por región:** Pestaña RM y Pestaña Regiones.
 10. **config.py** contiene todas las claves, rutas, constantes, `CAUSAS_IGNORADAS`.
 11. **`--limpiar-historial`** para tests. `limpiar_cache.py` antes de cada test run.
-12. **Hoja REFERENCIA** (233 tribunales): solo agregar si faltan, nunca eliminar.
+12. **Hoja REFERENCIA** (234 tribunales): solo agregar si faltan, nunca eliminar.
 13. **DOCX semanal es la fuente principal.** PDFs diarios son fallback.
-14. **Litigantes DTE/DDO** se extraen de OJV y sobrescriben datos parciales de M1.
-15. **Encoding logs**: usar solo ASCII en f-strings de log (`->` no `→`). Consola Windows usa cp1252.
-16. **Costos API:** ~$3 por run semanal completo (184 bloques, Sonnet 4.6).
+14. **v2 es el parser DEFAULT para DOCX.** Usa `--v1` para forzar Sonnet.
+15. **Litigantes DTE/DDO** se extraen de OJV y sobrescriben datos parciales de M1.
+16. **Encoding logs**: usar solo ASCII en f-strings de log (`->` no `→`). Consola Windows usa cp1252.
+17. **Costos API v2:** ~$0.05/run (Haiku). **v1:** ~$3/run (Sonnet). v2 es 60x más barato.
 
 ---
 
-## MÉTRICAS DE PRODUCCIÓN (run 2026-03-14)
+## MÉTRICAS DE PRODUCCIÓN (run 2026-03-20, v2)
 
 | Métrica | Valor |
 |---|---|
 | Bloques procesados | 184 |
-| Causas nuevas | 55 |
-| Documentos descargados | 51/55 (92.7%) |
-| Montos extraídos | 51/51 (100%) |
-| Tiempo total | ~27 min |
-| Cortes DESCONOCIDA | 1/55 (1.8%) |
+| Causas nuevas | 63 |
+| Documentos descargados | 58/63 (92%) |
+| Montos extraídos | 58/58 (100%) |
+| Tiempo M1 (v2) | ~30s |
+| Tiempo total pipeline | ~22 min |
+| Cortes DESCONOCIDA | 1/63 (1.6%) |
+| Llamadas Haiku | ~30 (dirección + tribunal fallback) |
+| Costo API M1 | ~$0.05 |
