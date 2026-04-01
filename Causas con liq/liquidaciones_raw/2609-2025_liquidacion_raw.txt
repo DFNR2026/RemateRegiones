@@ -1,0 +1,293 @@
+1° JUZGADO CIVIL DE RANCAGUA
+ROL
+:
+2609-2025
+CARÁTULA
+:
+BANCO BICE S.A/VALENZUELA
+PROCEDIMIENTO
+:
+Ejecutivo Obligación de Dar
+MATERIA
+:
+Mutuo, cobro ejecutivo de
+FECHA
+:
+Rancagua, 28 de enero de 2026
+(I). Aplicación de intereses
+(a) Mutuo I
+Capital Adeudado $
+Fecha de Mora 
+Fecha de 
+liquidación
+Días de 
+Mora
+ (1)  
+T.I.M.C. 
+% SBIF
+(2) Factor 
+de interés 
+diario
+Monto de intereses 
+acumulados del 
+período en mora, (3)
+Total intereses
+U.F. 582,7680
+01/08/2024
+28/01/2026
+538
+7,53%
+0,0209%
+U.F. 65,5799
+U.F. 65,5799
+(b) Mutuo II
+Capital Adeudado $
+Fecha de Mora 
+Fecha de 
+liquidación
+Días de 
+Mora
+ (1)  
+T.I.M.C. 
+% SBIF
+(2) Factor 
+de interés 
+diario
+Monto de intereses 
+acumulados del 
+período en mora, (3)
+Total intereses
+U.F. 7.800,1794
+01/08/2024
+28/01/2026
+538
+7,53%
+0,0209%
+U.F. 877,7672
+U.F. 877,7672
+Notas:
+(1) T.I.M.C. = Tasa de interés máxima convencional, anual.
+(2) T.I.M.C. anual, dividida por 360 días.
+(3) Capital adeudado, multiplicado por días de mora, multiplicado por factor de interés diario.
+(I). Aplicación de intereses
+Capital adeudado
+Fecha de mora 
+Fecha de 
+liquidación
+Días de 
+mora
+T.I.M.C.
+(2) Factor 
+de interés 
+diario
+ (3) Monto de 
+intereses 
+acumulados del 
+período en mora
+Total intereses
+ $                12.171.558 
+25/06/2024
+28/01/2026
+574
+27,12%
+0,0753%
+ $              5.263.144  $                 5.263.144 
+Notas:
+(1) T.I.M.C. = Tasa de interés máxima convencional, anual.
+(2) T.I.M.C. anual, dividida por 360 días.
+(3) Capital adeudado, multiplicado por días de mora, multiplicado por factor de interés diario.
+(c) Pagaré N° 000424525530003774
+LIQUIDACIÓN DE CRÉDITO
+Créditos hecho valer
+Operaciones reajustables en moneda nacional
+De un año o más. Superiores al equivalente de 2000 unidades de fomento
+Operaciones no reajustables en moneda nacional 90 días o más
+Inferiores o iguales al equivalente de 5.000 unidades de fomento y superiores al equivalente de 
+200 unidades de fomento
+Código: SNEVBSXXXFJ
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl
+(I). Aplicación de intereses
+Capital adeudado
+Fecha de mora 
+Fecha de 
+liquidación
+Días de 
+mora
+T.I.M.C.
+(2) Factor 
+de interés 
+diario
+ (3) Monto de 
+intereses 
+acumulados del 
+período en mora
+Total intereses
+ $                  7.162.501 
+29/11/2024
+28/01/2026
+420
+52,53%
+0,1459%
+ $              4.389.539  $                 4.389.539 
+Notas:
+(1) T.I.M.C. = Tasa de interés máxima convencional, anual.
+(2) T.I.M.C. anual, dividida por 360 días.
+(3) Capital adeudado, multiplicado por días de mora, multiplicado por factor de interés diario.
+(I). Aplicación de intereses
+Capital adeudado
+Fecha de mora 
+Fecha de 
+liquidación
+Días de 
+mora
+T.I.M.C.
+(2) Factor 
+de interés 
+diario
+ (3) Monto de 
+intereses 
+acumulados del 
+período en mora
+Total intereses
+ $                12.250.512 
+19/08/2024
+28/01/2026
+520
+26,37%
+0,0733%
+ $              4.666.220  $                 4.666.220 
+Notas:
+(1) T.I.M.C. = Tasa de interés máxima convencional, anual.
+(2) T.I.M.C. anual, dividida por 360 días.
+(3) Capital adeudado, multiplicado por días de mora, multiplicado por factor de interés diario.
+Resumen:
+Capital
+Intereses
+(a) Mutuo I…........................................................................................................................................  U.F           582,7680 
+U.F                65,5799 
+(b) Mutuo II….......................................................................................................................................  U.F        7.800,1794 
+U.F              877,7672 
+Capital adeudado….............................................................................................................................  U.F        8.382,9474 
+U.F              943,3470 
+(d) Pagaré N° 418676
+(e) Pagaré N° 465834
+Operaciones no reajustables en moneda nacional de menos de 90 días
+Inferiores o iguales al equivalente de 5.000 unidades de fomento
+Operaciones no reajustables en moneda nacional 90 días o más
+Inferiores o iguales al equivalente de 5.000 unidades de fomento y superiores al equivalente de 
+200 unidades de fomento
+Código: SNEVBSXXXFJ
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl
+Valor U.F.
+28/01/2026
+..
+Capital
+Intereses
+(a) Mutuo I…........................................................................................................................................
+23.143.908
+$             
+2.604.423
+$                  
+(b) Mutuo II….......................................................................................................................................
+309.774.453
+$           
+34.859.435
+$                
+(c) Pagaré N° 000424525530003774…................................................................................................
+12.171.558
+$             
+5.263.144
+$                  
+(d) Pagaré N° 418676….......................................................................................................................
+7.162.501
+$               
+4.389.539
+$                  
+(e) Pagaré N° 465834….......................................................................................................................
+12.250.512
+$             
+4.666.220
+$                  
+Capital adeudado….............................................................................................................................
+364.502.932
+$           
+51.782.761
+$                
+Capital adeudado al 28 de enero de 2026….........................................................………………………
+364.502.932
+$           
+(+) Intereses adeudados al 28 de enero de 2026…...................................………………………………
+51.782.761
+$             
+Total crédito a liquidar…....................................................................................................................
+416.285.693
+$           
+(B). Costas procesales
+Cuaderno principal:
+Búsqueda F8, no acompaña boleta
+30/06/2025
+Búsqueda F9, no acompaña boleta
+30/06/2025
+No estampa derechos F10, no acompaña bo
+27/06/2025
+Notificación art.44 F11, no acompaña boleta
+30/06/2025
+Cuaderno apremio:
+No estampa derechos F2, no acompaña bole
+01/07/2025
+No estampa derechos F4, no acompaña bole
+01/07/2025
+No estampa derechos F6, no acompaña bole
+10/07/2025
+No estampa derechos F6, no acompaña bole
+15/07/2025
+Factura N° 000143474 F30
+06/10/2025
+..
+Total costas procesales………………………………………………
+Total crédito a liquidar…....................................................................................................................
+416.285.693
+$           
+(+) Costas procesales al 28 de enero de 2026…...............................................................................
+1.189.999
+$               
+CRÉDITO ADEUDADO AL 28 DE ENERO DE 2026….........................................................................
+417.475.692
+$           
+1° JUZGADO CIVIL DE RANCAGUA
+1.189.999
+$            
+-
+$                     
+-
+$                     
+-
+$                     
+-
+$                     
+-
+$                     
+-
+$                     
+Secretario (a)
+39.713,76
+$                            
+1.189.999
+$           
+-
+$                     
+-
+$                     
+El Artículo 140 del Código de Procedimiento Civil, indica que estas se avaluarán con el arreglo 
+a la ley de aranceles, los cuales están contenidos en el Decreto Exento N°593/1998 del 
+Ministerio de Justicia vigente hasta el 31 de agosto 2024 y en el Decreto Exento N°1725/2024 
+y N°1726/2024 del Ministerio de Justicia, vigente desde el 01 de septiembre 2024, en 
+relación con el Artículo 393 del Código Orgánico de Tribunales
+Código: SNEVBSXXXFJ
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl

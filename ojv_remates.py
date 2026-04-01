@@ -200,9 +200,21 @@ def navegar_a_consulta(page):
 
 def limpiar_formulario(page):
     """Limpia el formulario para una nueva búsqueda sin navegar a ninguna URL.
-    1. Cierra modal si está visible.
-    2. Intenta botón 'Limpiar' del formulario OJV.
-    3. Si no existe, resetea #competencia manualmente (AJAX limpia los dependientes)."""
+    1. Cierra modal de detalle si está visible.
+    2. Cierra modal de aviso si está visible.
+    3. Intenta botón 'Limpiar' del formulario OJV.
+    4. Si no existe, resetea #competencia manualmente (AJAX limpia los dependientes)."""
+    # Cerrar modal de detalle si esta abierto (previene bloqueo de select_option)
+    try:
+        is_modal = page.evaluate('() => { const m = document.getElementById("modalDetalleCivil"); return m && m.classList.contains("in"); }')
+        if is_modal:
+            page.evaluate('$("#modalDetalleCivil").modal("hide")')
+            page.wait_for_timeout(500)
+    except Exception:
+        try:
+            page.evaluate('() => { const m = document.getElementById("modalDetalleCivil"); if(m){m.classList.remove("in");m.style.display="none"} document.querySelectorAll(".modal-backdrop").forEach(b=>b.remove()); document.body.classList.remove("modal-open"); }')
+        except Exception:
+            pass
     cerrar_modal_aviso(page)
     try:
         if page.is_visible("button:has-text('Limpiar')", timeout=1000):

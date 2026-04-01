@@ -1,0 +1,241 @@
+JUZGADO DE LETRAS DE VILLARRICA
+ROL
+: 867-2024
+PARTES
+PROCEDIMENTO
+: Monitorio
+MATERIA
+: Medida Prejudicial Precautoria 
+FECHA
+: Villarrica, 20 de febrero de 2026
+(A). Rentas 
+N°
+Fecha de 
+vencimiento rentas 
+según demanda
+Fecha de 
+liquidación
+(1)Renta Mensual 
+$
+Días de mora (2)
+(3) T.I.C. 
+% anual
+(4) Factor de 
+interés diario
+Monto de intereses 
+acumulados del 
+período en mora
+1
+01/03/2024
+20/02/2026
+55,00
+U.F.         
+                721 
+8,46%
+0,0235%
+9,32
+U.F.             
+2
+01/04/2024
+20/02/2026
+135,00
+U.F.       
+                690 
+6,34%
+0,0176%
+16,40
+U.F.           
+3
+01/05/2024
+20/02/2026
+135,00
+U.F.       
+                660 
+5,24%
+0,0146%
+12,97
+U.F.           
+4
+01/06/2024
+20/02/2026
+135,00
+U.F.       
+                629 
+5,24%
+0,0146%
+12,36
+U.F.           
+5
+01/07/2024
+20/02/2026
+135,00
+U.F.       
+                599 
+5,34%
+0,0148%
+11,99
+U.F.           
+6
+01/08/2024
+20/02/2026
+135,00
+U.F.       
+                568 
+5,30%
+0,0147%
+11,29
+U.F.           
+730,00
+U.F.       
+74,34
+U.F.           
+N°
+Fecha de 
+vencimiento
+Fecha de 
+liquidación
+(1)Renta Mensual 
+$
+Días de mora (2)
+(3) T.I.C. 
+% anual
+(4) Factor de 
+interés diario
+Monto de intereses 
+acumulados del 
+período en mora
+1
+01/09/2024
+20/02/2026
+135,00
+U.F.       
+                537 
+4,00%
+0,0111%
+8,06
+U.F.             
+2
+01/10/2024
+20/02/2026
+135,00
+U.F.       
+                507 
+4,42%
+0,0123%
+8,40
+U.F.             
+3
+01/10/2024
+20/02/2026
+63,00
+U.F.         
+                507 
+5,10%
+0,0142%
+4,52
+U.F.             
+333,00
+U.F.       
+20,98
+U.F.           
+(1) Las rentas fueron calculadas hasta la fecha de restitución (14/10/2024)
+(2) Los días de mora se contabilizaron desde la fecha de mora hasta la fecha de liquidación.
+(3) T.I.C. = Tasa de interés corriente anual.
+(4) T.I.C. anual, dividido por 360 días.
+(5) Última renta devengada, calculada proporcionalmente al día de la restitución
+(a). Rentas a la interposición de la demanda……………………………………………………..………………………… U.F.         730,00 
+(+) Intereses adeudados…………………………………………………………...…………….………………………………U.F.           74,34 
+(b). Rentas devengadas durante el juicio……………………………………………………..………………………………U.F.         333,00 
+(+) Intereses adeudados…………………………………………………………...…………….………………………………U.F.           20,98 
+     Total rentas adeudadas……………………….................................................................................…………………U.F.      1.158,32 
+Valor U.F. al
+20/02/2026
+39.745,27
+$       
+Total rentas adeudadas…………………………....................................................…………………….……………
+46.037.741
+$       
+(B). Gastos Domiciliarios:
+Luz eléctrica……………………………………………………………………………………………… $       1.932.420 
+Agua potable………………………………………………………………………………………………$       2.677.800 
+(+) Total gastos domiciliarios ………………………………………………………………...…….
+4.610.220
+$       
+: INVERSIONES RGA LTDA/MEDRANO ARISMENDI
+(a) Rentas adeudadas a la interposición de la demanda.
+(b) Rentas devengadas durante el juicio
+Notas:
+LIQUIDACIÓN DE CREDITO
+Operaciones reajustables en moneda nacional
+Menores a un año
+Código: RXVSBVWHCFG
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl
+(C). Multa:
+Multa según clausula Décimo Segundo, del contrato de sub-arrenda.…………………………… U.F.       200,00 
+(-) Garantia de parte demandada…...........................................................................................
+100,00)
+(U.F.         
+Total multa…............................................................................................................................. U.F.       100,00 
+Valor U.F. al
+20/02/2026
+39.745,27
+$       
+(+) Total gastos domiciliarios ………………………………………………………………...…….
+3.974.527
+$       
+Resumen:
+Total rentas adeudadas al 20 de febrero de 2026….........................…………………………………………
+46.037.741
+$       
+(+) Total gastos domiciliarios al 20 de febrero de 2026…...............................……………………………
+4.610.220
+$         
+(+) Total multa……………………………………………………………...……..…………………………………
+3.974.527
+$         
+Total crédito a liquidar................................................................................................................................
+54.622.488
+$       
+(D).    Tasación de Costas Procesales (Derechos estampados Receptor ) )
+Cuaderno principal:
+Costas procesales según tasación ( folio N°9) (09/12/2024)……………...…….......................................
+1.709.573
+$          
+Factura N° 395249 F136
+07/03/2025
+873.936
+$             
+Factura N° 399195 F159
+30/06/2025
+963.786
+$             
+Factura N° 403062 F177
+20/10/2025
+1.038.956
+$          
+Factura N°00406623 F201
+05/02/2026
+1.020.163
+$          
+Total costas procesales….....................................................................................................................
+5.606.414
+$     
+Total crédito a liquidar................................................................................................................................
+54.622.488
+$       
+(+) Costas procesales.................................................................................................................................
+5.606.414
+$         
+(+) Costas personales (14-07-2025)...........................................................................................................
+1.000.000
+$         
+Crédito adeudado al 20 de febrero de 2026…..............................….........................................................
+61.228.902
+$       
+Unidad de liquidaciones
+Código: RXVSBVWHCFG
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl

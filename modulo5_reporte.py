@@ -392,22 +392,16 @@ def generar_reporte(causas: list[dict]) -> str:
     # Poner Resumen al principio (moverlo al índice 0)
     wb.move_sheet("Resumen", offset=-len(wb.sheetnames) + 1)
 
-    # Guardar — si el archivo del día ya existe y está bloqueado, agregar hora
+    # Guardar — si el archivo del día ya existe, agregar sufijo incremental _2, _3...
     os.makedirs(REPORTES_DIR, exist_ok=True)
     fecha = datetime.date.today().isoformat()
     ruta  = os.path.join(REPORTES_DIR, f"Reporte_{fecha}.xlsx")
     if os.path.exists(ruta):
-        try:
-            import tempfile, shutil
-            tmp = ruta + ".tmp"
-            wb.save(tmp)
-            shutil.move(tmp, ruta)
-        except (PermissionError, OSError):
-            hora = datetime.datetime.now().strftime("%H%M")
-            ruta = os.path.join(REPORTES_DIR, f"Reporte_{fecha}_{hora}.xlsx")
-            wb.save(ruta)
-    else:
-        wb.save(ruta)
+        contador = 2
+        while os.path.exists(os.path.join(REPORTES_DIR, f"Reporte_{fecha}_{contador}.xlsx")):
+            contador += 1
+        ruta = os.path.join(REPORTES_DIR, f"Reporte_{fecha}_{contador}.xlsx")
+    wb.save(ruta)
 
     log.info(f"Reporte guardado: {ruta}")
 

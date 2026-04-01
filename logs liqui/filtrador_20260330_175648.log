@@ -1,0 +1,110 @@
+17:56:48 [FILTRADOR] === FILTRADOR DE SALDOS ===
+17:56:48 [FILTRADOR] *** Workers: 5 procesos paralelos ***
+17:56:48 [FILTRADOR] === PASO 0: Merge de Reportes ===
+17:56:48 [FILTRADOR] Excel madre cargado: 168 causas existentes
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-07.xlsx (ya importado)
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-13.xlsx (ya importado)
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-20.1.xlsx (ya importado)
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-20.xlsx (ya importado)
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-21.xlsx (ya importado)
+17:56:48 [FILTRADOR]   Saltando Reporte_2026-03-26.xlsx (ya importado)
+17:56:48 [FILTRADOR] Total causas nuevas importadas: 0
+17:56:48 [FILTRADOR] Total causas en Excel madre: 168
+17:56:48 [FILTRADOR] [RECHECK-CARGO] Re-verificando cargo al credito en PDFs existentes...
+17:56:48 [FILTRADOR]   C-2601-2023: cargo=False confirmado
+17:56:48 [FILTRADOR]   C-1563-2025: cargo=False confirmado
+17:56:48 [FILTRADOR]   C-1529-2023: cargo=False confirmado
+17:56:48 [FILTRADOR]   C-2543-2025: cargo=False confirmado
+17:56:48 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:56:54 [FILTRADOR]     OCR exitoso: 10317 chars extraidos
+17:56:54 [FILTRADOR]   C-1833-2025: cargo=False confirmado
+17:56:54 [FILTRADOR]   C-549-2025: cargo=False confirmado
+17:56:54 [FILTRADOR]   C-93-2024: cargo=False confirmado
+17:56:54 [FILTRADOR]   C-4885-2023: cargo=False confirmado
+17:56:54 [FILTRADOR]   C-7205-2024: cargo=False confirmado
+17:56:54 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:56:56 [FILTRADOR]     OCR exitoso: 2063 chars extraidos
+17:56:56 [FILTRADOR]   C-2609-2025: cargo=False confirmado
+17:56:56 [FILTRADOR]   C-857-2025: cargo=False confirmado
+17:56:56 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:56:59 [FILTRADOR]     OCR exitoso: 4969 chars extraidos
+17:56:59 [FILTRADOR]     ALERTA: Monto $10,100,000,000 supera tope razonable. Descartando.
+17:56:59 [FILTRADOR]   C-1810-2025: Monto actualizado 10100000000 -> None
+17:56:59 [FILTRADOR]   C-1810-2025: cargo=False confirmado
+17:56:59 [FILTRADOR]   C-4837-2024: cargo=False confirmado
+17:56:59 [FILTRADOR]   C-5950-2020: cargo=False confirmado
+17:56:59 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:57:01 [FILTRADOR]     OCR exitoso: 5260 chars extraidos
+17:57:01 [FILTRADOR]   C-1467-2025: cargo=False confirmado
+17:57:01 [FILTRADOR]   C-2540-2025: cargo=False confirmado
+17:57:01 [FILTRADOR]   C-3323-2024: cargo=False confirmado
+17:57:01 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:57:04 [FILTRADOR]     OCR exitoso: 3386 chars extraidos
+17:57:04 [FILTRADOR]   C-3276-2025: cargo=False confirmado
+17:57:04 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:57:07 [FILTRADOR]     OCR exitoso: 6438 chars extraidos
+Traceback (most recent call last):
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\frame.py", line 4911, in _set_value
+    self._mgr.column_setitem(icol, iindex, value, inplace_only=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\managers.py", line 1518, in column_setitem
+    col_mgr.setitem_inplace(idx, value)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\managers.py", line 2226, in setitem_inplace
+    arr[indexer] = value
+    ~~~^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\arrays\string_.py", line 863, in __setitem__
+    value = self._maybe_convert_setitem_value(value)
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\arrays\string_.py", line 837, in _maybe_convert_setitem_value
+    raise TypeError(
+    ...<3 lines>...
+    )
+TypeError: Invalid value '51651141' for dtype 'str'. Value should be a string or missing value, got 'int' instead.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Remates\filtrador_saldos.py", line 3373, in <module>
+    main()
+    ~~~~^^
+  File "D:\Remates\filtrador_saldos.py", line 3119, in main
+    df.at[idx, "monto_acta_remate"] = nuevo_monto if nuevo_monto else ""
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 2592, in __setitem__
+    return super().__setitem__(key, value)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 2542, in __setitem__
+    self.obj._set_value(*key, value=value, takeable=self._takeable)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\frame.py", line 4922, in _set_value
+    self.loc[index, col] = value
+    ~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 938, in __setitem__
+    iloc._setitem_with_indexer(indexer, value, self.name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 1953, in _setitem_with_indexer
+    self._setitem_with_indexer_split_path(indexer, value, name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 2044, in _setitem_with_indexer_split_path
+    self._setitem_single_column(loc, value, pi)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexing.py", line 2181, in _setitem_single_column
+    self.obj._mgr.column_setitem(loc, plane_indexer, value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\managers.py", line 1520, in column_setitem
+    new_mgr = col_mgr.setitem((idx,), value)
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\managers.py", line 604, in setitem
+    return self.apply("setitem", indexer=indexer, value=value)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\managers.py", line 442, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\internals\blocks.py", line 1667, in setitem
+    values[indexer] = value
+    ~~~~~~^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\arrays\string_.py", line 863, in __setitem__
+    value = self._maybe_convert_setitem_value(value)
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\arrays\string_.py", line 837, in _maybe_convert_setitem_value
+    raise TypeError(
+    ...<3 lines>...
+    )
+TypeError: Invalid value '51651141' for dtype 'str'. Value should be a string or missing value, got 'int' instead.

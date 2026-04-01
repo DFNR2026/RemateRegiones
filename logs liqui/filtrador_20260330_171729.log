@@ -1,0 +1,371 @@
+17:17:29 [FILTRADOR] [W2] Iniciando worker (PID 3792)...
+17:17:29 [FILTRADOR] [W3] Iniciando worker (PID 3880)...
+17:17:29 [FILTRADOR] [W5] Iniciando worker (PID 14012)...
+17:17:29 [FILTRADOR] [W1] Iniciando worker (PID 11420)...
+17:17:29 [FILTRADOR] [W4] Iniciando worker (PID 6488)...
+17:17:29 [FILTRADOR] [W2] 9 causas a procesar
+17:17:29 [FILTRADOR] [W5] 8 causas a procesar
+17:17:29 [FILTRADOR] [W3] 4 causas a procesar
+17:17:29 [FILTRADOR] [W1] 3 causas a procesar
+17:17:29 [FILTRADOR] [W4] 7 causas a procesar
+  -> Cargando OJV...  -> Cargando OJV...
+
+  -> Cargando OJV...
+  -> Cargando OJV...
+  -> Cargando OJV...
+  ✓ Formulario listo
+17:17:40 [FILTRADOR]   [W2] REAUDIT 1/9: 93-2024
+17:17:40 [FILTRADOR]   W2 [REAUDIT] Buscando 93-2024 en OJV...
+  -> Buscando C-93-2024...
+  ✓ Formulario listo
+17:17:41 [FILTRADOR]   [W1] REAUDIT 1/3: 3308-2025
+17:17:41 [FILTRADOR]   W1 [REAUDIT] Buscando 3308-2025 en OJV...
+  -> Buscando C-3308-2025...
+  ✓ Formulario listo
+17:17:41 [FILTRADOR]   [W5] REAUDIT 1/8: 2543-2025
+17:17:41 [FILTRADOR]   W5 [REAUDIT] Buscando 2543-2025 en OJV...
+  -> Buscando C-2543-2025...
+    Buscando 'C.A. de Talca' en #conCorte... ✓ 'C.A. de Talca' (100.0%)
+    Buscando 'C.A. de La Serena' en #conCorte... ✓ 'C.A. de La Serena' (100.0%)
+    Buscando 'C.A. de Iquique' en #conCorte... ✓ 'C.A. de Iquique' (100.0%)
+    Buscando 'Juzgado de Letras y Gar. de Chanco' en #conTribunal... ✓ 'Juzgado de Letras y Gar. de Chanco' (100.0%)
+    Buscando '2º Juzgado de Letras de la Serena' en #conTribunal... ✓ '2º Juzgado de Letras de la Serena' (100.0%)
+    Buscando '1º Juzgado de Letras de Iquique' en #conTribunal... ✓ '1º Juzgado de Letras de Iquique' (100.0%)
+  ✓ Formulario listo
+17:17:45 [FILTRADOR]   [W4] REAUDIT 1/7: 1618-2023
+17:17:45 [FILTRADOR]   W4 [REAUDIT] Buscando 1618-2023 en OJV...
+  -> Buscando C-1618-2023...
+  ✓ Formulario listo
+17:17:45 [FILTRADOR]   [W3] REAUDIT 1/4: 3308-2024
+17:17:45 [FILTRADOR]   W3 [REAUDIT] Buscando 3308-2024 en OJV...
+  -> Buscando C-3308-2024...
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando 'C.A. de Concepción' en #conCorte... ✓ 'C.A. de Concepción' (100.0%)
+    Buscando '1º Juzgado de Letras Civil de Antofagasta' en #conTribunal... ✓ '1º Juzgado de Letras Civil de Antofagasta' (100.0%)
+    Buscando '1º Juzgado Civil de Talcahuano' en #conTribunal... ✓ '1º Juzgado Civil de Talcahuano' (100.0%)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio de desposeimiento' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+17:17:55 [FILTRADOR]   #historiaCiv (reaudit): 23 filas leidas (sin filtro fecha)
+17:17:55 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-3308-2025_2º_Juzgado_de_Letras_de_la_Ser.html
+17:17:55 [FILTRADOR]   W1 [REAUDIT] 3308 -> sin senales
+17:17:55 [FILTRADOR]   #historiaCiv (reaudit): 92 filas leidas (sin filtro fecha)
+17:17:55 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-93-2024_Juzgado_de_Letras_y_Gar._de_Ch.html
+17:17:55 [FILTRADOR]   W2 [REAUDIT] 93 -> PENDIENTE_LIQUIDACION: Senal 4: "Liquidacion (Credito)" (folio 78, 2026-03-05) -> directo a Filtro 3
+17:17:56 [FILTRADOR]   #historiaCiv (reaudit): 51 filas leidas (sin filtro fecha)
+17:17:56 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-2543-2025_1º_Juzgado_de_Letras_de_Iquiqu.html
+17:17:56 [FILTRADOR]   W5 [REAUDIT] 2543 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 39, 2026-03-10) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:17:57 [FILTRADOR]   [W1] REAUDIT 2/3: 862-2021
+17:17:57 [FILTRADOR]   W1 [REAUDIT] Buscando 862-2021 en OJV...
+  -> Buscando C-862-2021...
+17:17:58 [FILTRADOR]   [W2] REAUDIT 2/9: 2881-2021
+17:17:58 [FILTRADOR]   W2 [REAUDIT] Buscando 2881-2021 en OJV...
+  -> Buscando C-2881-2021...
+17:17:58 [FILTRADOR]   [W5] REAUDIT 2/8: 4837-2024
+17:17:58 [FILTRADOR]   W5 [REAUDIT] Buscando 4837-2024 en OJV...
+  -> Buscando C-4837-2024...
+    Buscando 'C.A. de La Serena' en #conCorte... ✓ 'C.A. de La Serena' (100.0%)
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando 'C.A. de Iquique' en #conCorte...17:17:59 [FILTRADOR]   #historiaCiv (reaudit): 44 filas leidas (sin filtro fecha)
+17:17:59 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-1618-2023_1º_Juzgado_de_Letras_Civil_de_.html
+17:17:59 [FILTRADOR]   W4 [REAUDIT] 1618 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 42, 2026-03-16) -> directo a Filtro 3
+ ✓ 'C.A. de Iquique' (100.0%)
+    Buscando '3º Juzgado de Letras de la Serena' en #conTribunal...17:18:00 [FILTRADOR]   #historiaCiv (reaudit): 68 filas leidas (sin filtro fecha)
+17:18:00 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-3308-2024_1º_Juzgado_Civil_de_Talcahuano.html
+17:18:00 [FILTRADOR]   W3 [REAUDIT] 3308 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 59, 2026-03-25) -> directo a Filtro 3
+ ✓ '3º Juzgado de Letras de la Serena' (100.0%)
+    Buscando '1º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '1º Juzgado Civil de Viña del Mar' (100.0%)
+    Buscando '3º Juzgado de Letras de Iquique' en #conTribunal... ✓ '3º Juzgado de Letras de Iquique' (100.0%)
+17:18:02 [FILTRADOR]   [W4] REAUDIT 2/7: 3535-2025
+17:18:02 [FILTRADOR]   W4 [REAUDIT] Buscando 3535-2025 en OJV...
+  -> Buscando C-3535-2025...
+17:18:02 [FILTRADOR]   [W3] REAUDIT 2/4: 1381-2025
+17:18:02 [FILTRADOR]   W3 [REAUDIT] Buscando 1381-2025 en OJV...
+  -> Buscando C-1381-2025...
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando 'C.A. de Concepción' en #conCorte... ✓ 'C.A. de Concepción' (100.0%)
+    Buscando '2º Juzgado de Letras Civil de Antofagasta' en #conTribunal... ✓ '2º Juzgado de Letras Civil de Antofagasta' (100.0%)
+    Buscando '2º Juzgado Civil de Talcahuano' en #conTribunal... ✓ '2º Juzgado Civil de Talcahuano' (100.0%)
+  ✓ 34 resultado(s)
+  ✓ 103 resultado(s)
+  ✓ 63 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio de desposeimiento' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '3 - Apremio de desposeimiento' (100.0%)
+ ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 63 resultado(s)
+  ✓ 79 resultado(s)
+17:18:12 [FILTRADOR]   #historiaCiv (reaudit): 100 filas leidas (sin filtro fecha)
+17:18:12 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-862-2021_3º_Juzgado_de_Letras_de_la_Ser.html
+17:18:12 [FILTRADOR]   W1 [REAUDIT] 862 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 97, 2026-03-26) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...17:18:12 [FILTRADOR]   #historiaCiv (reaudit): 49 filas leidas (sin filtro fecha)
+17:18:12 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-2881-2021_1º_Juzgado_Civil_de_Viña_del_M.html
+17:18:12 [FILTRADOR]   W2 [REAUDIT] 2881 -> sin senales
+ ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...17:18:13 [FILTRADOR]   #historiaCiv (reaudit): 88 filas leidas (sin filtro fecha)
+17:18:13 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-4837-2024_3º_Juzgado_de_Letras_de_Iquiqu.html
+17:18:13 [FILTRADOR]   W5 [REAUDIT] 4837 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 85, 2026-03-27) -> directo a Filtro 3
+ ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:18:15 [FILTRADOR]   [W1] REAUDIT 3/3: 2168-2025
+17:18:15 [FILTRADOR]   W1 [REAUDIT] Buscando 2168-2025 en OJV...
+  -> Buscando C-2168-2025...
+17:18:15 [FILTRADOR]   [W2] REAUDIT 3/9: 48-2025
+17:18:15 [FILTRADOR]   W2 [REAUDIT] Buscando 48-2025 en OJV...
+  -> Buscando C-48-2025...
+17:18:16 [FILTRADOR]   #historiaCiv (reaudit): 31 filas leidas (sin filtro fecha)
+17:18:16 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-3535-2025_2º_Juzgado_de_Letras_Civil_de_.html
+17:18:16 [FILTRADOR]   W4 [REAUDIT] 3535 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 27, 2026-03-20) -> directo a Filtro 3
+17:18:16 [FILTRADOR]   [W5] REAUDIT 3/8: 1706-2023
+17:18:16 [FILTRADOR]   W5 [REAUDIT] Buscando 1706-2023 en OJV...
+  -> Buscando C-1706-2023...
+    Buscando 'C.A. de La Serena' en #conCorte...    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de La Serena' (100.0%)
+ ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando 'C.A. de Puerto Montt' en #conCorte... ✓ 'C.A. de Puerto Montt' (100.0%)
+17:18:17 [FILTRADOR]   #historiaCiv (reaudit): 74 filas leidas (sin filtro fecha)
+17:18:17 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-1381-2025_2º_Juzgado_Civil_de_Talcahuano.html
+17:18:17 [FILTRADOR]   W3 [REAUDIT] 1381 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 61, 2026-03-17) -> directo a Filtro 3
+    Buscando '3º Juzgado de Letras de la Serena' en #conTribunal...    Buscando '1º Juzgado de Letras de Los Andes' en #conTribunal... ✓ '3º Juzgado de Letras de la Serena' (100.0%)
+ ✓ '1º Juzgado de Letras de Los Andes' (100.0%)
+    Buscando '1º Juzgado Civil de Puerto Montt' en #conTribunal... ✓ '1º Juzgado Civil de Puerto Montt' (100.0%)
+17:18:18 [FILTRADOR]   [W4] REAUDIT 3/7: 1138-2024
+17:18:18 [FILTRADOR]   W4 [REAUDIT] Buscando 1138-2024 en OJV...
+  -> Buscando C-1138-2024...
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'C.A. de Antofagasta' (100.0%)
+17:18:19 [FILTRADOR]   [W3] REAUDIT 3/4: 3103-2025
+17:18:19 [FILTRADOR]   W3 [REAUDIT] Buscando 3103-2025 en OJV...
+  -> Buscando C-3103-2025...
+    Buscando '2º Juzgado de Letras Civil de Antofagasta' en #conTribunal...    Buscando 'C.A. de Concepción' en #conCorte... ✓ '2º Juzgado de Letras Civil de Antofagasta' (100.0%)
+ ✓ 'C.A. de Concepción' (100.0%)
+    Buscando '3º Juzgado Civil de Concepción' en #conTribunal... ✓ '3º Juzgado Civil de Concepción' (100.0%)
+  ✓ 69 resultado(s)
+  ✓ 158 resultado(s)
+  ✓ 154 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 48 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 116 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:18:29 [FILTRADOR]   #historiaCiv (reaudit): 32 filas leidas (sin filtro fecha)
+17:18:30 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-2168-2025_3º_Juzgado_de_Letras_de_la_Ser.html
+17:18:30 [FILTRADOR]   W1 [REAUDIT] 2168 -> sin senales
+17:18:30 [FILTRADOR]   #historiaCiv (reaudit): 65 filas leidas (sin filtro fecha)
+17:18:30 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-48-2025_1º_Juzgado_de_Letras_de_Los_An.html
+17:18:30 [FILTRADOR]   W2 [REAUDIT] 48 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 57, 2026-03-19) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:18:31 [FILTRADOR]   #historiaCiv (reaudit): 96 filas leidas (sin filtro fecha)
+17:18:31 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-1706-2023_1º_Juzgado_Civil_de_Puerto_Mon.html
+17:18:31 [FILTRADOR]   W5 [REAUDIT] 1706 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 84, 2026-03-23) -> directo a Filtro 3
+17:18:32 [FILTRADOR]   [W1] Reaudit completado: 3 causas en 0 min 51 seg
+17:18:32 [FILTRADOR]   [W2] REAUDIT 4/9: 755-2024
+17:18:32 [FILTRADOR]   W2 [REAUDIT] Buscando 755-2024 en OJV...
+  -> Buscando C-755-2024...
+17:18:32 [FILTRADOR] [W1] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_1.json
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+17:18:33 [FILTRADOR]   #historiaCiv (reaudit): 125 filas leidas (sin filtro fecha)
+17:18:33 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-1138-2024_2º_Juzgado_de_Letras_Civil_de_.html
+17:18:33 [FILTRADOR]   W4 [REAUDIT] 1138 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 112, 2026-03-13) -> directo a Filtro 3
+17:18:34 [FILTRADOR]   [W5] REAUDIT 4/8: 1529-2023
+17:18:34 [FILTRADOR]   W5 [REAUDIT] Buscando 1529-2023 en OJV...
+  -> Buscando C-1529-2023...
+17:18:34 [FILTRADOR]   #historiaCiv (reaudit): 26 filas leidas (sin filtro fecha)
+17:18:34 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-3103-2025_3º_Juzgado_Civil_de_Concepción.html
+17:18:34 [FILTRADOR]   W3 [REAUDIT] 3103 -> sin senales
+    Buscando '1º Juzgado de Letras de Quilpue' en #conTribunal... ✓ '1º Juzgado de Letras de Quilpue' (100.0%)
+    Buscando 'C.A. de Temuco' en #conCorte... ✓ 'C.A. de Temuco' (100.0%)
+    Buscando '3º Juzgado Civil de Temuco' en #conTribunal... ✓ '3º Juzgado Civil de Temuco' (100.0%)
+17:18:36 [FILTRADOR]   [W4] REAUDIT 4/7: 3276-2025
+17:18:36 [FILTRADOR]   W4 [REAUDIT] Buscando 3276-2025 en OJV...
+  -> Buscando C-3276-2025...
+17:18:36 [FILTRADOR]   [W3] REAUDIT 4/4: 857-2025
+17:18:36 [FILTRADOR]   W3 [REAUDIT] Buscando 857-2025 en OJV...
+  -> Buscando C-857-2025...
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando 'C.A. de Coyhaique' en #conCorte... ✓ 'C.A. de Coyhaique' (100.0%)
+    Buscando '3º Juzgado de Letras Civil de Antofagasta' en #conTribunal... ✓ '3º Juzgado de Letras Civil de Antofagasta' (100.0%)
+    Buscando '1º Juzgado de Letras de Coyhaique' en #conTribunal... ✓ '1º Juzgado de Letras de Coyhaique' (100.0%)
+  ✓ 78 resultado(s)
+  ✓ 138 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 36 resultado(s)
+  ✓ 196 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:18:46 [FILTRADOR]   #historiaCiv (reaudit): 35 filas leidas (sin filtro fecha)
+17:18:46 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-755-2024_1º_Juzgado_de_Letras_de_Quilpu.html
+17:18:46 [FILTRADOR]   W2 [REAUDIT] 755 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 33, 2026-03-26) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:18:49 [FILTRADOR]   [W2] REAUDIT 5/9: 1467-2025
+17:18:49 [FILTRADOR]   W2 [REAUDIT] Buscando 1467-2025 en OJV...
+  -> Buscando C-1467-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+17:18:50 [FILTRADOR]   #historiaCiv (reaudit): 39 filas leidas (sin filtro fecha)
+17:18:50 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-857-2025_1º_Juzgado_de_Letras_de_Coyhai.html
+17:18:50 [FILTRADOR]   W3 [REAUDIT] 857 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 32, 2026-03-23) -> directo a Filtro 3
+17:18:50 [FILTRADOR]   #historiaCiv (reaudit): 200 filas leidas (sin filtro fecha)
+17:18:50 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-1529-2023_3º_Juzgado_Civil_de_Temuco.html
+17:18:50 [FILTRADOR]   W5 [REAUDIT] 1529 -> PENDIENTE_LIQUIDACION: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 197, 2026-03-26) -> directo a Filtro 3
+17:18:51 [FILTRADOR]   #historiaCiv (reaudit): 25 filas leidas (sin filtro fecha)
+17:18:51 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-3276-2025_3º_Juzgado_de_Letras_Civil_de_.html
+17:18:51 [FILTRADOR]   W4 [REAUDIT] 3276 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 24, 2026-03-26) -> directo a Filtro 3
+    Buscando '2º Juzgado Civil de Valparaíso' en #conTribunal... ✓ '2º Juzgado Civil de Valparaíso' (100.0%)
+17:18:53 [FILTRADOR]   [W3] Reaudit completado: 4 causas en 1 min 7 seg
+17:18:53 [FILTRADOR] [W3] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_3.json
+17:18:53 [FILTRADOR]   [W5] REAUDIT 5/8: 1366-2025
+17:18:53 [FILTRADOR]   W5 [REAUDIT] Buscando 1366-2025 en OJV...
+  -> Buscando C-1366-2025...
+17:18:53 [FILTRADOR]   [W4] REAUDIT 5/7: 817-2023
+17:18:53 [FILTRADOR]   W4 [REAUDIT] Buscando 817-2023 en OJV...
+  -> Buscando C-817-2023...
+    Buscando 'C.A. de Temuco' en #conCorte... ✓ 'C.A. de Temuco' (100.0%)
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando '3º Juzgado Civil de Temuco' en #conTribunal... ✓ '3º Juzgado Civil de Temuco' (100.0%)
+    Buscando '3º Juzgado de Letras de Calama' en #conTribunal... ✓ '3º Juzgado de Letras de Calama' (100.0%)
+  ✓ 48 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 45 resultado(s)
+  ✓ 225 resultado(s)
+17:19:03 [FILTRADOR]   #historiaCiv (reaudit): 58 filas leidas (sin filtro fecha)
+17:19:03 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-1467-2025_2º_Juzgado_Civil_de_Valparaíso.html
+17:19:03 [FILTRADOR]   W2 [REAUDIT] 1467 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 54, 2026-03-27) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:19:06 [FILTRADOR]   [W2] REAUDIT 6/9: 2470-2025
+17:19:06 [FILTRADOR]   W2 [REAUDIT] Buscando 2470-2025 en OJV...
+  -> Buscando C-2470-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+17:19:08 [FILTRADOR]   #historiaCiv (reaudit): 65 filas leidas (sin filtro fecha)
+17:19:08 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-817-2023_3º_Juzgado_de_Letras_de_Calama.html
+17:19:08 [FILTRADOR]   W4 [REAUDIT] 817 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 59, 2026-03-26) -> directo a Filtro 3
+    Buscando '2º Juzgado Civil de Valparaíso' en #conTribunal... ✓ '2º Juzgado Civil de Valparaíso' (100.0%)
+17:19:09 [FILTRADOR]   #historiaCiv (reaudit): 86 filas leidas (sin filtro fecha)
+17:19:09 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-1366-2025_3º_Juzgado_Civil_de_Temuco.html
+17:19:09 [FILTRADOR]   W5 [REAUDIT] 1366 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 79, 2026-03-24) -> directo a Filtro 3
+17:19:10 [FILTRADOR]   [W4] REAUDIT 6/7: 4836-2022
+17:19:10 [FILTRADOR]   W4 [REAUDIT] Buscando 4836-2022 en OJV...
+  -> Buscando C-4836-2022...
+    Buscando 'C.A. de Rancagua' en #conCorte...17:19:11 [FILTRADOR]   [W5] REAUDIT 6/8: 5528-2023
+17:19:11 [FILTRADOR]   W5 [REAUDIT] Buscando 5528-2023 en OJV...
+  -> Buscando C-5528-2023...
+ ✓ 'C.A. de Rancagua' (100.0%)
+    Buscando 'C.A. de Temuco' en #conCorte...    Buscando '2º Juzgado Civil de Rancagua' en #conTribunal... ✓ 'C.A. de Temuco' (100.0%)
+ ✓ '2º Juzgado Civil de Rancagua' (100.0%)
+    Buscando '3º Juzgado Civil de Temuco' en #conTribunal... ✓ '3º Juzgado Civil de Temuco' (100.0%)
+  ✓ 69 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 103 resultado(s)
+  ✓ 102 resultado(s)
+17:19:20 [FILTRADOR]   #historiaCiv (reaudit): 30 filas leidas (sin filtro fecha)
+17:19:20 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-2470-2025_2º_Juzgado_Civil_de_Valparaíso.html
+17:19:20 [FILTRADOR]   W2 [REAUDIT] 2470 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 23, 2026-03-25) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '3 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:19:22 [FILTRADOR]   [W2] REAUDIT 7/9: 3601-2020
+17:19:22 [FILTRADOR]   W2 [REAUDIT] Buscando 3601-2020 en OJV...
+  -> Buscando C-3601-2020...
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '2º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '2º Juzgado Civil de Viña del Mar' (100.0%)
+17:19:27 [FILTRADOR]   #historiaCiv (reaudit): 123 filas leidas (sin filtro fecha)
+17:19:27 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-5528-2023_3º_Juzgado_Civil_de_Temuco.html
+17:19:27 [FILTRADOR]   W5 [REAUDIT] 5528 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 119, 2026-03-23) -> directo a Filtro 3
+17:19:28 [FILTRADOR]   #historiaCiv (reaudit): 269 filas leidas (sin filtro fecha)
+17:19:28 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-4836-2022_2º_Juzgado_Civil_de_Rancagua.html
+17:19:28 [FILTRADOR]   W4 [REAUDIT] 4836 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 254, 2026-03-24) -> directo a Filtro 3
+17:19:29 [FILTRADOR]   [W5] REAUDIT 7/8: 867-2024
+17:19:29 [FILTRADOR]   W5 [REAUDIT] Buscando 867-2024 en OJV...
+  -> Buscando C-867-2024...
+    Buscando 'C.A. de Temuco' en #conCorte...  ✓ 45 resultado(s)
+ ✓ 'C.A. de Temuco' (100.0%)
+17:19:30 [FILTRADOR]   [W4] REAUDIT 7/7: 7366-2024
+17:19:30 [FILTRADOR]   W4 [REAUDIT] Buscando 7366-2024 en OJV...
+  -> Buscando C-7366-2024...
+    Buscando 'C.A. de Rancagua' en #conCorte...    Buscando 'Juzgado de Letras de Villarrica' en #conTribunal... ✓ 'C.A. de Rancagua' (100.0%)
+ ✓ 'Juzgado de Letras de Villarrica' (100.0%)
+    Buscando '2º Juzgado Civil de Rancagua' en #conTribunal... ✓ '2º Juzgado Civil de Rancagua' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:19:36 [FILTRADOR]   #historiaCiv (reaudit): 55 filas leidas (sin filtro fecha)
+17:19:36 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-3601-2020_2º_Juzgado_Civil_de_Viña_del_M.html
+17:19:36 [FILTRADOR]   W2 [REAUDIT] 3601 -> sin senales
+  ✓ 146 resultado(s)
+17:19:39 [FILTRADOR]   [W2] REAUDIT 8/9: 549-2025
+17:19:39 [FILTRADOR]   W2 [REAUDIT] Buscando 549-2025 en OJV...
+  -> Buscando C-549-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno....    Buscando '2º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '2º Juzgado Civil de Viña del Mar' (100.0%)
+.  ✓ 783 resultado(s)
+......  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+....  ✓ 70 resultado(s)
+.... ✗ no encontrado (mejor score: 37.0%, umbral: 80%)
+17:19:49 [FILTRADOR]   #historiaCiv (reaudit): 83 filas leidas (sin filtro fecha)
+17:19:49 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-7366-2024_2º_Juzgado_Civil_de_Rancagua.html
+17:19:49 [FILTRADOR]   W4 [REAUDIT] 7366 -> PENDIENTE_LIQUIDACION: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 69, 2026-02-12) -> directo a Filtro 3
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:19:51 [FILTRADOR]   [W4] Reaudit completado: 7 causas en 2 min 6 seg
+17:19:51 [FILTRADOR] [W4] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_4.json
+17:19:54 [FILTRADOR]   #historiaCiv (reaudit): 82 filas leidas (sin filtro fecha)
+17:19:54 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-549-2025_2º_Juzgado_Civil_de_Viña_del_M.html
+17:19:54 [FILTRADOR]   W2 [REAUDIT] 549 -> PENDIENTE_LIQUIDACION: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 71, 2026-03-23) -> directo a Filtro 3
+17:19:54 [FILTRADOR]   #historiaCiv (reaudit): 228 filas leidas (sin filtro fecha)
+17:19:54 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-867-2024_Juzgado_de_Letras_de_Villarric.html
+17:19:54 [FILTRADOR]   W5 [REAUDIT] 867 -> PENDIENTE_LIQUIDACION: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 204, 2026-02-20) -> directo a Filtro 3
+17:19:56 [FILTRADOR]   [W2] REAUDIT 9/9: 1563-2025
+17:19:56 [FILTRADOR]   W2 [REAUDIT] Buscando 1563-2025 en OJV...
+  -> Buscando C-1563-2025...
+17:19:57 [FILTRADOR]   [W5] REAUDIT 8/8: 102-2025
+17:19:57 [FILTRADOR]   W5 [REAUDIT] Buscando 102-2025 en OJV...
+  -> Buscando C-102-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando 'C.A. de Temuco' en #conCorte... ✓ 'C.A. de Temuco' (100.0%)
+    Buscando '4º Juzgado Civil de Valparaíso' en #conTribunal... ✓ '4º Juzgado Civil de Valparaíso' (100.0%)
+    Buscando 'Juzgado de Letras y Gar.de Carahue' en #conTribunal... ✓ 'Juzgado de Letras y Gar.de Carahue' (100.0%)
+  ✓ 105 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 567 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+17:20:11 [FILTRADOR]   #historiaCiv (reaudit): 87 filas leidas (sin filtro fecha)
+17:20:11 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-1563-2025_4º_Juzgado_Civil_de_Valparaíso.html
+17:20:11 [FILTRADOR]   W2 [REAUDIT] 1563 -> PENDIENTE_LIQUIDACION: Senal 4: "Solicita liquidación" (folio 63, 2026-03-11) -> directo a Filtro 3
+17:20:14 [FILTRADOR]   #historiaCiv (reaudit): 37 filas leidas (sin filtro fecha)
+17:20:14 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-102-2025_Juzgado_de_Letras_y_Gar.de_Car.html
+17:20:14 [FILTRADOR]   W5 [REAUDIT] 102 -> sin senales
+17:20:14 [FILTRADOR]   [W2] Reaudit completado: 9 causas en 2 min 33 seg
+17:20:14 [FILTRADOR] [W2] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_2.json
+17:20:16 [FILTRADOR]   [W5] Reaudit completado: 8 causas en 2 min 35 seg
+17:20:16 [FILTRADOR] [W5] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_5.json

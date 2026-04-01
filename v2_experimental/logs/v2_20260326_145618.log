@@ -1,0 +1,356 @@
+2026-03-26 14:56:18,975 [M1v2] Iniciando Modulo 1 v2 (DOCX) -- archivo: D:\Remates\Diarios\RESUMEN 06 AL 10 ABRIL.docx
+2026-03-26 14:56:18,976 [M1v2] Log: D:\Remates\v2_experimental\logs\v2_20260326_145618.log
+2026-03-26 14:56:19,010 [M1v2] REFERENCIA cargada: 235 tribunales
+2026-03-26 14:56:19,016 [M1v2] Historial: 65 ROLes previos
+2026-03-26 14:56:19,103 [M1v2] Bloques brutos: 242
+2026-03-26 14:56:19,108 [M1v2] Bloques expandidos: 242 | Pre-filtro sin ROL: 34 | Con ROL: 208
+2026-03-26 14:56:19,111 [M1v2]   [C-1550-2023] Tribunal regex v1: 'Primer Juzgado Civil de Valparaíso'
+2026-03-26 14:56:19,117 [M1v2]   [C-1550-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:20,308 [M1v2]   [C-1550-2023] Haiku extrajo direccion: 'Parcela o Lote EV-461R, del Lote o Macrolote Embalse Verde Diez, de la Comunidad Valle Verde Mar, plano N°3063'
+2026-03-26 14:56:20,317 [M1v2]   [C-19439-2024] Tribunal regex v1: '1º Juzgado Civil Santiago'
+2026-03-26 14:56:20,325 [M1v2]   [C-19439-2024] Comuna extraida del tribunal: 'Santiago'
+2026-03-26 14:56:20,326 [M1v2]   [C-5030-2023] Tribunal regex v1: '1º Juzgado Civil de Puerto Montt - C-5030-2023 - BANCO DEL ESTADO DE CHILE con BARRIENTOS RIVAL. Ante el 1º Juzgado Civil de Puerto Montt'
+2026-03-26 14:56:20,326 [M1v2]   [C-5030-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:21,717 [M1v2]   [C-5030-2023] Haiku extrajo direccion: 'El Espino, Lote 2, de 0,5 hectáreas'
+2026-03-26 14:56:21,724 [M1v2]   [C-3129-2024] Tribunal regex v2: '2° JUZGADO LETRAS ANTOFAGASTA'
+2026-03-26 14:56:21,734 [M1v2]   [C-3129-2024] Comuna extraida del tribunal: 'Antofagasta'
+2026-03-26 14:56:21,734 [M1v2]   [C-1253-2025] Tribunal regex v1: 'Segundo Juzgado De Letras De La Serena'
+2026-03-26 14:56:21,742 [M1v2]   [C-2053-2021] Tribunal regex v1: 'Segundo Juzgado de Letras de La Serena'
+2026-03-26 14:56:21,748 [M1v2]   [C-153-2025] Tribunal regex v1: '2º Juzgado de Letras de Buin'
+2026-03-26 14:56:21,754 [M1v2]   [C-194-2025] Tribunal regex v1: 'SEGUNDO JUZGADO DE LETRAS DE SAN FERNANDO'
+2026-03-26 14:56:21,761 [M1v2]   [C-5040-2024] Tribunal regex v1: '2° JUZGADO CIVIL DE TEMUCO'
+2026-03-26 14:56:21,768 [M1v2]   [C-706-2025] Tribunal regex v1: 'El Tercer Juzgado de Letras de La Serena'
+2026-03-26 14:56:21,776 [M1v2]   [C-7525-2022] Tribunal regex v1: '3º Juzgado Civil de Santiago'
+2026-03-26 14:56:21,784 [M1v2]   [C-1724-2025] Tribunal regex v1: '5° JUZGADO CIVIL VALPARAÍSO'
+2026-03-26 14:56:21,793 [M1v2]   [C-21467-2023] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:22,475 [M1v2]   [C-21467-2023] Tribunal Haiku: '7° Juzgado Civil de Santiago'
+2026-03-26 14:56:22,485 [M1v2]   [C-5127-2021] Tribunal regex v1: '7ºJuzgado Civil de Santiago'
+2026-03-26 14:56:22,486 [M1v2]   [C-5127-2021] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:56:22,487 [M1v2]   [C-5127-2021] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:23,383 [M1v2]   [C-5127-2021] Haiku extrajo direccion: 'Pasaje Marcos Pérez Jiménez Nº 0311, sitio 33 de la Manzana E, Población Parque Las Américas'
+2026-03-26 14:56:23,391 [M1v2]   [C-19495-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:24,870 [M1v2]   [C-19495-2024] Tribunal Haiku: '22° Juzgado Civil Santiago'
+2026-03-26 14:56:24,878 [M1v2]   [C-19495-2024] Comuna extraida del tribunal: 'Santiago'
+2026-03-26 14:56:24,879 [M1v2]   [C-14874-2024] Tribunal regex v1: '29º Juzgado Civil Santiago'
+2026-03-26 14:56:24,880 [M1v2]   [C-14874-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:26,761 [M1v2]   [C-14874-2024] Haiku extrajo direccion: 'Parcela número 26 y 1/176 ava parte de derechos en la Reserva Ecológica del Condominio El Mirador del Valle, Lote Dos A, Lote Dos, Hijuela C, Fundo Santa Carolina de Batuco'
+2026-03-26 14:56:26,770 [M1v2]   [C-5736-2025] Tribunal regex v1: 'ante 29º Juzgado Civil de Santiago'
+2026-03-26 14:56:26,771 [M1v2]   [C-5736-2025] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:56:26,771 [M1v2]   [C-5736-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:27,654 [M1v2]   [C-5736-2025] Haiku extrajo direccion: 'Calle El Maitén Nº 0339, Lote Nº 1472, Conjunto Habitacional San Alberto de Casas Viejas II, Etapa C - Cinco'
+2026-03-26 14:56:27,663 [M1v2]   [C-10445-2020] Tribunal regex v1: 'Vigésimo Noveno Juzgado Civil Santiago'
+2026-03-26 14:56:27,674 [M1v2]   [C-3022-2021] Tribunal regex v1: 'PRIMER JUZGADO Civil Viña del Mar'
+2026-03-26 14:56:27,675 [M1v2]   [C-3022-2021] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:28,704 [M1v2]   [C-3022-2021] Haiku extrajo direccion: 'Parcela Número Dos, acceso Bitumix camino interior N° PC 2, resultante de la subdivisión del Lote A, que a su vez es resultante de la subdivisión del Lote Diez del Proyecto de Parcelación de los predios Rústicos denominados La Higuera y parte del predio Concón Alto'
+2026-03-26 14:56:28,712 [M1v2]   [C-573-2025] Tribunal regex v1: '1º Juzgado Civil de Santiago día 7 de abril de 2026 a las 13:15. Se rematará inmueble de Gonzalo Leónidas Olivares Pozo consistente en casa número 21 ubicada en calle Río Rapel del condominio tipo A'
+2026-03-26 14:56:28,720 [M1v2]   [C-2149-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:29,310 [M1v2]   [C-2149-2024] Tribunal Haiku: '1° Juzgado de Letras de Talca'
+2026-03-26 14:56:29,311 [M1v2]   [C-2149-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:30,164 [M1v2]   [C-2149-2024] Haiku extrajo direccion: 'Departamento N° 385, octavo piso, edificio 3, Condominio Vista San Miguel, calle 4 sur N° 2845'
+2026-03-26 14:56:30,173 [M1v2]   [C-805-2024] Tribunal regex v1: 'Segundo Juzgado de Letras de Coquimbo'
+2026-03-26 14:56:30,181 [M1v2]   [C-64-2025] Tribunal regex v1: 'Segundo Juzgado De Letras De La Serena'
+2026-03-26 14:56:30,182 [M1v2]   [C-64-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:32,032 [M1v2]   [C-64-2025] Haiku extrajo direccion: 'Parcela Nº 41-B, Lote Nº 10, El Sauce De Miramar, sitio nº 6'
+2026-03-26 14:56:32,040 [M1v2]   [C-2027-2022] Tribunal regex v1: 'SEGUNDO JUZGADO CIVIL de Valparaíso "BANCO CRÉDITO E INVERSIONES CON SEPULVEDA FRANCO"'
+2026-03-26 14:56:32,052 [M1v2]   [C-53-2022] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:32,839 [M1v2]   [C-53-2022] Tribunal Haiku: '1° Juzgado de Letras de San Felipe'
+2026-03-26 14:56:32,840 [M1v2]   [C-53-2022] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:34,072 [M1v2]   [C-53-2022] Haiku extrajo direccion: 'Calle Tocornal, Lote 7, Comuna de San Esteban'
+2026-03-26 14:56:34,079 [M1v2]   [C-3993-2019] Tribunal regex v1: '1º Juzgado de Letras de Melipilla'
+2026-03-26 14:56:34,087 [M1v2]   [C-11289-2024] Tribunal regex v1: '1º Juzgado Civil De Puente Alto'
+2026-03-26 14:56:34,095 [M1v2]   [C-362-2023] Tribunal regex v1: '1º Juzgado de Letras de Los Ángeles'
+2026-03-26 14:56:34,096 [M1v2]   [C-362-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:35,160 [M1v2]   [C-362-2023] Haiku extrajo direccion: 'Lote A del Fundo Poco Poco, ubicado en Los Ángeles; Lote B del Fundo Poco Poco, ubicado en Los Ángeles'
+2026-03-26 14:56:35,167 [M1v2]   [C-1545-2023] Tribunal regex v1: '1º Juzgado Civil de Puerto Montt - C-1545-2023 - BANCO DEL ESTADO DE CHILE con JARAMILLO RETAMAL. Ante el 1º Juzgado Civil de Puerto Montt'
+2026-03-26 14:56:35,168 [M1v2]   [C-1545-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:35,996 [M1v2]   [C-1545-2023] Haiku extrajo direccion: 'Lote Diecinueve, La Vara'
+2026-03-26 14:56:36,003 [M1v2]   [C-267-2024] Tribunal regex v2: '1° Juzgado Letras Punta Arenas'
+2026-03-26 14:56:36,010 [M1v2]   [C-805-2024] Tribunal regex v1: 'Segundo Juzgado de Letras de Coquimbo'
+2026-03-26 14:56:36,018 [M1v2]   [C-2017-2022] Tribunal regex v1: 'SEGUNDO JUZGADO CIVIL de Valparaíso Prat 779'
+2026-03-26 14:56:36,030 [M1v2]   [C-2073-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:36,610 [M1v2]   [C-2073-2024] Tribunal Haiku: '2° Juzgado de Letras de Quillota'
+2026-03-26 14:56:36,617 [M1v2]   [C-2320-2023] Tribunal regex v1: 'Segundo Juzgado de Letras de Quilpué'
+2026-03-26 14:56:36,626 [M1v2]   [C-15751-2024] Tribunal regex v1: '2º Juzgado Civil de Santiago'
+2026-03-26 14:56:36,634 [M1v2]   [C-4784-2024] Tribunal regex v1: '2º Juzgado Civil Santiago'
+2026-03-26 14:56:36,641 [M1v2]   [C-4306-2024] Tribunal regex v1: 'El 3° Juzgado de Letras de La Serena'
+2026-03-26 14:56:36,648 [M1v2]   [C-2294-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:37,331 [M1v2]   [C-2294-2025] Tribunal Haiku: '3° Juzgado de Letras de La Serena'
+2026-03-26 14:56:37,338 [M1v2]   [C-1495-2025] Tribunal regex v1: '4° Juzgado de Letras de Antofagasta'
+2026-03-26 14:56:37,339 [M1v2]   [C-1495-2025] Direccion regex descartada (corta/sin numero): 'la ciudad de Antofagasta'
+2026-03-26 14:56:37,339 [M1v2]   [C-1495-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:38,174 [M1v2]   [C-1495-2025] Haiku extrajo direccion: 'Calle Agustinas N° 557, lote A, Antofagasta'
+2026-03-26 14:56:38,182 [M1v2]   [C-1817-2023] Tribunal regex v1: '4° JUZGADO CIVIL Valparaíso'
+2026-03-26 14:56:38,183 [M1v2]   [C-1817-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:38,910 [M1v2]   [C-1817-2023] Haiku extrajo direccion: 'Departamento Nº1001 del piso 10° del edificio Parque Mirador, Canal Kirke N°550, Canal Beagle'
+2026-03-26 14:56:38,918 [M1v2]   [C-6961-2024] Tribunal regex v1: '4º Juzgado Civil de Santiago'
+2026-03-26 14:56:38,924 [M1v2]   [C-8739-2023] Tribunal regex v1: '4° Juzgado Civil Santiago'
+2026-03-26 14:56:38,932 [M1v2]   [C-8739-2023] Tribunal regex v1: '4° Juzgado Civil Santiago'
+2026-03-26 14:56:38,939 [M1v2]   [C-8739-2023] Tribunal regex v1: '4° Juzgado Civil Santiago'
+2026-03-26 14:56:38,946 [M1v2]   [C-20915-2024] Tribunal regex v1: '5º Juzgado Civil Santiago'
+2026-03-26 14:56:38,947 [M1v2]   [C-20915-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:40,234 [M1v2]   [C-20915-2024] Haiku extrajo direccion: 'Calle Arturo Claro número 1382, departamento 305 del tercer piso, bodega 28 del subterráneo, estacionamiento 30 del subterráneo, Edificio Arturo Claro'
+2026-03-26 14:56:40,241 [M1v2]   [C-17662-2024] Tribunal regex v1: '9° Juzgado Civil Santiago'
+2026-03-26 14:56:40,249 [M1v2]   [C-1417-2024] Tribunal regex v1: '9° Juzgado de Letras de Santiago'
+2026-03-26 14:56:40,260 [M1v2]   [C-18203-2020] Tribunal regex v1: '9º Juzgado Civil De Santiago'
+2026-03-26 14:56:40,268 [M1v2]   [C-5286-2023] Tribunal regex v1: '12º Juzgado Civil Santiago'
+2026-03-26 14:56:40,275 [M1v2]   [C-217-2025] Tribunal regex v1: 'Décimo Tercer Juzgado Civil De Santiago'
+2026-03-26 14:56:40,276 [M1v2]   [C-217-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:41,116 [M1v2]   [C-217-2025] Haiku extrajo direccion: 'Sitio número 39, manzana letra G 1'
+2026-03-26 14:56:41,123 [M1v2]   [C-17304-2016] Tribunal regex v1: '15° Juzgado Civil de Santiago'
+2026-03-26 14:56:41,130 [M1v2]   [C-6414-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:41,735 [M1v2]   [C-6414-2024] Tribunal Haiku: '15° Juzgado Civil de Santiago'
+2026-03-26 14:56:41,743 [M1v2]   [C-6414-2024] Tribunal regex v1: 'Ante 15º Juzgado Civil Santiago. Huérfanos 1409'
+2026-03-26 14:56:41,750 [M1v2]   [C-7447-2024] Tribunal regex v1: '17° JUZGADO CIVIL SANTIAGO'
+2026-03-26 14:56:41,757 [M1v2]   [C-124-2024] Tribunal regex v1: '17º Juzgado Civil de Santiago'
+2026-03-26 14:56:41,765 [M1v2]   [C-5936-2025] Tribunal regex v1: '19º Juzgado Civil De Santiago'
+2026-03-26 14:56:41,765 [M1v2]   [C-5936-2025] Direccion regex descartada (corta/sin numero): 'el primer subterráneo del edificio Edificio Máxima Torre A'
+2026-03-26 14:56:41,766 [M1v2]   [C-5936-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:42,836 [M1v2]   [C-5936-2025] Haiku extrajo direccion: 'Oficina número 703 del piso 7 y bodega número 13 del primer subterráneo del Edificio Máxima Torre A, Vicuña Mackenna número 6843'
+2026-03-26 14:56:42,843 [M1v2]   [C-1277-2023] Tribunal regex v1: '20º Juzgado Civil de Santiago'
+2026-03-26 14:56:42,844 [M1v2]   [C-1277-2023] Direccion regex descartada (corta/sin numero): 'Avenida Gómez Carreño'
+2026-03-26 14:56:42,844 [M1v2]   [C-1277-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:43,903 [M1v2]   [C-1277-2023] Haiku extrajo direccion: 'Avenida Almirante Gómez Carreño número 4065, Departamento 1706 del piso 17, Bodega B 102 del primer piso, Estacionamiento 134 del piso segundo subterráneo, Condominio Edificio Panorámico'
+2026-03-26 14:56:43,912 [M1v2]   [C-11503-2024] Tribunal regex v1: '26º Juzgado Civil Santiago'
+2026-03-26 14:56:43,922 [M1v2]   [C-7022-2025] Tribunal regex v1: 'Vigésimo Octavo Juzgado Civil de Santiago'
+2026-03-26 14:56:43,935 [M1v2]   [C-19143-2023] Tribunal regex v1: '30° Juzgado de Civil de Santiago'
+2026-03-26 14:56:43,935 [M1v2]   [C-19143-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:45,480 [M1v2]   [C-2376-2024] Tribunal regex v1: '30º Juzgado Civil de Santiago'
+2026-03-26 14:56:45,487 [M1v2]   [C-12855-2023] Tribunal regex v1: 'Trigésimo Juzgado Civil de Santiago'
+2026-03-26 14:56:45,488 [M1v2]   [C-12855-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:46,518 [M1v2]   [C-12855-2023] Haiku extrajo direccion: 'Calle Argomedo número 320, departamento 518 del quinto piso, Torre B, y estacionamiento 101 del segundo nivel subterráneo, Edificio Plaza del Agua o Edificio Argomedo'
+2026-03-26 14:56:46,525 [M1v2]   [C-2140-2019] Tribunal regex v1: 'Ante Juzgado de Letras de Colina'
+2026-03-26 14:56:46,533 [M1v2]   [C-2626-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:47,157 [M1v2]   [C-2626-2025] Tribunal Haiku: '1º Juzgado de Letras La Serena'
+2026-03-26 14:56:47,165 [M1v2]   [C-2921-2021] Tribunal regex v1: '1° Juzgado de letras de Valparaíso "BANCO CREDITO E INVERSIONES CON LL'
+2026-03-26 14:56:47,166 [M1v2]   [C-2921-2021] Direccion regex descartada (corta/sin numero): 'de propiedad de los ejecutados Karla Vanessa Lledó Sanguinetti y Francisco Javier Amador Orellana'
+2026-03-26 14:56:47,166 [M1v2]   [C-2921-2021] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:48,049 [M1v2]   [C-2921-2021] Haiku extrajo direccion: 'Casa N° 2, calle Los Abedules N° 0016, Condominio Abedules de Montemar'
+2026-03-26 14:56:48,057 [M1v2]   [C-1967-2023] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:48,659 [M1v2]   [C-1967-2023] Tribunal Haiku: 'Primer Juzgado Civil de Valparaíso'
+2026-03-26 14:56:48,660 [M1v2]   [C-1967-2023] Direccion regex descartada (corta/sin numero): 'de propiedad de los ejecutados Karla Vanessa Liebig Sanguineti y Francisco Javier Amador Orellana'
+2026-03-26 14:56:48,660 [M1v2]   [C-1967-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:49,535 [M1v2]   [C-1967-2023] Haiku extrajo direccion: 'Casa N° 2, calle Los Abedules N° 1836, Condominio Abedules de Montemar'
+2026-03-26 14:56:49,543 [M1v2]   [C-3346-2025] Tribunal regex v1: '1º Juzgado Civil de Rancagua'
+2026-03-26 14:56:49,549 [M1v2]   [C-2612-2017] Tribunal regex v1: 'Primer Juzgado Civil Curicó'
+2026-03-26 14:56:49,550 [M1v2]   [C-2612-2017] Direccion regex descartada (corta/sin numero): 'calle Ramón Sanfurgo'
+2026-03-26 14:56:49,550 [M1v2]   [C-2612-2017] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:50,742 [M1v2]   [C-2612-2017] Haiku extrajo direccion: 'Calle Ramón Sanfurgo, Lote A (que forma parte del Lote Seis del resto o Lote A uno A)'
+2026-03-26 14:56:50,749 [M1v2]   [C-1604-2018] Tribunal regex v1: 'Ante Primer Juzgado de Letras Linares'
+2026-03-26 14:56:50,750 [M1v2]   [C-1604-2018] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:56:50,750 [M1v2]   [C-1604-2018] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:51,497 [M1v2]   [C-1604-2018] Haiku extrajo direccion: 'Sitio número 8 del Proyecto Habitacional San Manuel, superficie de 5.188 metros cuadrados'
+2026-03-26 14:56:51,504 [M1v2]   [C-3282-2025] Tribunal regex v1: 'Segundo Juzgado de Letras de Iquique'
+2026-03-26 14:56:51,511 [M1v2]   [C-3163-2025] Tribunal regex v1: 'Segundo Juzgado de Letras de Iquique'
+2026-03-26 14:56:51,518 [M1v2]   [C-3264-2025] Tribunal regex v1: '2° Juzgado de Letras de Antofagasta'
+2026-03-26 14:56:51,519 [M1v2]   [C-3264-2025] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:56:51,519 [M1v2]   [C-3264-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:52,422 [M1v2]   [C-3264-2025] Haiku extrajo direccion: 'Avenida Argentina N° 1.665, Departamento N° 1706 guión B, Torre B, decimoséptimo piso, Bodega N° 243, primer piso, Estacionamiento N° 202, primer piso, Conjunto Habitacional Edificio Vista Parque, Torres A y B'
+2026-03-26 14:56:52,434 [M1v2]   [C-1986-2019] Tribunal regex v1: '2° Juzgado de Letras de La Serena'
+2026-03-26 14:56:52,441 [M1v2]   [C-1833-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:53,029 [M1v2]   [C-1833-2025] Tribunal Haiku: '2° Juzgado de Letras La Serena'
+2026-03-26 14:56:53,038 [M1v2]   [C-1833-2025] Comuna extraida del tribunal: 'la Serena'
+2026-03-26 14:56:53,039 [M1v2]   [C-248-2023] Tribunal regex v1: 'Por resolución 2° Juzgado de Letras de Coquimbo'
+2026-03-26 14:56:53,053 [M1v2]   [C-953-2022] Tribunal regex v1: 'SEGUNDO JUZGADO CIVIL de Valparaíso "BANCO CREDITO E INVERSIONES CON HENRIQUEZ GONZALEZ"'
+2026-03-26 14:56:53,053 [M1v2]   [C-953-2022] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:53,976 [M1v2]   [C-953-2022] Haiku extrajo direccion: 'Calle Alto Horno número 960, Población Leonor Mascayano, lote 36'
+2026-03-26 14:56:53,988 [M1v2]   [C-1394-2019] Tribunal regex v1: '2º Juzgado de Letras de Quilpué'
+2026-03-26 14:56:53,996 [M1v2]   [C-2031-2024] Tribunal regex v1: '2° Juzgado de Letras Civil de Los Ángeles'
+2026-03-26 14:56:54,007 [M1v2]   [C-992-2022] Tribunal regex v1: 'SEGUNDO JUZGADO CIVIL DE TALCAHUANO "BANCO CREDITO E INVERSIONES CON HENRÍQUEZ GONZÁLEZ"'
+2026-03-26 14:56:54,008 [M1v2]   [C-992-2022] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:54,989 [M1v2]   [C-992-2022] Haiku extrajo direccion: 'Calle Alto Horno número 460, Población Leonor Mascayano, lote 16'
+2026-03-26 14:56:55,002 [M1v2]   [C-1271-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:55,735 [M1v2]   [C-1271-2025] Tribunal Haiku: '3° Juzgado de Letras de Iquique'
+2026-03-26 14:56:55,742 [M1v2]   [C-3628-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:56,386 [M1v2]   [C-3628-2024] Tribunal Haiku: '3° Juzgado de Letras de Iquique'
+2026-03-26 14:56:56,393 [M1v2]   [C-1906-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:57,396 [M1v2]   [C-1906-2025] Tribunal Haiku: '3° Juzgado de Letras de Antofagasta'
+2026-03-26 14:56:57,408 [M1v2]   [C-3028-2018] Tribunal regex v1: '3° Juzgado de Letras de Copiapó'
+2026-03-26 14:56:57,415 [M1v2]   [C-1955-2023] Tribunal regex v1: 'Tercer Juzgado De Letras De La Serena'
+2026-03-26 14:56:57,422 [M1v2]   [C-7860-2025] Tribunal regex v1: '3º Juzgado Civil de Santiago'
+2026-03-26 14:56:57,423 [M1v2]   [C-7860-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:58,260 [M1v2]   [C-7860-2025] Haiku extrajo direccion: 'Lote Nº 115 A - Uno del plano de subdivisión del lote 115 - A del plano del Loteo Industrial Vespucio Oeste, Sexta Etapa'
+2026-03-26 14:56:58,268 [M1v2]   [C-9448-2025] Tribunal regex v1: 'Tercer Juzgado Civil de Santiago'
+2026-03-26 14:56:58,276 [M1v2]   [C-630-2023] Tribunal regex v1: '4º Juzgado Civil Santiago'
+2026-03-26 14:56:58,287 [M1v2]   [C-8250-2023] Tribunal regex v1: '4º Juzgado Civil de Santiago'
+2026-03-26 14:56:58,288 [M1v2]   [C-8250-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:56:59,116 [M1v2]   [C-8250-2023] Haiku extrajo direccion: 'Lote B-2 de la subdivisión del Lote B de la Parcela Nº 78 del Proyecto de Parcelación Los Cristales'
+2026-03-26 14:56:59,125 [M1v2]   [C-6923-2024] Tribunal regex v1: '04º Juzgado Civil Santiago'
+2026-03-26 14:56:59,132 [M1v2]   [C-1691-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:56:59,817 [M1v2]   [C-1691-2024] Tribunal Haiku: '5° Juzgado Civil de Valparaíso'
+2026-03-26 14:56:59,825 [M1v2]   [C-12648-2024] Tribunal regex v1: 'Sexto Juzgado Civil de Santiago'
+2026-03-26 14:56:59,833 [M1v2]   [C-12648-2024] Comuna extraida del tribunal: 'Santiago'
+2026-03-26 14:56:59,834 [M1v2]   [C-19254-2024] Tribunal regex v1: '7º Juzgado Civil Santiago'
+2026-03-26 14:56:59,834 [M1v2]   [C-19254-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:00,789 [M1v2]   [C-19254-2024] Haiku extrajo direccion: 'Calle Ramón Subercaseaux número 1268, ex números 1262, 1268 y 1274, Edificio Profesional - Comercial Subercaseaux II, oficina 109 del primer piso, estacionamiento número E 20 del primer subterráneo y bodega número B 4 del primer subterráneo'
+2026-03-26 14:57:00,797 [M1v2]   [C-14973-2025] Tribunal regex v1: '7º Juzgado Civil Santiago'
+2026-03-26 14:57:00,804 [M1v2]   [C-6889-2025] Tribunal regex v1: '7º Juzgado Civil Santiago'
+2026-03-26 14:57:00,811 [M1v2]   [C-15407-2020] Tribunal regex v1: '8° JUZGADO Civil Santiago Huérfanos 1409'
+2026-03-26 14:57:00,812 [M1v2]   [C-15407-2020] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:01,646 [M1v2]   [C-15407-2020] Haiku extrajo direccion: 'Calle Thompson número 472, Lote número 2'
+2026-03-26 14:57:01,657 [M1v2]   [C-15467-2020] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:02,295 [M1v2]   [C-15467-2020] Tribunal Haiku: '8° Juzgado Civil de Santiago'
+2026-03-26 14:57:02,296 [M1v2]   [C-15467-2020] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:03,059 [M1v2]   [C-15467-2020] Haiku extrajo direccion: 'Calle Thompson número 872, Lote número 2'
+2026-03-26 14:57:03,067 [M1v2]   [C-6570-2024] Tribunal regex v1: '8º Juzgado Civil Santiago'
+2026-03-26 14:57:03,074 [M1v2]   [C-15467-2020] Tribunal regex v1: '8° JUZGADO Civil Santiago'
+2026-03-26 14:57:03,074 [M1v2]   [C-15467-2020] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:03,779 [M1v2]   [C-15467-2020] Haiku extrajo direccion: 'Calle Thompson número 872, Lote número 2'
+2026-03-26 14:57:03,786 [M1v2]   [C-7147-2024] Tribunal regex v1: '9° Juzgado Civil de Santiago'
+2026-03-26 14:57:03,794 [M1v2]   [C-621-2025] Tribunal regex v1: 'ante 9º Juzgado Civil de Santiago'
+2026-03-26 14:57:03,801 [M1v2]   [C-21728-2024] Tribunal regex v1: '9° Juzgado Civil de Santiago'
+2026-03-26 14:57:03,802 [M1v2]   [C-21728-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:04,843 [M1v2]   [C-21728-2024] Haiku extrajo direccion: 'Departamento número 622 del sexto piso y estacionamiento número E-041 del primer subterráneo, edificio Novo, calle Santa Petronila número 38'
+2026-03-26 14:57:04,850 [M1v2]   [C-12801-2023] Tribunal regex v1: 'Ante el Décimo Juzgado Civil de Santiago'
+2026-03-26 14:57:04,858 [M1v2]   [C-14768-2024] Tribunal regex v1: '19º Juzgado Civil De Santiago'
+2026-03-26 14:57:04,865 [M1v2]   [C-11754-2020] Tribunal regex v1: '19º Juzgado Civil de Santiago. ROL C-11754-2020'
+2026-03-26 14:57:04,872 [M1v2]   [C-16644-2024] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:05,589 [M1v2]   [C-16644-2024] Tribunal Haiku: 'Décimo Noveno Juzgado Civil de Santiago'
+2026-03-26 14:57:05,597 [M1v2]   [C-647-2025] Tribunal regex v1: '10° 9° Juzgado Civil Santiago'
+2026-03-26 14:57:05,604 [M1v2]   [C-17485-2023] Tribunal regex v1: 'Vigésimo Tercer Juzgado Civil Santiago'
+2026-03-26 14:57:05,611 [M1v2]   [C-21860-2024] Tribunal regex v1: 'Ante 29º Juzgado Civil de Santiago'
+2026-03-26 14:57:05,618 [M1v2]   [C-1403-2021] Tribunal regex v1: 'Ante Trigésimo Juzgado Civil De Santiago'
+2026-03-26 14:57:05,630 [M1v2]   [C-850-2022] Tribunal regex v1: 'Juzgado de Letras de La Ligua; deberán enviar al correo electrónico'
+2026-03-26 14:57:05,631 [M1v2]   [C-850-2022] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:05,632 [M1v2]   [C-850-2022] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:06,576 [M1v2]   [C-850-2022] Haiku extrajo direccion: 'Lote A-Dos, resultante de la subdivisión de la Hijuela número uno de Alicahue o Hijuela Paihuén de Alicahue, acceso desde camino público Cabildo-Alicahue'
+2026-03-26 14:57:06,577 [M1v2]   [C-850-2022] Haiku direccion descartada (anti-alucinacion): Lote A-Dos, resultante de la subdivisión de la Hijuela número uno de Alicahue o Hijuela Paihuén de Alicahue, acceso desde camino público Cabildo-Alicahue
+2026-03-26 14:57:06,585 [M1v2]   [C-2440-2025] Tribunal regex v1: 'El 1° Juzgado de La Serena'
+2026-03-26 14:57:06,594 [M1v2]   [C-2885-2023] Tribunal regex v1: 'Primer Juzgado Civil Viña Del Mar'
+2026-03-26 14:57:06,603 [M1v2]   [C-478-2021] Tribunal regex v1: '1º Juzgado de Letras de Talagante'
+2026-03-26 14:57:06,604 [M1v2]   [C-478-2021] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:07,730 [M1v2]   [C-478-2021] Haiku extrajo direccion: 'Parcela Número Uno de la subdivisión y fusión de los Lotes uno, dos, tres, Lote sin número o Lote cuatro, cinco, seis, siete, ocho, nueve, diez, once, doce, trece, catorce, quince, dieciséis, diecisiete, diecinueve, veinte, veintiuno y veintidós resultante de la subdivisión de la Parcela número veintidós de la Colonia San Francisco de Paula o Chacra Santa Adriana'
+2026-03-26 14:57:07,737 [M1v2]   [C-7635-2025] Tribunal regex v1: '1° Juzgado Civil de Santiago'
+2026-03-26 14:57:07,744 [M1v2]   [C-8691-2018] Tribunal regex v1: '1º JUZGADO CIVIL DE RANCAGUA'
+2026-03-26 14:57:07,750 [M1v2]   [C-221-2025] Tribunal regex v1: 'VIDEOCONFERENCIA. 1° Juzgado letras de Rengo'
+2026-03-26 14:57:07,758 [M1v2]   [C-1071-2016] Tribunal regex v1: '1° Juzgado de Letras de Rengo'
+2026-03-26 14:57:07,765 [M1v2]   [C-2331-2024] Tribunal regex v1: '1° Juzgado de Letras de Rengo'
+2026-03-26 14:57:07,766 [M1v2]   [C-2331-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:08,422 [M1v2]   [C-2331-2024] Haiku extrajo direccion: 'Calle Los Robles 1470, Lote 53 del plano de loteo'
+2026-03-26 14:57:08,429 [M1v2]   [C-1590-2025] Tribunal regex v1: '1° Juzgado de Letras de Rengo'
+2026-03-26 14:57:08,438 [M1v2]   [C-1120-2023] Tribunal regex v1: 'PRIMER JUZGADO CIVIL DE TALCAHUANO.'
+2026-03-26 14:57:08,439 [M1v2]   [C-1120-2023] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:08,439 [M1v2]   [C-1120-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:09,452 [M1v2]   [C-1120-2023] Haiku extrajo direccion: 'Calle Cochrane número 253, hoy calle La Marina número 355, lote número 3'
+2026-03-26 14:57:09,459 [M1v2]   [C-8326-2024] Tribunal regex v1: '1º Juzgado Civil de Puerto Montt - C-8326-2024 - BANCO DEL ESTADO DE CHILE con AGUILAR URIBE. Ante el 1º Juzgado Civil de Puerto Montt'
+2026-03-26 14:57:09,467 [M1v2]   [C-1081-2018] Tribunal regex v1: '2º Juzgado de Letras de Coquimbo'
+2026-03-26 14:57:09,474 [M1v2]   [C-1450-2023] Tribunal regex v1: 'Ante Segundo Juzgado De Letras De Talagante'
+2026-03-26 14:57:09,474 [M1v2]   [C-1450-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:10,860 [M1v2]   [C-1450-2023] Haiku extrajo direccion: 'Parcela Catorce del plano de Parcelación del Predio Agrícola Denominado Hijuela Cuarta o El Maqui, de la Hijuela Segunda del Fundo Lo Aguirre'
+2026-03-26 14:57:10,868 [M1v2]   [C-881-2023] Tribunal regex v1: '2o Juzgado de Letras de San Fernando'
+2026-03-26 14:57:10,875 [M1v2]   [C-928-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:11,532 [M1v2]   [C-928-2025] Tribunal Haiku: '3° Juzgado de Letras de Iquique'
+2026-03-26 14:57:11,540 [M1v2]   [C-1349-2023] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:12,454 [M1v2]   [C-1349-2023] Tribunal Haiku: '3° Juzgado de Letras de Iquique'
+2026-03-26 14:57:12,455 [M1v2]   [C-1349-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:13,267 [M1v2]   [C-1349-2023] Haiku extrajo direccion: 'Lote 49, Sector Alto Molle'
+2026-03-26 14:57:13,275 [M1v2]   [C-1913-2023] Tribunal regex v1: '3° Juzgado de Letras de Iquique'
+2026-03-26 14:57:13,285 [M1v2]   [C-5714-2017] Tribunal regex v1: '4° Juzgado de Letras de Antofagasta'
+2026-03-26 14:57:13,294 [M1v2]   [C-1331-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:14,174 [M1v2]   [C-1331-2025] Tribunal Haiku: '4° Juzgado Civil de Valparaíso'
+2026-03-26 14:57:14,181 [M1v2]   [C-1331-2025] Comuna extraida del tribunal: 'Valparaíso'
+2026-03-26 14:57:14,182 [M1v2]   [C-3812-2024] Tribunal regex v1: '05º Juzgado Civil Santiago'
+2026-03-26 14:57:14,190 [M1v2]   [C-23070-2008] Tribunal regex v1: '5º Juzgado Civil Santiago'
+2026-03-26 14:57:14,191 [M1v2]   [C-23070-2008] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:15,064 [M1v2]   [C-23070-2008] Haiku extrajo direccion: 'Pedro Aguirre Cerda nº 0477, departamento nº 509, 5º piso, edificio nº 2'
+2026-03-26 14:57:15,072 [M1v2]   [C-8928-2021] Tribunal regex v1: 'Sexto Juzgado Civil De Santiago'
+2026-03-26 14:57:15,080 [M1v2]   [C-4092-2020] Tribunal regex v1: '9º Juzgado Civil Santiago'
+2026-03-26 14:57:15,086 [M1v2]   [C-6108-2024] Tribunal regex v1: '10º Juzgado Civil de Santiago'
+2026-03-26 14:57:15,094 [M1v2]   [C-6741-2022] Tribunal regex v1: '10º Juzgado Civil de Santiago'
+2026-03-26 14:57:15,101 [M1v2]   [C-14462-2022] Tribunal regex v1: '10º Juzgado Civil de Santiago'
+2026-03-26 14:57:15,102 [M1v2]   [C-14462-2022] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:16,493 [M1v2]   [C-14462-2022] Haiku extrajo direccion: 'Avenida Francisco Bilbao número 5550, Departamento 63, Edificio B, Edificio Bilbao número 5550, Las Condes'
+2026-03-26 14:57:16,501 [M1v2]   [C-21946-2024] Tribunal regex v1: '13° Juzgado Civil de Santiago'
+2026-03-26 14:57:16,509 [M1v2]   [C-12021-2020] Tribunal regex v1: '13º Juzgado Civil de Santiago'
+2026-03-26 14:57:16,516 [M1v2]   [C-1986-2024] Tribunal regex v1: '13º Juzgado Civil de Santiago'
+2026-03-26 14:57:16,524 [M1v2]   [C-7764-2023] Tribunal regex v1: '14º Juzgado Civil Santiago'
+2026-03-26 14:57:16,530 [M1v2]   [C-3239-2024] Tribunal regex v1: '10° 4° Juzgado Civil Santiago'
+2026-03-26 14:57:16,538 [M1v2]   [C-16861-2023] Tribunal regex v1: '15° Juzgado Civil Santiago'
+2026-03-26 14:57:16,545 [M1v2]   [C-16861-2023] Comuna extraida del tribunal: 'Santiago'
+2026-03-26 14:57:16,546 [M1v2]   [C-633-2021] Tribunal regex v1: '16º Juzgado Civil De Santiago'
+2026-03-26 14:57:16,554 [M1v2]   [C-7093-2020] Tribunal regex v1: 'Ante el 16º Juzgado Civil de Santiago'
+2026-03-26 14:57:16,561 [M1v2]   [C-42209-2018] Tribunal regex v1: 'Décimo Sexto Juzgado Civil De Santiago'
+2026-03-26 14:57:16,569 [M1v2]   [C-4614-2011] Tribunal regex v1: '10° 7° Juzgado Civil Santiago'
+2026-03-26 14:57:16,570 [M1v2]   [C-4614-2011] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:17,484 [M1v2]   [C-4614-2011] Haiku extrajo direccion: 'Calle Libertad número 1473, departamento 1808, piso 18, Edificio Rey Juan Carlos'
+2026-03-26 14:57:17,492 [M1v2]   [C-4521-2024] Tribunal regex v1: '18º Juzgado Civil Santiago'
+2026-03-26 14:57:17,492 [M1v2]   [C-4521-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:18,507 [M1v2]   [C-4521-2024] Haiku extrajo direccion: 'Calle Martín de Zamora número 4965, departamento 106, bodega 22 del primer subterráneo, estacionamiento 73 del primer subterráneo, Edificio Dos o Reina Isabel, Parque Residencial Reyes de España'
+2026-03-26 14:57:18,515 [M1v2]   [C-8732-2025] Tribunal regex v1: '10° 8° Juzgado Civil Santiago'
+2026-03-26 14:57:18,522 [M1v2]   [C-12042-2025] Tribunal regex v1: '19º Juzgado Civil De Santiago'
+2026-03-26 14:57:18,529 [M1v2]   [C-17089-2024] Tribunal regex v1: '20º Juzgado Civil de Santiago'
+2026-03-26 14:57:18,537 [M1v2]   [C-3955-2025] Tribunal regex v1: 'Vigésimo Primer Juzgado Civil de Santiago'
+2026-03-26 14:57:18,537 [M1v2]   [C-3955-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:19,701 [M1v2]   [C-3955-2025] Haiku extrajo direccion: 'Avenida Portugal número 810, Departamento 2102, Piso 21, Bodega 245, Segundo Subterráneo, Estacionamiento 323, Tercer Subterráneo, Edificio Portugal 810'
+2026-03-26 14:57:19,708 [M1v2]   [C-21906-2024] Tribunal regex v1: 'Vigésimo Primer Juzgado Civil de Santiago'
+2026-03-26 14:57:19,716 [M1v2]   [C-6948-2022] Tribunal regex v1: '23° Juzgado Civil de Santiago'
+2026-03-26 14:57:19,723 [M1v2]   [C-6948-2022] Tribunal regex v1: '23° Juzgado Civil de Santiago'
+2026-03-26 14:57:19,731 [M1v2]   [C-22994-2018] Tribunal regex v1: 'Vigésimo Tercer Juzgado Civil Santiago'
+2026-03-26 14:57:19,732 [M1v2]   [C-22994-2018] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:21,110 [M1v2]   [C-22994-2018] Haiku extrajo direccion: 'Avenida La Florida número 9650, Unidad 201, Segunda Etapa Condominio Santa Amalia'
+2026-03-26 14:57:21,117 [M1v2]   [C-6030-2024] Tribunal regex v1: '25º Juzgado Civil de Santiago'
+2026-03-26 14:57:21,124 [M1v2]   [C-5790-2025] Tribunal regex v1: 'VIGESIMO QUINTO JUZGADO CIVIL DE SANTIAGO'
+2026-03-26 14:57:21,131 [M1v2]   [C-6878-2024] Tribunal regex v1: '26º Juzgado Civil De Santiago'
+2026-03-26 14:57:21,138 [M1v2]   [C-10339-2025] Tribunal regex v1: '28° Juzgado Civil Santiago'
+2026-03-26 14:57:21,145 [M1v2]   [C-16703-2024] Tribunal regex v1: 'Vigésimo Noveno Juzgado Civil de Santiago'
+2026-03-26 14:57:21,152 [M1v2]   [C-1534-2024] Tribunal regex v1: 'Por resolución del Primer Juzgado de Letras de Copiapó de fecha 10 de marzo de 2020 dictada en causa Rol C-1534-2024 caratulada "SCOTIABANK CHILE S.A. CON MUÑOZ"'
+2026-03-26 14:57:21,160 [M1v2]   [C-2395-2024] Tribunal regex v1: 'Primer Juzgado Civil de Viña del Mar'
+2026-03-26 14:57:21,167 [M1v2]   [C-1849-2023] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:21,940 [M1v2]   [C-1849-2023] Tribunal Haiku: 'Primer Juzgado de Letras de Quillota'
+2026-03-26 14:57:21,948 [M1v2]   [C-17422-2024] Tribunal regex v1: '1º Juzgado Civil de Santiago'
+2026-03-26 14:57:21,955 [M1v2]   [C-7345-2024] Tribunal regex v1: '1° JUZGADO CIVIL RANCAGUA'
+2026-03-26 14:57:21,955 [M1v2]   [C-7345-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:22,837 [M1v2]   [C-7345-2024] Haiku extrajo direccion: 'Calle Luisa Muñoz 843, Lote 29 Manzana B, Conjunto Habitacional Villa Los Torunos Graneros Tres, Segunda Etapa'
+2026-03-26 14:57:22,844 [M1v2]   [C-7299-2024] Tribunal regex v1: 'JUDICIAL. PRIMER Juzgado Civil Concepción'
+2026-03-26 14:57:22,851 [M1v2]   [C-6884-2024] Tribunal regex v1: '1° Juzgado Civil de Concepción'
+2026-03-26 14:57:22,852 [M1v2]   [C-6884-2024] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:22,853 [M1v2]   [C-6884-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:23,693 [M1v2]   [C-6884-2024] Haiku extrajo direccion: 'Pasaje Parque Nacional Huerquehue número 349, lote 14 de la manzana 6, Conjunto Habitacional Bosques de San Pedro'
+2026-03-26 14:57:23,700 [M1v2]   [C-4764-2024] Tribunal regex v1: '1° JUZGADO Ovil de Concepción'
+2026-03-26 14:57:23,701 [M1v2]   [C-4764-2024] Direccion regex descartada (corta/sin numero): 'San Pedro de la Paz'
+2026-03-26 14:57:23,701 [M1v2]   [C-4764-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:24,600 [M1v2]   [C-4764-2024] Haiku extrajo direccion: 'Avenida Andalué Nº 1050, Departamento 202, Unidad Nº 5 y Bodega Nº 2, Unidad Nº 39, Edificio Mañío o Block B, Conjunto Residencial Lomas de Andalué'
+2026-03-26 14:57:24,607 [M1v2]   [C-2424-2024] Tribunal regex v1: 'SEGUNDO JUZGADO CIVIL VALPARAÍSO ordenó remate día 10 abril 2026 1L00 horas'
+2026-03-26 14:57:24,608 [M1v2]   [C-2424-2024] Direccion regex descartada (corta/sin numero): 'Sector Tabolango, Limache; inscrita fs'
+2026-03-26 14:57:24,608 [M1v2]   [C-2424-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:25,281 [M1v2]   [C-2424-2024] Haiku extrajo direccion: 'Parcela C 8, Sector Tabolango, Limache'
+2026-03-26 14:57:25,289 [M1v2]   [C-7651-2023] Tribunal regex v1: '2° JUZGADO Civil de Concepción'
+2026-03-26 14:57:25,290 [M1v2]   [C-7651-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:26,611 [M1v2]   [C-7651-2023] Haiku extrajo direccion: 'Lote número Tres, manzana Tres, Parque Industrial Coronel, Primera Etapa, Sector Escuadrón'
+2026-03-26 14:57:26,619 [M1v2]   [C-9073-2024] Tribunal regex v1: '2° JUZGADO Civil de Concepción'
+2026-03-26 14:57:26,628 [M1v2]   [C-2021-2025] Tribunal regex v1: 'SEGUNDO Juzgado Civil de Concepción. Castellón Nº 432'
+2026-03-26 14:57:26,628 [M1v2]   [C-2021-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:27,634 [M1v2]   [C-2021-2025] Haiku extrajo direccion: 'Calle Maquehua número 1878, casa 1, condominio Casas de Andalué, lote 1 de la manzana I'
+2026-03-26 14:57:27,641 [M1v2]   [C-4361-2024] Tribunal regex v1: '2° JUZGADO CIVIL CONCEPCIÓN'
+2026-03-26 14:57:27,642 [M1v2]   [C-4361-2024] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:27,642 [M1v2]   [C-4361-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:28,435 [M1v2]   [C-4361-2024] Haiku extrajo direccion: 'Lote B2, hijuela Los Maitenes, provincia del Bío Bío'
+2026-03-26 14:57:28,442 [M1v2]   [C-2205-2025] Regex no encontro tribunal -- llamando Haiku...
+2026-03-26 14:57:29,169 [M1v2]   [C-2205-2025] Tribunal Haiku: '3° Juzgado de Letras de Antofagasta'
+2026-03-26 14:57:29,170 [M1v2]   [C-2205-2025] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:29,170 [M1v2]   [C-2205-2025] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:30,149 [M1v2]   [C-2205-2025] Haiku extrajo direccion: 'Departamento 302, tercer piso, Edificio San Jorge, sector Villa Independencia, Avenida Mar del Plata número 1610'
+2026-03-26 14:57:30,161 [M1v2]   [C-606-2022] Tribunal regex v1: 'Tercer Juzgado de Letras de Coquimbo'
+2026-03-26 14:57:30,168 [M1v2]   [C-8519-2024] Tribunal regex v1: '3° Juzgado Civil Concepción'
+2026-03-26 14:57:30,169 [M1v2]   [C-8519-2024] Direccion regex descartada (corta/sin numero): 'la'
+2026-03-26 14:57:30,169 [M1v2]   [C-8519-2024] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:31,365 [M1v2]   [C-8519-2024] Haiku extrajo direccion: 'Pasaje Uno (1) número ochenta y dos (82), Lote número catorce (14) de la Manzana Uno (1) del Loteo denominado Parque residencial Los Jardines de Collao, ubicado en prolongación de calle Coronel Amengual número setecientos cincuenta y siete (757)'
+2026-03-26 14:57:31,373 [M1v2]   [C-3064-2025] Tribunal regex v1: '3° Juzgado Civil Concepción'
+2026-03-26 14:57:31,380 [M1v2]   [C-7262-2023] Tribunal regex v1: '3° JUZGADO CIVIL Temuco'
+2026-03-26 14:57:31,381 [M1v2]   [C-7262-2023] Direccion regex descartada (corta/sin numero): 'Puente Chispa de la'
+2026-03-26 14:57:31,381 [M1v2]   [C-7262-2023] Regex no encontro direccion valida -- llamando Haiku...
+2026-03-26 14:57:32,086 [M1v2]   [C-7262-2023] Haiku extrajo direccion: 'Casa Nº 11, Condominio Versalles, Avenida Botrolhue Nº 506, Temuco'
+2026-03-26 14:57:32,094 [M1v2]   [C-18-2025] Tribunal regex v1: 'Juzgado Letras en lo Civil de Litueche'
+2026-03-26 14:57:32,103 [M1v2]   [C-241-2025] Tribunal regex v1: 'Juzgado Civil Puerto Aysén. causa ROL C-241-2025 "BANCO DE CRÉDITO E INVERSIONES CON URIBE"'
+2026-03-26 14:57:32,110 [M1v2] ============================================================
+2026-03-26 14:57:32,111 [M1v2] Módulo 1 v2 completado:
+2026-03-26 14:57:32,112 [M1v2]   Bloques totales:           242
+2026-03-26 14:57:32,112 [M1v2]   Pre-filtro sin ROL:        34
+2026-03-26 14:57:32,113 [M1v2]   Sin ROL post-parse:        124
+2026-03-26 14:57:32,113 [M1v2]   Filtrados año < 2018:      3
+2026-03-26 14:57:32,114 [M1v2]   Filtrados Banco Estado:    13
+2026-03-26 14:57:32,114 [M1v2]   Duplicados (semana):       0
+2026-03-26 14:57:32,115 [M1v2]   Sin tribunal:              0
+2026-03-26 14:57:32,116 [M1v2]   Sin dirección:             1
+2026-03-26 14:57:32,116 [M1v2]   CAUSAS NUEVAS:             68
+2026-03-26 14:57:32,117 [M1v2]   Llamadas API Haiku:        76
+2026-03-26 14:57:32,117 [M1v2] ============================================================

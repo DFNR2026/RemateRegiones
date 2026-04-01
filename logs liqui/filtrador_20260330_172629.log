@@ -1,0 +1,52 @@
+17:26:29 [FILTRADOR] === FILTRADOR DE SALDOS ===
+17:26:29 [FILTRADOR] *** MODO REAUDIT: Reprocesando causas PENDIENTE_ACTA ***
+17:26:29 [FILTRADOR] *** Workers: 5 procesos paralelos ***
+17:26:29 [FILTRADOR] === PASO 0: Merge de Reportes ===
+17:26:29 [FILTRADOR] Excel madre cargado: 174 causas existentes
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-07.xlsx (ya importado)
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-13.xlsx (ya importado)
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-20.1.xlsx (ya importado)
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-20.xlsx (ya importado)
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-21.xlsx (ya importado)
+17:26:29 [FILTRADOR]   Saltando Reporte_2026-03-26.xlsx (ya importado)
+17:26:29 [FILTRADOR] Total causas nuevas importadas: 0
+17:26:29 [FILTRADOR] Total causas en Excel madre: 174
+17:26:29 [FILTRADOR] [REAUDIT] Procesando 31 causas (6 PENDIENTE_ACTA + 25 PENDIENTE_LIQUIDACION sin monto_acta)
+17:26:29 [FILTRADOR] Lanzando 5 workers activos de 5 configurados
+17:26:29 [FILTRADOR]   Worker 1: 3 causas
+17:26:29 [FILTRADOR]   Worker 2: 9 causas
+17:26:29 [FILTRADOR]   Worker 3: 4 causas
+17:26:29 [FILTRADOR]   Worker 4: 7 causas
+17:26:29 [FILTRADOR]   Worker 5: 8 causas
+17:26:29 [FILTRADOR] Lanzando Worker 1 (3 causas)...
+17:26:29 [FILTRADOR] Lanzando Worker 2 (9 causas)...
+17:26:29 [FILTRADOR] Lanzando Worker 3 (4 causas)...
+17:26:29 [FILTRADOR] Lanzando Worker 4 (7 causas)...
+17:26:29 [FILTRADOR] Lanzando Worker 5 (8 causas)...
+17:27:31 [FILTRADOR] Worker 1 terminado (exit code: 0)
+17:29:26 [FILTRADOR] Worker 2 terminado (exit code: 0)
+17:29:26 [FILTRADOR] Worker 3 terminado (exit code: 0)
+17:29:26 [FILTRADOR] Worker 4 terminado (exit code: 0)
+17:29:26 [FILTRADOR] Worker 5 terminado (exit code: 0)
+17:29:26 [FILTRADOR] Worker 1: 3 resultados leidos
+17:29:26 [FILTRADOR] Worker 2: 9 resultados leidos
+17:29:26 [FILTRADOR] Worker 3: 4 resultados leidos
+17:29:26 [FILTRADOR] Worker 4: 7 resultados leidos
+17:29:26 [FILTRADOR] Worker 5: 8 resultados leidos
+17:29:26 [FILTRADOR] Causas eliminadas del Excel: 6
+17:29:26 [FILTRADOR] Generando Excel formateado...
+17:29:26 [FILTRADOR]   Pestana 'Revision Manual': 1 causas
+17:29:26 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx
+17:29:26 [FILTRADOR] 
+17:29:26 [FILTRADOR] ====================================================
+17:29:26 [FILTRADOR]   RESUMEN REAUDIT
+17:29:26 [FILTRADOR] ====================================================
+17:29:26 [FILTRADOR]   Causas procesadas:            31
+17:29:26 [FILTRADOR]   Tiempo total: 2 min 57 seg
+17:29:26 [FILTRADOR]   Eliminadas:                   6
+17:29:26 [FILTRADOR]   Pendientes liquidacion:       19
+17:29:26 [FILTRADOR]   Pendientes revision manual:   0
+17:29:26 [FILTRADOR]   Pendientes acta (sin cambio): 6
+17:29:26 [FILTRADOR]   Auditorias HTML guardadas:    31
+17:29:26 [FILTRADOR] ====================================================
+17:29:26 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx

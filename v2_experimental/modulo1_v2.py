@@ -106,12 +106,93 @@ _RE_TRIBUNAL_CORTE = re.compile(
     re.IGNORECASE | re.DOTALL
 )
 
-# Copiada de modulo1_parser.py (_limpiar_tribunal) + Fix 6
+# Fix Bug 2: Prefijos que contaminan fuzzy matching
+_PREFIJOS_TRIBUNAL = [
+    r'^en\s+causa\s+ejecutiva\s+ante\s+(?:el|la)\s+',
+    r'^ante\s+(?:el|la)\s+',
+    r'^en\s+causa\s+(?:caratulada|seguida)?\s*ante\s+(?:el|la)\s+',
+    r'^(?:el|la)\s+',
+]
+
+# Fix Bug 3: Ordinales compuestos "Décimo Primer" → 11, etc.
+_DECENAS_COMP_V2 = {
+    "décimo": 10, "decimo": 10, "décima": 10, "decima": 10,
+    "vigésimo": 20, "vigesimo": 20, "vigésima": 20, "vigesima": 20,
+    "trigésimo": 30, "trigesimo": 30,
+}
+_UNIDADES_COMP_V2 = {
+    "primer": 1, "primero": 1, "primera": 1,
+    "segundo": 2, "segunda": 2,
+    "tercer": 3, "tercero": 3, "tercera": 3,
+    "cuarto": 4, "cuarta": 4,
+    "quinto": 5, "quinta": 5,
+    "sexto": 6, "sexta": 6,
+    "séptimo": 7, "septimo": 7,
+    "octavo": 8, "octava": 8,
+    "noveno": 9, "novena": 9,
+}
+
+
+def _normalizar_ordinal_v2(texto: str) -> str:
+    """
+    Convierte ordinales en palabras a formato numérico con °.
+    Fix Bug 3: Maneja compuestos "Décimo Primer" → "11°" (v1 solo maneja vigésimo+).
+    """
+    from modulo1_parser import ORDINALES
+    palabras = texto.split()
+    resultado = []
+    i = 0
+    while i < len(palabras):
+        p1 = palabras[i].lower().rstrip(".,;:")
+        # Intenta compuesto de dos palabras (décimo+, vigésimo+, trigésimo+)
+        if i + 1 < len(palabras):
+            p2 = palabras[i + 1].lower().rstrip(".,;:")
+            decena = _DECENAS_COMP_V2.get(p1)
+            unidad = _UNIDADES_COMP_V2.get(p2)
+            if decena is not None and unidad is not None:
+                resultado.append(f"{decena + unidad}°")
+                i += 2
+                continue
+        # Simple (reutilizar ORDINALES de v1)
+        if p1 in ORDINALES:
+            resultado.append(ORDINALES[p1])
+            i += 1
+            continue
+        resultado.append(palabras[i])
+        i += 1
+    return " ".join(resultado)
+
+
+# Copiada de modulo1_parser.py (_limpiar_tribunal) + Fix 6 + Bugs 1-3
 def _limpiar_tribunal(nombre_raw: str) -> str:
     """Post-regex: limpia nombre de tribunal, trunca en palabras de remate."""
     if not nombre_raw:
         return nombre_raw
     t = nombre_raw
+
+    # ── Bug 1 fix: al splitear por punto, buscar segmento con Juzgado/Tribunal ──
+    segmentos = t.split(".")
+    if len(segmentos) > 1:
+        encontrado = False
+        for seg in segmentos:
+            if re.search(r'(?i)\b(juzgado|tribunal)\b', seg.strip()):
+                t = seg.strip()
+                encontrado = True
+                break
+        if not encontrado:
+            # Comportamiento original: primer segmento no-vacío
+            for seg in segmentos:
+                if seg.strip():
+                    t = seg.strip()
+                    break
+
+    # ── Bug 2 fix: strip de prefijos que contaminan fuzzy matching ──
+    for patron in _PREFIJOS_TRIBUNAL:
+        t = re.sub(patron, '', t, flags=re.IGNORECASE).strip()
+
+    # ── Bug 3 fix: normalizar ordinales compuestos (Décimo Primer → 11°) ──
+    t = _normalizar_ordinal_v2(t)
+
     # Fix 14: Normalizar ordinal con ceros: "01°" -> "1°", "02°" -> "2°"
     t = re.sub(r'^0*(\d+)\s*[°º]', lambda m: f"{int(m.group(1))}°", t)
     # Fix 6: Truncar en keywords de remate/legal que no son parte del tribunal
@@ -521,6 +602,9 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
             tribunal_raw = _extraer_tribunal_haiku(bloque)
             if tribunal_raw:
                 log.info(f"  [{rol_completo}] Tribunal Haiku: '{tribunal_raw}'")
+            else:
+                preview = bloque[:200].replace('\n', ' ')
+                log.warning(f"  [{rol_completo}] Haiku no extrajo tribunal. Preview bloque: '{preview}'")
     tribunal_raw = _limpiar_tribunal(tribunal_raw)
 
     # Filtro partidor/árbitro
@@ -562,11 +646,14 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
 
     haiku_used = False
     if not direccion:
+        # Log del texto que regex evalúa (diagnóstico regex dirección)
+        log.debug(f"  [{rol_completo}] Texto para regex direccion (200 chars): '{bloque[:200]}'")
         # Fallback: Claude Haiku para dirección + comuna
         log.info(f"  [{rol_completo}] Regex no encontro direccion valida -- llamando Haiku...")
         dir_h, com_h = _extraer_direccion_haiku(bloque)
         haiku_used = True
         if dir_h:
+            log.info(f"  [{rol_completo}] Haiku extrajo direccion: '{dir_h}'")
             # Validación anti-alucinación
             palabras_dir = [p for p in dir_h.split() if len(p) > 3][:3]
             bloque_lower = bloque.lower()

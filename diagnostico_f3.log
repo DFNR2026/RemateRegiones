@@ -1,0 +1,240 @@
+Excel: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx
+Total filas: 168
+Columnas: ['ROL', 'AÑO', 'CORTE', 'TRIBUNAL', 'DEMANDANTE', 'DEMANDADO', 'DIRECCIÓN', 'COMUNA', 'MONTO_DEUDA_CLP', 'estado', 'fecha_remate', 'monto_acta_remate', 'ruta_liquidacion', 'fecha_ultimo_check', 'notas', 'origen_reporte', 'log_decision', 'detalle_auditoria']
+
+======================================================================
+  CAUSAS PENDIENTE_LIQUIDACION: 29
+======================================================================
+
+--- MUESTRA: 3 primeros registros completos ---
+
+[1]
+  ROL: 1381
+  AÑO: 2025
+  CORTE: C.A. de Concepción
+  TRIBUNAL: 2º Juzgado Civil de Talcahuano
+  DEMANDANTE: COOP DE AHORRO Y CREDITO ORIENTE LIMITADA
+  DEMANDADO: ROSA GABRIELA FLORES MORALES
+  DIRECCIÓN: Pasaje Rio Gomero 788
+  COMUNA: Hualqui
+  MONTO_DEUDA_CLP: 2752550
+  estado: PENDIENTE_LIQUIDACION
+  fecha_remate: 2026-03-02
+  fecha_ultimo_check: 2026-03-30
+  origen_reporte: Reporte_2026-03-07.xlsx
+  log_decision: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 61, 2026-03-17) -> directo a Filtro 3
+  detalle_auditoria: INFO: Girese (folio 73); INFO: Deudor pago (posible cierre sin remate) (folio 66); INFO: Deudor pago (posible cierre sin remate) (folio 49); INFO: Liquidacion objetada (folio 23)
+
+[2]
+  ROL: 2601
+  AÑO: 2023
+  CORTE: C.A. de Valparaíso
+  TRIBUNAL: 4º Juzgado Civil de Valparaíso
+  DEMANDANTE: BANCO DE CRÉDITO E INVERSIONES
+  DEMANDADO: ADOLFO ANTONIO RAMÍREZ ADRÓVEZ
+  DIRECCIÓN: Eduardo Alquinta 1260, casa 120, Condominio Jardines de Belloto
+  COMUNA: Quilpué
+  MONTO_DEUDA_CLP: 6798922
+  estado: PENDIENTE_LIQUIDACION
+  fecha_remate: 2026-03-01
+  monto_acta_remate: 35700000
+  fecha_ultimo_check: 2026-03-29
+  origen_reporte: Reporte_2026-03-07.xlsx
+  log_decision: REAUDIT F2: Adjudicacion $35,700,000 >= deuda $6,798,922 (folio 88). Posible excedente.
+  detalle_auditoria: INFO: Girese (folio 107); INFO: Giro cheque (folio 104); INFO: Girese (folio 103); INFO: Giro cheque (folio 97); INFO: Girese (folio 96); INFO: Girese (folio 94); INFO: Girese (folio 93); INFO: Giro cheque (folio 91); INFO: Giro cheque (folio 90); INFO: Giro cheque (folio 89)
+
+[3]
+  ROL: 1563
+  AÑO: 2025
+  CORTE: C.A. de Valparaíso
+  TRIBUNAL: 4º Juzgado Civil de Valparaíso
+  DEMANDANTE: BANCO SANTANDER-CHILE S.A.
+  DEMANDADO: ANDRÉS BORIS FERNANDOIS LEIVA
+  DIRECCIÓN: Conjunto Habitacional La Reserva de Peñablanca, calle Presbítero Eduardo Lecourt número 239, lote número 64 de la manzana A
+  COMUNA: Villa Alemana
+  MONTO_DEUDA_CLP: 49331833
+  estado: PENDIENTE_LIQUIDACION
+  fecha_remate: 2026-03-05
+  monto_acta_remate: 110000000
+  fecha_ultimo_check: 2026-03-30
+  origen_reporte: Reporte_2026-03-07.xlsx
+  log_decision: REAUDIT F2: Adjudicacion $110,000,000 >= deuda $49,331,833 (folio 58). Posible excedente.
+  detalle_auditoria: INFO: Girese (folio 87); INFO: Girese (folio 86); INFO: Giro cheque (folio 71); INFO: Giro cheque (folio 67); INFO: Giro cheque (folio 66); INFO: Giro cheque (folio 65); INFO: Giro cheque (folio 60)
+
+======================================================================
+
+--- DETALLE POR CAUSA ---
+
+C-1381-2025 | 2º Juzgado Civil de Talcahuano
+  Deuda: 2752550  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Girese (folio 73); INFO: Deudor pago (posible cierre sin remate) (folio 66); INFO: Deudor pago (posible cierre sin
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 61, 2026-03-17) -> directo a Filtro 3
+
+C-2601-2023 | 4º Juzgado Civil de Valparaíso
+  Deuda: 6798922  |  Monto acta: 35700000  |  Delta: $28,901,078
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Girese (folio 107); INFO: Giro cheque (folio 104); INFO: Girese (folio 103); INFO: Giro cheque (folio 97); INFO: G
+  Log: REAUDIT F2: Adjudicacion $35,700,000 >= deuda $6,798,922 (folio 88). Posible excedente.
+
+C-1563-2025 | 4º Juzgado Civil de Valparaíso
+  Deuda: 49331833  |  Monto acta: 110000000  |  Delta: $60,668,167
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Girese (folio 87); INFO: Girese (folio 86); INFO: Giro cheque (folio 71); INFO: Giro cheque (folio 67); INFO: Giro
+  Log: REAUDIT F2: Adjudicacion $110,000,000 >= deuda $49,331,833 (folio 58). Posible excedente.
+
+C-1529-2023 | 3º Juzgado Civil de Temuco
+  Deuda: 52019470  |  Monto acta: 131700791  |  Delta: $79,681,321
+  KW liquidación: SI  |  Tiene acta: SI
+  Detalle: INFO: Nulidad detectada (folio 165); INFO: Liquidacion objetada (folio 77)
+  Log: REAUDIT F2: Adjudicacion $131,700,791 >= deuda $52,019,470 (folio 190). Posible excedente.
+
+C-2543-2025 | 1º Juzgado de Letras de Iquique
+  Deuda: 82282227  |  Monto acta: 91000000  |  Delta: $8,717,773
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $91,000,000 >= deuda $82,282,227 (folio 37). Posible excedente.
+
+C-3535-2025 | 2º Juzgado de Letras Civil de Antofagasta
+  Deuda: 86747234  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 27, 2026-03-20) -> directo a Filtro 3
+
+C-1833-2025 | 1º Juzgado de Letras de la Serena
+  Deuda: 87880513  |  Monto acta: 112000001  |  Delta: $24,119,488
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Precio consignado (folio 22); INFO: Deudor pago (posible cierre sin remate) (folio 21)
+  Log: REAUDIT F2: Adjudicacion $112,000,001 >= deuda $87,880,513 (folio 20). Posible excedente.
+
+C-549-2025 | 2º Juzgado Civil de Viña del Mar
+  Deuda: 102055065  |  Monto acta: 135000000  |  Delta: $32,944,935
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Giro cheque (folio 54); INFO: Giro cheque (folio 53); INFO: Giro cheque (folio 45); INFO: Giro cheque (folio 43); 
+  Log: REAUDIT F2: Adjudicacion $135,000,000 >= deuda $102,055,065 (folio 32). Posible excedente.
+
+C-93-2024 | Juzgado de Letras y Gar. de Chanco
+  Deuda: 141453576  |  Monto acta: 215000000  |  Delta: $73,546,424
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $215,000,000 >= deuda $141,453,576 (folio 75). Posible excedente.
+
+C-4885-2023 | 1º Juzgado Civil de Puerto Montt
+  Deuda: 6127854  |  Monto acta: 23000000  |  Delta: $16,872,146
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Girese (folio 96); INFO: Girese (folio 95); INFO: Giro cheque (folio 92); INFO: Girese (folio 89); INFO: Giro cheq
+  Log: REAUDIT F2: Adjudicacion $23,000,000 >= deuda $6,127,854 (folio 82). Posible excedente.
+
+C-7205-2024 | 3º Juzgado Civil de Concepción
+  Deuda: 14787366  |  Monto acta: 145500000  |  Delta: $130,712,634
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $145,500,000 >= deuda $14,787,366 (folio 68). Posible excedente.
+
+C-4836-2022 | 2º Juzgado Civil de Rancagua
+  Deuda: 22157800  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Girese (folio 227); INFO: Giro cheque (folio 226); INFO: Nulidad detectada (folio 212); INFO: Giro cheque (folio 2
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 254, 2026-03-24) -> directo a Filtro 3
+
+C-2609-2025 | 1º Juzgado Civil de Rancagua
+  Deuda: 22814819  |  Monto acta: 180000000  |  Delta: $157,185,181
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Nulidad detectada (folio 16)
+  Log: REAUDIT F2: Adjudicacion $180,000,000 >= deuda $22,814,819 (folio 64). Posible excedente.
+
+C-857-2025 | 1º Juzgado de Letras de Coyhaique
+  Deuda: 36626492  |  Monto acta: 45000000  |  Delta: $8,373,508
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Girese (folio 35)
+  Log: REAUDIT F2: Adjudicacion $45,000,000 >= deuda $36,626,492 (folio 29). Posible excedente.
+
+C-862-2021 | 3º Juzgado de Letras de la Serena
+  Deuda: 87391777  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Precio consignado (folio 97); INFO: Deudor pago (posible cierre sin remate) (folio 95); INFO: Girese (folio 41)
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 97, 2026-03-26) -> directo a Filtro 3
+
+C-1810-2025 | 4° Juzgado de Letras Civil de Antofagasta
+  Deuda: 134430375  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Liquidacion objetada (folio 32)
+  Log: REAUDIT F2: Adjudicacion $10,100,000,000 >= deuda $134,430,375 (folio 43). Posible excedente.
+
+C-7366-2024 | 2º Juzgado Civil de Rancagua
+  Deuda: 291554180  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Girese (folio 62); INFO: Giro cheque (folio 60); INFO: Giro cheque (folio 56)
+  Log: REAUDIT: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 69, 2026-02-12) -> directo a Filtro 3
+
+C-867-2024 | Juzgado de Letras de Villarrica
+  Deuda:   |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Deudor pago (posible cierre sin remate) (folio 218); INFO: Desistimiento (folio 208); INFO: Liquidacion objetada (
+  Log: REAUDIT: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 204, 2026-02-20) -> directo a Filtro 3
+
+C-4837-2024 | 3º Juzgado de Letras de Iquique
+  Deuda: 8029527  |  Monto acta: 12000000  |  Delta: $3,970,473
+  KW liquidación: NO  |  Tiene acta: SI
+  Detalle: INFO: Nulidad detectada (folio 53); INFO: Nulidad detectada (folio 12)
+  Log: REAUDIT F2: Adjudicacion $12,000,000 >= deuda $8,029,527 (folio 84). Posible excedente.
+
+C-5950-2020 | 3º Juzgado Civil de Concepción
+  Deuda: 10336221  |  Monto acta: 66521616  |  Delta: $56,185,395
+  KW liquidación: SI  |  Tiene acta: SI
+  Detalle: INFO: Liquidacion objetada (folio 56); INFO: Liquidacion objetada (folio 47)
+  Log: REAUDIT F2: Adjudicacion $66,521,616 >= deuda $10,336,221 (folio 104). Posible excedente.
+
+C-1467-2025 | 2º Juzgado Civil de Valparaíso
+  Deuda: 13690013  |  Monto acta: 39700000  |  Delta: $26,009,987
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $39,700,000 >= deuda $13,690,013 (folio 52). Posible excedente.
+
+C-2540-2025 | 1º Juzgado Civil de Temuco
+  Deuda: 31501848  |  Monto acta: 61200000  |  Delta: $29,698,152
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $61,200,000 >= deuda $31,501,848 (folio 44). Posible excedente.
+
+C-3323-2024 | 3º Juzgado de Letras de Iquique
+  Deuda: 36802455  |  Monto acta: 106333000  |  Delta: $69,530,545
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $106,333,000 >= deuda $36,802,455 (folio 66). Posible excedente.
+
+C-3276-2025 | 3º Juzgado de Letras Civil de Antofagasta
+  Deuda: 57230904  |  Monto acta: 68000000  |  Delta: $10,769,096
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $68,000,000 >= deuda $57,230,904 (folio 22). Posible excedente.
+
+C-2470-2025 | 2º Juzgado Civil de Valparaíso
+  Deuda: 68421146  |  Monto acta: 51651141  |  Delta: $-16,770,005
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $71,000,000 >= deuda $68,421,146 (folio 22). Posible excedente.
+
+C-2431-2024 | 3º Juzgado Civil de Viña del Mar
+  Deuda: 97804012  |  Monto acta: 102012132  |  Delta: $4,208,120
+  KW liquidación: NO  |  Tiene acta: SI
+  Log: REAUDIT F2: Adjudicacion $102,012,132 >= deuda $97,804,012 (folio 42). Posible excedente.
+
+C-755-2024 | 1º Juzgado de Letras de Quilpue
+  Deuda: 105948584  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 33, 2026-03-26) -> directo a Filtro 3
+
+C-817-2023 | 3º Juzgado de Letras de Calama
+  Deuda: 147446372  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 59, 2026-03-26) -> directo a Filtro 3
+
+C-1138-2024 | 2º Juzgado de Letras Civil de Antofagasta
+  Deuda: 146798801  |  Monto acta:   |  Delta: 
+  KW liquidación: SI  |  Tiene acta: NO
+  Detalle: INFO: Liquidacion objetada (folio 87)
+  Log: REAUDIT: Senal 4: "Ordena liquidar el crédito" (folio 112, 2026-03-13) -> directo a Filtro 3
+
+======================================================================
+  RESUMEN
+======================================================================
+  Total PENDIENTE_LIQUIDACION:       29
+  Con monto_acta (pasaron F2):       19
+  Con keyword liquidación (F1):      12
+  Con AMBAS (acta + liquidación):    2
+  Solo acta (sin kw liquidación):    17
+  Solo kw liquidación (sin acta):    10
+  Sin ninguna señal clara:           0
+======================================================================

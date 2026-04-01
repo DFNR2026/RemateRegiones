@@ -1,0 +1,78 @@
+17:48:39 [FILTRADOR] === FILTRADOR DE SALDOS ===
+17:48:39 [FILTRADOR] *** Workers: 5 procesos paralelos ***
+17:48:39 [FILTRADOR] === PASO 0: Merge de Reportes ===
+17:48:39 [FILTRADOR] Excel madre cargado: 168 causas existentes
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-07.xlsx (ya importado)
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-13.xlsx (ya importado)
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-20.1.xlsx (ya importado)
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-20.xlsx (ya importado)
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-21.xlsx (ya importado)
+17:48:39 [FILTRADOR]   Saltando Reporte_2026-03-26.xlsx (ya importado)
+17:48:39 [FILTRADOR] Total causas nuevas importadas: 0
+17:48:39 [FILTRADOR] Total causas en Excel madre: 168
+17:48:39 [FILTRADOR] [RECHECK-CARGO] Re-verificando cargo al credito en PDFs existentes...
+17:48:39 [FILTRADOR]   C-2601-2023: cargo=False confirmado
+17:48:39 [FILTRADOR]   C-1563-2025: cargo=False confirmado
+17:48:39 [FILTRADOR]   C-1529-2023: cargo=False confirmado
+17:48:39 [FILTRADOR]   C-2543-2025: cargo=False confirmado
+17:48:39 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:48:47 [FILTRADOR]     OCR exitoso: 10757 chars extraidos
+17:48:47 [FILTRADOR]   C-1833-2025: cargo=False confirmado
+17:48:47 [FILTRADOR]   C-549-2025: cargo=False confirmado
+17:48:47 [FILTRADOR]   C-93-2024: cargo=False confirmado
+17:48:47 [FILTRADOR]   C-4885-2023: cargo=False confirmado
+17:48:47 [FILTRADOR]   C-7205-2024: cargo=False confirmado
+17:48:47 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:48:49 [FILTRADOR]     OCR exitoso: 2034 chars extraidos
+17:48:49 [FILTRADOR]   C-2609-2025: cargo=False confirmado
+17:48:49 [FILTRADOR]   C-857-2025: cargo=False confirmado
+17:48:49 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+17:48:53 [FILTRADOR]     OCR exitoso: 5131 chars extraidos
+17:48:53 [FILTRADOR]     ALERTA: Monto $10,100,000,000 supera tope razonable. Descartando.
+17:48:53 [FILTRADOR]   C-1810-2025: Monto actualizado 10100000000 -> None
+17:48:53 [FILTRADOR]   C-1810-2025: cargo=False confirmado
+17:48:53 [FILTRADOR]   C-4837-2024: cargo=False confirmado
+17:48:53 [FILTRADOR]   C-5950-2020: cargo=False confirmado
+17:48:53 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+Traceback (most recent call last):
+  File "D:\Remates\filtrador_saldos.py", line 3366, in <module>
+    main()
+    ~~~~^^
+  File "D:\Remates\filtrador_saldos.py", line 3108, in main
+    analisis = _analizar_pdf_acta(filepath)
+  File "D:\Remates\filtrador_saldos.py", line 1358, in _analizar_pdf_acta
+    texto_ocr = _ocr_pdf(doc)
+  File "D:\Remates\filtrador_saldos.py", line 1308, in _ocr_pdf
+    texto_pagina = pytesseract.image_to_string(img, lang='spa')
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytesseract\pytesseract.py", line 486, in image_to_string
+    return {
+           ~
+    ...<2 lines>...
+        Output.STRING: lambda: run_and_get_output(*args),
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    }[output_type]()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytesseract\pytesseract.py", line 489, in <lambda>
+    Output.STRING: lambda: run_and_get_output(*args),
+                           ~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytesseract\pytesseract.py", line 352, in run_and_get_output
+    run_tesseract(**kwargs)
+    ~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytesseract\pytesseract.py", line 282, in run_tesseract
+    with timeout_manager(proc, timeout) as error_string:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytesseract\pytesseract.py", line 144, in timeout_manager
+    yield proc.communicate()[1]
+          ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1220, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1661, in _communicate
+    self.stdout_thread.join(self._remaining_time(endtime))
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ndieg\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1133, in join
+    self._os_thread_handle.join(timeout)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyboardInterrupt

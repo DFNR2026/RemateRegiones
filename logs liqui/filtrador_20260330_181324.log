@@ -1,0 +1,53 @@
+18:13:24 [FILTRADOR] === FILTRADOR DE SALDOS ===
+18:13:24 [FILTRADOR] *** Workers: 5 procesos paralelos ***
+18:13:24 [FILTRADOR] === PASO 0: Merge de Reportes ===
+18:13:24 [FILTRADOR] Excel madre cargado: 168 causas existentes
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-07.xlsx (ya importado)
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-13.xlsx (ya importado)
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-20.1.xlsx (ya importado)
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-20.xlsx (ya importado)
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-21.xlsx (ya importado)
+18:13:24 [FILTRADOR]   Saltando Reporte_2026-03-26.xlsx (ya importado)
+18:13:24 [FILTRADOR] Total causas nuevas importadas: 0
+18:13:24 [FILTRADOR] Total causas en Excel madre: 168
+18:13:24 [FILTRADOR] [RECHECK-CARGO] Re-verificando cargo al credito en PDFs existentes...
+18:13:24 [FILTRADOR]   C-2601-2023: cargo=False confirmado
+18:13:24 [FILTRADOR]   C-1563-2025: cargo=False confirmado
+18:13:24 [FILTRADOR]   C-1529-2023: cargo=False confirmado
+18:13:24 [FILTRADOR]   C-2543-2025: cargo=False confirmado
+18:13:24 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:30 [FILTRADOR]     OCR exitoso: 10317 chars extraidos
+18:13:30 [FILTRADOR]   C-1833-2025: cargo=False confirmado
+18:13:30 [FILTRADOR]   C-549-2025: cargo=False confirmado
+18:13:30 [FILTRADOR]   C-93-2024: cargo=False confirmado
+18:13:30 [FILTRADOR]   C-4885-2023: cargo=False confirmado
+18:13:30 [FILTRADOR]   C-7205-2024: cargo=False confirmado
+18:13:30 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:31 [FILTRADOR]     OCR exitoso: 2063 chars extraidos
+18:13:31 [FILTRADOR]   C-2609-2025: cargo=False confirmado
+18:13:31 [FILTRADOR]   C-857-2025: cargo=False confirmado
+18:13:31 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:34 [FILTRADOR]     OCR exitoso: 4969 chars extraidos
+18:13:34 [FILTRADOR]     ALERTA: Monto $10,100,000,000 supera tope razonable. Descartando.
+18:13:34 [FILTRADOR]   C-1810-2025: Monto actualizado 10100000000 -> None
+18:13:34 [FILTRADOR]   C-1810-2025: cargo=False confirmado
+18:13:34 [FILTRADOR]   C-4837-2024: cargo=False confirmado
+18:13:34 [FILTRADOR]   C-5950-2020: cargo=False confirmado
+18:13:34 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:37 [FILTRADOR]     OCR exitoso: 5260 chars extraidos
+18:13:37 [FILTRADOR]   C-1467-2025: cargo=False confirmado
+18:13:37 [FILTRADOR]   C-2540-2025: cargo=False confirmado
+18:13:37 [FILTRADOR]   C-3323-2024: cargo=False confirmado
+18:13:37 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:39 [FILTRADOR]     OCR exitoso: 3386 chars extraidos
+18:13:39 [FILTRADOR]   C-3276-2025: cargo=False confirmado
+18:13:39 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:13:42 [FILTRADOR]     OCR exitoso: 6438 chars extraidos
+18:13:42 [FILTRADOR]   C-2470-2025: Monto actualizado 71000000 -> 51651141
+18:13:42 [FILTRADOR]   C-2470-2025: cargo=False confirmado
+18:13:42 [FILTRADOR]   C-2431-2024: cargo=False confirmado
+18:13:42 [FILTRADOR] [RECHECK-CARGO] 20 causas revisadas, 0 cambiadas a ELIMINAR
+18:13:42 [FILTRADOR] Generando Excel formateado...
+18:13:42 [FILTRADOR]   Pestana 'Revision Manual': 1 causas
+18:13:42 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx
+18:13:42 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx
