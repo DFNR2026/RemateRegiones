@@ -1,0 +1,419 @@
+18:02:16 [FILTRADOR] === FILTRADOR DE SALDOS ===
+18:02:16 [FILTRADOR] *** MODO REAUDIT: Reprocesando causas PENDIENTE_ACTA ***
+18:02:16 [FILTRADOR] *** Workers: 5 procesos paralelos ***
+18:02:16 [FILTRADOR] === PASO 0: Merge de Reportes ===
+18:02:16 [FILTRADOR] Excel madre cargado: 233 causas existentes
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-07.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-13.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-20.1.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-20.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-21.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-03-26.xlsx (ya importado)
+18:02:16 [FILTRADOR]   Saltando Reporte_2026-04-02.xlsx (ya importado)
+18:02:16 [FILTRADOR] Total causas nuevas importadas: 0
+18:02:16 [FILTRADOR] Total causas en Excel madre: 233
+18:02:16 [FILTRADOR] [REAUDIT] Procesando 28 causas (22 PENDIENTE_ACTA + 6 PENDIENTE_LIQUIDACION sin monto_acta)
+18:02:16 [FILTRADOR] Lanzando 5 workers activos de 5 configurados
+18:02:16 [FILTRADOR]   Worker 1: 3 causas
+18:02:16 [FILTRADOR]   Worker 2: 9 causas
+18:02:16 [FILTRADOR]   Worker 3: 5 causas
+18:02:16 [FILTRADOR]   Worker 4: 8 causas
+18:02:16 [FILTRADOR]   Worker 5: 3 causas
+18:02:16 [FILTRADOR] Lanzando Worker 1 (3 causas)...
+18:02:16 [FILTRADOR] Lanzando Worker 2 (9 causas)...
+18:02:16 [FILTRADOR] Lanzando Worker 3 (5 causas)...
+18:02:16 [FILTRADOR] Lanzando Worker 4 (8 causas)...
+18:02:16 [FILTRADOR] Lanzando Worker 5 (3 causas)...
+18:02:16 [FILTRADOR] [W2] Iniciando worker (PID 29424)...
+18:02:16 [FILTRADOR] [W4] Iniciando worker (PID 3628)...
+18:02:16 [FILTRADOR] [W5] Iniciando worker (PID 2648)...
+18:02:16 [FILTRADOR] [W3] Iniciando worker (PID 13992)...
+18:02:16 [FILTRADOR] [W1] Iniciando worker (PID 28976)...
+18:02:16 [FILTRADOR] [W3] 5 causas a procesar
+18:02:16 [FILTRADOR] [W2] 9 causas a procesar
+18:02:16 [FILTRADOR] [W4] 8 causas a procesar
+18:02:16 [FILTRADOR] [W5] 3 causas a procesar
+18:02:16 [FILTRADOR] [W1] 3 causas a procesar
+  -> Cargando OJV...
+  -> Cargando OJV...
+  -> Cargando OJV...
+  -> Cargando OJV...
+  -> Cargando OJV...
+  ✓ Formulario listo
+18:02:24 [FILTRADOR]   [W5] REAUDIT 1/3: 2305-2025
+18:02:24 [FILTRADOR]   W5 [REAUDIT] Buscando 2305-2025 en OJV...
+  -> Buscando C-2305-2025...
+  ✓ Formulario listo
+18:02:24 [FILTRADOR]   [W3] REAUDIT 1/5: 616-2025
+18:02:25 [FILTRADOR]   W3 [REAUDIT] Buscando 616-2025 en OJV...
+  -> Buscando C-616-2025...
+  ✓ Formulario listo
+18:02:25 [FILTRADOR]   [W2] REAUDIT 1/9: 2881-2021
+18:02:25 [FILTRADOR]   W2 [REAUDIT] Buscando 2881-2021 en OJV...
+  -> Buscando C-2881-2021...
+    Buscando 'C.A. de Iquique' en #conCorte...  ✓ Formulario listo
+18:02:25 [FILTRADOR]   [W1] REAUDIT 1/3: 3308-2025
+18:02:25 [FILTRADOR]   W1 [REAUDIT] Buscando 3308-2025 en OJV...
+  -> Buscando C-3308-2025...
+    Buscando 'C.A. de Chillán' en #conCorte... ✓ 'C.A. de Iquique' (100.0%)
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Chillan' (100.0%)
+ ✓ 'C.A. de Valparaíso' (100.0%)
+  ✓ Formulario listo
+18:02:26 [FILTRADOR]   [W4] REAUDIT 1/8: 2255-2025
+18:02:26 [FILTRADOR]   W4 [REAUDIT] Buscando 2255-2025 en OJV...
+  -> Buscando C-2255-2025...
+    Buscando 'C.A. de La Serena' en #conCorte...    Buscando '1º Juzgado de Letras de Iquique' en #conTribunal... ✓ 'C.A. de La Serena' (100.0%)
+ ✓ '1º Juzgado de Letras de Iquique' (100.0%)
+    Buscando '1º Juzgado Civil de Chillán' en #conTribunal...    Buscando '1º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '1º Juzgado Civil de Chillán' (100.0%)
+    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ '1º Juzgado Civil de Viña del Mar' (100.0%)
+ ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando '2º Juzgado de Letras de la Serena' en #conTribunal... ✓ '2º Juzgado de Letras de la Serena' (100.0%)
+    Buscando '1º Juzgado de Letras Civil de Antofagasta' en #conTribunal... ✓ '1º Juzgado de Letras Civil de Antofagasta' (100.0%)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ 2 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+ ✓ '3 - Apremio de desposeimiento' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:02:39 [FILTRADOR]   #historiaCiv (reaudit): 37 filas leidas (sin filtro fecha)
+18:02:39 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-2305-2025_1º_Juzgado_de_Letras_de_Iquiqu.html
+18:02:39 [FILTRADOR]   W5 [REAUDIT] 2305 -> ELIMINAR: Suspension/Reprograma: "Suspende/Reprograma Remate" (folio 33, 2026-03-27)
+18:02:39 [FILTRADOR]   #historiaCiv (reaudit): 49 filas leidas (sin filtro fecha)
+18:02:39 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-2881-2021_1º_Juzgado_Civil_de_Viña_del_M.html
+18:02:39 [FILTRADOR]   W2 [REAUDIT] 2881 -> sin senales
+18:02:39 [FILTRADOR]   #historiaCiv (reaudit): 54 filas leidas (sin filtro fecha)
+18:02:39 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-616-2025_1º_Juzgado_Civil_de_Chillán.html
+18:02:39 [FILTRADOR]   W3 [REAUDIT] 616 -> PENDIENTE_LIQUIDACION: Senal 4: "Pone en conocimiento liquidación de crédito" (folio 43, 2026-03-27) -> directo a Filtro 3
+18:02:40 [FILTRADOR]   #historiaCiv (reaudit): 26 filas leidas (sin filtro fecha)
+18:02:40 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-3308-2025_2º_Juzgado_de_Letras_de_la_Ser.html
+18:02:40 [FILTRADOR]   W1 [REAUDIT] 3308 -> sin senales
+18:02:40 [FILTRADOR]   #historiaCiv (reaudit): 31 filas leidas (sin filtro fecha)
+18:02:40 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-2255-2025_1º_Juzgado_de_Letras_Civil_de_.html
+18:02:40 [FILTRADOR]   W4 [REAUDIT] 2255 -> sin senales
+18:02:41 [FILTRADOR]   [W5] REAUDIT 2/3: 509-2025
+18:02:41 [FILTRADOR]   W5 [REAUDIT] Buscando 509-2025 en OJV...
+  -> Buscando C-509-2025...
+18:02:42 [FILTRADOR]   [W2] REAUDIT 2/9: 3338-2024
+18:02:42 [FILTRADOR]   W2 [REAUDIT] Buscando 3338-2024 en OJV...
+  -> Buscando C-3338-2024...
+18:02:42 [FILTRADOR]   [W3] REAUDIT 2/5: 8438-2024
+18:02:42 [FILTRADOR]   W3 [REAUDIT] Buscando 8438-2024 en OJV...
+  -> Buscando C-8438-2024...
+18:02:42 [FILTRADOR]   [W1] REAUDIT 2/3: 862-2021
+18:02:42 [FILTRADOR]   W1 [REAUDIT] Buscando 862-2021 en OJV...
+  -> Buscando C-862-2021...
+    Buscando 'C.A. de Temuco' en #conCorte... ✓ 'C.A. de Temuco' (100.0%)
+18:02:43 [FILTRADOR]   [W4] REAUDIT 2/8: 3504-2022
+18:02:43 [FILTRADOR]   W4 [REAUDIT] Buscando 3504-2022 en OJV...
+  -> Buscando C-3504-2022...
+    Buscando 'C.A. de Valparaíso' en #conCorte...    Buscando 'C.A. de Concepción' en #conCorte... ✓ 'C.A. de Concepción' (100.0%) ✓ 'C.A. de Valparaíso' (100.0%)
+
+    Buscando 'C.A. de La Serena' en #conCorte... ✓ 'C.A. de La Serena' (100.0%)
+    Buscando 'Juzgado de Letras de Villarrica' en #conTribunal...    Buscando 'C.A. de Antofagasta' en #conCorte... ✓ 'Juzgado de Letras de Villarrica' (100.0%)
+ ✓ 'C.A. de Antofagasta' (100.0%)
+    Buscando '1º Juzgado Civil de Concepción' en #conTribunal...    Buscando '1º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '1º Juzgado Civil de Concepción' (100.0%) ✓ '1º Juzgado Civil de Viña del Mar' (100.0%)
+
+    Buscando '3º Juzgado de Letras de la Serena' en #conTribunal... ✓ '3º Juzgado de Letras de la Serena' (100.0%)
+    Buscando '2º Juzgado de Letras Civil de Antofagasta' en #conTribunal... ✓ '2º Juzgado de Letras Civil de Antofagasta' (100.0%)
+  ✓ 48 resultado(s)
+  ✓ 69 resultado(s)
+  ✓ 37 resultado(s)
+  ✓ 82 resultado(s)
+  ✓ 58 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+ ✓ '2 - Apremio de desposeimiento' (100.0%)
+ ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:02:56 [FILTRADOR]   #historiaCiv (reaudit): 36 filas leidas (sin filtro fecha)
+18:02:56 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-509-2025_Juzgado_de_Letras_de_Villarric.html
+18:02:56 [FILTRADOR]   W5 [REAUDIT] 509 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 38, 2026-03-27)
+18:02:56 [FILTRADOR]   W5 509: Acta detectada folio 38. Descargando PDF...
+18:02:56 [FILTRADOR]   PDF descargado: acta_509_2025.pdf (174271 bytes)
+18:02:56 [FILTRADOR]   W5 509: PDF analizado: cargo=True, monto=66000000, texto=$66.000.000
+18:02:57 [FILTRADOR]   #historiaCiv (reaudit): 43 filas leidas (sin filtro fecha)
+18:02:57 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-8438-2024_1º_Juzgado_Civil_de_Concepción.html
+18:02:57 [FILTRADOR]   W3 [REAUDIT] 8438 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 38, 2026-03-27) -> directo a Filtro 3
+18:02:57 [FILTRADOR]   #historiaCiv (reaudit): 64 filas leidas (sin filtro fecha)
+18:02:57 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-3338-2024_1º_Juzgado_Civil_de_Viña_del_M.html
+18:02:57 [FILTRADOR]   W2 [REAUDIT] 3338 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 66, 2026-03-31)
+18:02:57 [FILTRADOR]   W2 3338: Acta detectada folio 66. Descargando PDF...
+18:02:57 [FILTRADOR]   #historiaCiv (reaudit): 39 filas leidas (sin filtro fecha)
+18:02:57 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-3504-2022_2º_Juzgado_de_Letras_Civil_de_.html
+18:02:57 [FILTRADOR]   W4 [REAUDIT] 3504 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 33, 2026-03-31) -> directo a Filtro 3
+18:02:58 [FILTRADOR]   PDF descargado: acta_3338_2024.pdf (95911 bytes)
+18:02:58 [FILTRADOR]   W2 3338: PDF analizado: cargo=True, monto=34000000, texto=$  34.000.000
+18:02:58 [FILTRADOR]   #historiaCiv (reaudit): 100 filas leidas (sin filtro fecha)
+18:02:58 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-862-2021_3º_Juzgado_de_Letras_de_la_Ser.html
+18:02:58 [FILTRADOR]   W1 [REAUDIT] 862 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 97, 2026-03-26) -> directo a Filtro 3
+18:02:59 [FILTRADOR]   [W5] REAUDIT 3/3: 102-2025
+18:02:59 [FILTRADOR]   W5 [REAUDIT] Buscando 102-2025 en OJV...
+  -> Buscando C-102-2025...
+18:02:59 [FILTRADOR]   [W3] REAUDIT 3/5: 6850-2024
+18:02:59 [FILTRADOR]   W3 [REAUDIT] Buscando 6850-2024 en OJV...
+  -> Buscando C-6850-2024...
+    Buscando 'C.A. de Temuco' en #conCorte...18:03:00 [FILTRADOR]   [W4] REAUDIT 3/8: 817-2023
+18:03:00 [FILTRADOR]   W4 [REAUDIT] Buscando 817-2023 en OJV...
+  -> Buscando C-817-2023...
+ ✓ 'C.A. de Temuco' (100.0%)
+18:03:00 [FILTRADOR]   [W2] REAUDIT 3/9: 1093-2025
+18:03:00 [FILTRADOR]   W2 [REAUDIT] Buscando 1093-2025 en OJV...
+  -> Buscando C-1093-2025...
+    Buscando 'C.A. de Concepción' en #conCorte...18:03:00 [FILTRADOR]   [W1] REAUDIT 3/3: 2168-2025
+18:03:00 [FILTRADOR]   W1 [REAUDIT] Buscando 2168-2025 en OJV...
+  -> Buscando C-2168-2025...
+ ✓ 'C.A. de Concepción' (100.0%)
+    Buscando 'C.A. de Antofagasta' en #conCorte...    Buscando 'Juzgado de Letras y Gar.de Carahue' en #conTribunal... ✓ 'C.A. de Antofagasta' (100.0%)
+ ✓ 'Juzgado de Letras y Gar.de Carahue' (100.0%)
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando 'C.A. de La Serena' en #conCorte...    Buscando '1º Juzgado Civil de Concepción' en #conTribunal... ✓ 'C.A. de La Serena' (100.0%)
+ ✓ '1º Juzgado Civil de Concepción' (100.0%)
+    Buscando '3º Juzgado de Letras de Calama' en #conTribunal... ✓ '3º Juzgado de Letras de Calama' (100.0%)
+    Buscando '1º Juzgado de Letras de Los Andes' en #conTribunal... ✓ '1º Juzgado de Letras de Los Andes' (100.0%)
+    Buscando '3º Juzgado de Letras de la Serena' en #conTribunal... ✓ '3º Juzgado de Letras de la Serena' (100.0%)
+  ✓ 48 resultado(s)
+  ✓ 83 resultado(s)
+  ✓ 63 resultado(s)
+  ✓ 170 resultado(s)
+  ✓ 159 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno...  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+ ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:03:13 [FILTRADOR]   #historiaCiv (reaudit): 37 filas leidas (sin filtro fecha)
+18:03:13 [FILTRADOR]   W5 HTML guardado: PENDIENTE_ACTA_C-102-2025_Juzgado_de_Letras_y_Gar.de_Car.html
+18:03:13 [FILTRADOR]   W5 [REAUDIT] 102 -> sin senales
+18:03:14 [FILTRADOR]   #historiaCiv (reaudit): 81 filas leidas (sin filtro fecha)
+18:03:14 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-6850-2024_1º_Juzgado_Civil_de_Concepción.html
+18:03:14 [FILTRADOR]   W3 [REAUDIT] 6850 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 78, 2026-03-27)
+18:03:14 [FILTRADOR]   W3 6850: Acta detectada folio 78. Descargando PDF...
+18:03:14 [FILTRADOR]   #historiaCiv (reaudit): 70 filas leidas (sin filtro fecha)
+18:03:14 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-817-2023_3º_Juzgado_de_Letras_de_Calama.html
+18:03:14 [FILTRADOR]   W4 [REAUDIT] 817 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 59, 2026-03-26) -> directo a Filtro 3
+18:03:15 [FILTRADOR]   PDF descargado: acta_6850_2024.pdf (103737 bytes)
+18:03:15 [FILTRADOR]   W3 6850: PDF analizado: cargo=True, monto=26147146, texto=$26.147.146
+18:03:15 [FILTRADOR]   #historiaCiv (reaudit): 33 filas leidas (sin filtro fecha)
+18:03:15 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-1093-2025_1º_Juzgado_de_Letras_de_Los_An.html
+18:03:15 [FILTRADOR]   W2 [REAUDIT] 1093 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 30, 2026-04-01)
+18:03:15 [FILTRADOR]   W2 1093: Acta detectada folio 30. Descargando PDF...
+18:03:15 [FILTRADOR]   #historiaCiv (reaudit): 34 filas leidas (sin filtro fecha)
+18:03:15 [FILTRADOR]   W1 HTML guardado: PENDIENTE_ACTA_C-2168-2025_3º_Juzgado_de_Letras_de_la_Ser.html
+18:03:15 [FILTRADOR]   W1 [REAUDIT] 2168 -> PENDIENTE_LIQUIDACION: Senal 4: "Solicita liquidación" (folio 30, 2026-03-31) -> directo a Filtro 3
+18:03:15 [FILTRADOR]   [W5] Reaudit completado: 3 causas en 0 min 50 seg
+18:03:15 [FILTRADOR] [W5] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_5.json
+18:03:16 [FILTRADOR]   PDF descargado: acta_1093_2025.pdf (156982 bytes)
+18:03:16 [FILTRADOR]   W2 1093: PDF analizado: cargo=True, monto=47000000, texto=$47.000.000.-
+18:03:17 [FILTRADOR]   [W4] REAUDIT 4/8: 1472-2024
+18:03:17 [FILTRADOR]   W4 [REAUDIT] Buscando 1472-2024 en OJV...
+  -> Buscando C-1472-2024...
+18:03:17 [FILTRADOR]   [W3] REAUDIT 4/5: 3103-2025
+18:03:17 [FILTRADOR]   W3 [REAUDIT] Buscando 3103-2025 en OJV...
+  -> Buscando C-3103-2025...
+18:03:18 [FILTRADOR]   [W1] Reaudit completado: 3 causas en 0 min 52 seg
+18:03:18 [FILTRADOR] [W1] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_1.json
+    Buscando 'C.A. de Rancagua' en #conCorte...18:03:18 [FILTRADOR] Worker 1 terminado (exit code: 0)
+ ✓ 'C.A. de Rancagua' (100.0%)
+18:03:18 [FILTRADOR]   [W2] REAUDIT 4/9: 850-2025
+18:03:18 [FILTRADOR]   W2 [REAUDIT] Buscando 850-2025 en OJV...
+  -> Buscando C-850-2025...
+    Buscando 'C.A. de Concepción' en #conCorte... ✓ 'C.A. de Concepción' (100.0%)
+    Buscando '1º Juzgado de Letras de Santa Cruz' en #conTribunal...    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ '1º Juzgado de Letras de Santa Cruz' (100.0%)
+ ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '3º Juzgado Civil de Concepción' en #conTribunal... ✓ '3º Juzgado Civil de Concepción' (100.0%)
+    Buscando '1º Juzgado de Letras de Los Andes' en #conTribunal... ✓ '1º Juzgado de Letras de Los Andes' (100.0%)
+  ✓ 115 resultado(s)
+  ✓ 43 resultado(s)
+  ✓ 203 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:03:32 [FILTRADOR]   #historiaCiv (reaudit): 63 filas leidas (sin filtro fecha)
+18:03:32 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-1472-2024_1º_Juzgado_de_Letras_de_Santa_.html
+18:03:32 [FILTRADOR]   W4 [REAUDIT] 1472 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 58, 2026-03-26) -> directo a Filtro 3
+18:03:32 [FILTRADOR]   #historiaCiv (reaudit): 26 filas leidas (sin filtro fecha)
+18:03:32 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-3103-2025_3º_Juzgado_Civil_de_Concepción.html
+18:03:32 [FILTRADOR]   W3 [REAUDIT] 3103 -> sin senales
+18:03:33 [FILTRADOR]   #historiaCiv (reaudit): 57 filas leidas (sin filtro fecha)
+18:03:33 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-850-2025_1º_Juzgado_de_Letras_de_Los_An.html
+18:03:33 [FILTRADOR]   W2 [REAUDIT] 850 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 55, 2026-04-01)
+18:03:33 [FILTRADOR]   W2 850: Acta detectada folio 55. Descargando PDF...
+18:03:33 [FILTRADOR]   PDF descargado: acta_850_2025.pdf (557082 bytes)
+18:03:33 [FILTRADOR]   W2 850: PDF analizado: cargo=False, monto=65010000, texto=$65.010.000.-
+18:03:34 [FILTRADOR]   [W4] REAUDIT 5/8: 1408-2025
+18:03:34 [FILTRADOR]   W4 [REAUDIT] Buscando 1408-2025 en OJV...
+  -> Buscando C-1408-2025...
+18:03:35 [FILTRADOR]   [W3] REAUDIT 5/5: 4028-2025
+18:03:35 [FILTRADOR]   W3 [REAUDIT] Buscando 4028-2025 en OJV...
+  -> Buscando C-4028-2025...
+    Buscando 'C.A. de Rancagua' en #conCorte... ✓ 'C.A. de Rancagua' (100.0%)
+18:03:36 [FILTRADOR]   [W2] REAUDIT 5/9: 755-2024
+18:03:36 [FILTRADOR]   W2 [REAUDIT] Buscando 755-2024 en OJV...
+  -> Buscando C-755-2024...
+    Buscando 'C.A. de Concepción' en #conCorte... ✓ 'C.A. de Concepción' (100.0%)
+    Buscando '1º Juzgado de Letras de Santa Cruz' en #conTribunal...    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ '1º Juzgado de Letras de Santa Cruz' (100.0%)
+ ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '3º Juzgado Civil de Concepción' en #conTribunal... ✓ '3º Juzgado Civil de Concepción' (100.0%)
+    Buscando '1º Juzgado de Letras de Quilpue' en #conTribunal... ✓ '1º Juzgado de Letras de Quilpue' (100.0%)
+  ✓ 97 resultado(s)
+  ✓ 36 resultado(s)
+  ✓ 71 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:03:49 [FILTRADOR]   #historiaCiv (reaudit): 40 filas leidas (sin filtro fecha)
+18:03:49 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-1408-2025_1º_Juzgado_de_Letras_de_Santa_.html
+18:03:49 [FILTRADOR]   W4 [REAUDIT] 1408 -> ELIMINAR: Reprogramado: "Nuevo día y hora" (folio 16, 2026-02-12)
+18:03:49 [FILTRADOR]   #historiaCiv (reaudit): 37 filas leidas (sin filtro fecha)
+18:03:49 [FILTRADOR]   W3 HTML guardado: PENDIENTE_ACTA_C-4028-2025_3º_Juzgado_Civil_de_Concepción.html
+18:03:49 [FILTRADOR]   W3 [REAUDIT] 4028 -> ELIMINAR: Reprogramado: "Nuevo día y hora" (folio 16, 2025-11-12)
+18:03:50 [FILTRADOR]   #historiaCiv (reaudit): 35 filas leidas (sin filtro fecha)
+18:03:50 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-755-2024_1º_Juzgado_de_Letras_de_Quilpu.html
+18:03:50 [FILTRADOR]   W2 [REAUDIT] 755 -> PENDIENTE_LIQUIDACION: Senal 4: "Ordena liquidar el crédito" (folio 33, 2026-03-26) -> directo a Filtro 3
+18:03:52 [FILTRADOR]   [W4] REAUDIT 6/8: 8867-2018
+18:03:52 [FILTRADOR]   W4 [REAUDIT] Buscando 8867-2018 en OJV...
+  -> Buscando C-8867-2018...
+18:03:52 [FILTRADOR]   [W3] Reaudit completado: 5 causas en 1 min 27 seg
+18:03:52 [FILTRADOR] [W3] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_3.json
+    Buscando 'C.A. de Rancagua' en #conCorte...18:03:52 [FILTRADOR]   [W2] REAUDIT 6/9: 749-2025
+18:03:52 [FILTRADOR]   W2 [REAUDIT] Buscando 749-2025 en OJV...
+  -> Buscando C-749-2025...
+ ✓ 'C.A. de Rancagua' (100.0%)
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '2º Juzgado Civil de Rancagua' en #conTribunal... ✓ '2º Juzgado Civil de Rancagua' (100.0%)
+    Buscando '2º Juzgado Civil de Valparaíso' en #conTribunal... ✓ '2º Juzgado Civil de Valparaíso' (100.0%)
+  ✓ 54 resultado(s)
+  ✓ 48 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:04:06 [FILTRADOR]   #historiaCiv (reaudit): 50 filas leidas (sin filtro fecha)
+18:04:06 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-8867-2018_2º_Juzgado_Civil_de_Rancagua.html
+18:04:06 [FILTRADOR]   W4 [REAUDIT] 8867 -> ELIMINAR: Suspension/Reprograma: "Suspende/Reprograma Remate" (folio 32, 2026-02-16)
+18:04:07 [FILTRADOR]   #historiaCiv (reaudit): 81 filas leidas (sin filtro fecha)
+18:04:07 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-749-2025_2º_Juzgado_Civil_de_Valparaíso.html
+18:04:07 [FILTRADOR]   W2 [REAUDIT] 749 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 75, 2026-03-30)
+18:04:07 [FILTRADOR]   W2 749: Acta detectada folio 75. Descargando PDF...
+18:04:08 [FILTRADOR]   PDF descargado: acta_749_2025.pdf (891555 bytes)
+18:04:08 [FILTRADOR]     PDF sin contenido de acta en texto nativo. Intentando OCR...
+18:04:08 [FILTRADOR]   [W4] REAUDIT 7/8: 3994-2023
+18:04:08 [FILTRADOR]   W4 [REAUDIT] Buscando 3994-2023 en OJV...
+  -> Buscando C-3994-2023...
+    Buscando 'C.A. de Rancagua' en #conCorte... ✓ 'C.A. de Rancagua' (100.0%)
+    Buscando '2º Juzgado Civil de Rancagua' en #conTribunal... ✓ '2º Juzgado Civil de Rancagua' (100.0%)
+18:04:11 [FILTRADOR]     OCR exitoso: 5528 chars extraidos
+18:04:11 [FILTRADOR]   W2 749: PDF analizado: cargo=False, monto=45000000, texto=$45.000.000.-
+18:04:14 [FILTRADOR]   [W2] REAUDIT 7/9: 3601-2020
+18:04:14 [FILTRADOR]   W2 [REAUDIT] Buscando 3601-2020 en OJV...
+  -> Buscando C-3601-2020...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '2º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '2º Juzgado Civil de Viña del Mar' (100.0%)
+  ✓ 60 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 95 resultado(s)
+18:04:24 [FILTRADOR]   #historiaCiv (reaudit): 106 filas leidas (sin filtro fecha)
+18:04:24 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-3994-2023_2º_Juzgado_Civil_de_Rancagua.html
+18:04:24 [FILTRADOR]   W4 [REAUDIT] 3994 -> ELIMINAR: Suspension/Reprograma: "Suspende/Reprograma Remate" (folio 55, 2026-02-20)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:04:26 [FILTRADOR]   [W4] REAUDIT 8/8: 3173-2025
+18:04:26 [FILTRADOR]   W4 [REAUDIT] Buscando 3173-2025 en OJV...
+  -> Buscando C-3173-2025...
+    Buscando 'C.A. de Rancagua' en #conCorte... ✓ 'C.A. de Rancagua' (100.0%)
+    Buscando '2º Juzgado Civil de Rancagua' en #conTribunal... ✓ '2º Juzgado Civil de Rancagua' (100.0%)
+18:04:28 [FILTRADOR]   #historiaCiv (reaudit): 56 filas leidas (sin filtro fecha)
+18:04:28 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-3601-2020_2º_Juzgado_Civil_de_Viña_del_M.html
+18:04:28 [FILTRADOR]   W2 [REAUDIT] 3601 -> sin senales
+18:04:31 [FILTRADOR]   [W2] REAUDIT 8/9: 517-2025
+18:04:31 [FILTRADOR]   W2 [REAUDIT] Buscando 517-2025 en OJV...
+  -> Buscando C-517-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '3º Juzgado Civil de Valparaíso' en #conTribunal... ✓ '3º Juzgado Civil de Valparaíso' (100.0%)
+  ✓ 175 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+  ✓ 71 resultado(s)
+18:04:41 [FILTRADOR]   #historiaCiv (reaudit): 41 filas leidas (sin filtro fecha)
+18:04:41 [FILTRADOR]   W4 HTML guardado: PENDIENTE_ACTA_C-3173-2025_2º_Juzgado_Civil_de_Rancagua.html
+18:04:41 [FILTRADOR]   W4 [REAUDIT] 3173 -> ELIMINAR: Suspension/Reprograma: "Suspende/Reprograma Remate" (folio 24, 2026-02-20)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:04:44 [FILTRADOR]   [W4] Reaudit completado: 8 causas en 2 min 17 seg
+18:04:44 [FILTRADOR] [W4] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_4.json
+18:04:45 [FILTRADOR]   #historiaCiv (reaudit): 39 filas leidas (sin filtro fecha)
+18:04:45 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-517-2025_3º_Juzgado_Civil_de_Valparaíso.html
+18:04:45 [FILTRADOR]   W2 [REAUDIT] 517 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 33, 2026-03-31)
+18:04:45 [FILTRADOR]   W2 517: Acta detectada folio 33. Descargando PDF...
+18:04:46 [FILTRADOR]   PDF descargado: acta_517_2025.pdf (113108 bytes)
+18:04:46 [FILTRADOR]   W2 517: PDF analizado: cargo=False, monto=66000000, texto=$66.000.000 
+18:04:48 [FILTRADOR]   [W2] REAUDIT 9/9: 780-2025
+18:04:48 [FILTRADOR]   W2 [REAUDIT] Buscando 780-2025 en OJV...
+  -> Buscando C-780-2025...
+    Buscando 'C.A. de Valparaíso' en #conCorte... ✓ 'C.A. de Valparaíso' (100.0%)
+    Buscando '3º Juzgado Civil de Viña del Mar' en #conTribunal... ✓ '3º Juzgado Civil de Viña del Mar' (100.0%)
+  ✓ 50 resultado(s)
+  ✓ Detalle abierto
+    Buscando 'Apremio' en #selCuaderno... ✓ '2 - Apremio Ejecutivo Obligación de Dar' (100.0%)
+18:05:03 [FILTRADOR]   #historiaCiv (reaudit): 48 filas leidas (sin filtro fecha)
+18:05:03 [FILTRADOR]   W2 HTML guardado: PENDIENTE_ACTA_C-780-2025_3º_Juzgado_Civil_de_Viña_del_M.html
+18:05:03 [FILTRADOR]   W2 [REAUDIT] 780 -> NECESITA_PDF_ACTA: Acta de remate detectada en tabla (folio 46, 2026-03-31)
+18:05:03 [FILTRADOR]   W2 780: Acta detectada folio 46. Descargando PDF...
+18:05:03 [FILTRADOR]   PDF descargado: acta_780_2025.pdf (166212 bytes)
+18:05:03 [FILTRADOR]   W2 780: PDF analizado: cargo=True, monto=67000000, texto=$67.000.000 
+18:05:06 [FILTRADOR]   [W2] Reaudit completado: 9 causas en 2 min 41 seg
+18:05:06 [FILTRADOR] [W2] Worker finalizado. Resultados escritos en D:\Remates\temp_workers\result_2.json
+18:05:06 [FILTRADOR] Worker 2 terminado (exit code: 0)
+18:05:06 [FILTRADOR] Worker 3 terminado (exit code: 0)
+18:05:06 [FILTRADOR] Worker 4 terminado (exit code: 0)
+18:05:06 [FILTRADOR] Worker 5 terminado (exit code: 0)
+18:05:06 [FILTRADOR] Worker 1: 3 resultados leidos
+18:05:06 [FILTRADOR] Worker 2: 9 resultados leidos
+18:05:06 [FILTRADOR] Worker 3: 5 resultados leidos
+18:05:06 [FILTRADOR] Worker 4: 8 resultados leidos
+18:05:06 [FILTRADOR] Worker 5: 3 resultados leidos
+18:05:06 [FILTRADOR] Causas eliminadas del Excel: 13
+18:05:06 [FILTRADOR] Generando Excel formateado...
+18:05:06 [FILTRADOR]   Pestana 'Revision Manual': 19 causas
+18:05:06 [FILTRADOR] ERROR: No se puede guardar D:\Remates\Causas con liq\Causas_posible_saldo.xlsx. Esta abierto en Excel?
+18:05:06 [FILTRADOR]   Cierra el archivo y presiona Enter (1/3)...
+>>> Presiona Enter para reintentar: 18:07:08 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx
+18:07:08 [FILTRADOR] 
+18:07:08 [FILTRADOR] ====================================================
+18:07:08 [FILTRADOR]   RESUMEN REAUDIT
+18:07:08 [FILTRADOR] ====================================================
+18:07:08 [FILTRADOR]   Causas procesadas:            28
+18:07:08 [FILTRADOR]   Tiempo total: 2 min 50 seg
+18:07:08 [FILTRADOR]   Eliminadas:                   13
+18:07:08 [FILTRADOR]   Pendientes liquidacion:       10
+18:07:08 [FILTRADOR]   Pendientes revision manual:   0
+18:07:08 [FILTRADOR]   Pendientes acta (sin cambio): 5
+18:07:08 [FILTRADOR]   Auditorias HTML guardadas:    28
+18:07:08 [FILTRADOR] ====================================================
+18:07:08 [FILTRADOR] Excel madre guardado: D:\Remates\Causas con liq\Causas_posible_saldo.xlsx

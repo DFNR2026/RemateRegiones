@@ -1,0 +1,181 @@
+:
+:
+:
+:
+:
+Capital
+Intereses
+ 
+Pagaré 060310015508-7, capital adeudado según mandamiento
+2.752.550
+$                    
+Fecha de suscripción del Pagaré
+15/09/2023
+I.
+15/02/2025
+06/03/2026
+384
+32,04
+                       
+%
+0,0890
+                     
+%
+34,1760
+                   
+%
+940.711
+$                    
+2.752.550 )
+($                 
+1.811.839 )
+($                 
+2.752.550
+$                    
+1.811.839 )
+($                   
+940.711
+$                       
+FALSO
+FALSO
+Capital
+Intereses
+940.711
+$                       
+II.
+07/03/2026
+19/03/2026
+a) Número de días en mora
+13
+33,20 %
+c) Factor de interés diario
+0,0922 %
+d) Factor de interés acumulado del periodo
+1,1989 %
+e) Monto de interés acumulado del periodo
+11.278
+$                      
+3.000.000 )
+($                 
+2.988.722 )
+($                  
+$                       940.711 
+($                   2.988.722 )
+($                   2.048.010 )
+d) Factor de interés acumulado del periodo
+e) Monto de interés acumulado del periodo
+Aplicación de intereses
+Operaciones no reajustables en moneda nacional 90 días o más
+Inferiores o iguales al equivalente de 200 Unidades de Fomento y superiores al equivalente de 50 Unidades de Fomento
+Capital adeudado al 19 de marzo de 2026
+Fecha aplicación de intereses (Día siguiente al abono)
+Fecha de consignación
+g) Saldo de consignación al 19 de marzo de 2026
+Saldo de consignación al 19 de marzo de 2026
+Fecha de mora
+Fecha de consignación
+b) Tasa máxima convencional al 15 de febrero de 2025 (TMC)
+a) Número de días en mora
+Operaciones no reajustables en moneda nacional 90 días o más
+Inferiores o iguales al equivalente de 200 Unidades de Fomento y superiores al equivalente de 50 Unidades 
+de Fomento
+c) Factor de interés diario
+    *Tasa de interés según fecha de mora
+b) Tasa máxima convencional al 7 de marzo de 2026 (TMC)
+Inferiores o iguales al equivalente de 200 Unidades de Fomento y superiores al equivalente de 50 Unidades de Fomento
+f) (-) Imputación del pago - Consignación 5001340531 del 19 de marzo de 2026
+(-) Saldo de imputación del pago al 19 de marzo de 2026
+f) (-) Imputación del pago - Consignación 5001336158 del 6 de marzo de 2026
+Capital adeudado al 6 de marzo de 2026
+(-) Saldo de imputación del pago al 6 de marzo de 2026
+Capital adeudado al 6 de marzo de 2026
+Capital amortizado al 6 de marzo de 2026
+g) Saldo de consignación al 6 de marzo de 2026
+LIQUIDACIÓN DE CRÉDITO
+Aplicación de intereses
+SELECCIONE COSTAS
+Talcahuano, 30 de marzo de 2026
+PROCEDIMIENTO
+Ejecutivo
+2º JUZGADO CIVIL DE TALCAHUANO
+ROL
+CARÁTULA
+1381-2025
+MATERIA
+Pagaré, Cobro de
+FECHA
+Oriencoop Ltda // Rosa Gabriela Flores Morales
+Código: BXXGBZNMBEZ
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl
+f) Total de intereses al 30 de marzo de 2026
+-
+$                             
+940.711
+$                        
+III.
+Cuaderno Apremio:
+Fecha
+Monto
+Factura N°199842, folio 51
+27/02/2026
+$                    1.465.253 
+ 
+Exhorto E-3393-2025:
+ 
+Derecho estampado, folio 3
+18/06/2025
+$                         23.392 
+No estampa derecho, folio 4
+24/06/2025
+$                                 -   
+Notificación art. 44, folio 5
+24/06/2025
+$                         50.500 
+No estampa derecho, folio 6
+25/06/2025
+$                                 -   
+ 
+Exhorto E-4341-2025:
+ 
+Derecho estampado, folio 3
+28/07/2025
+$                         50.000 
+Derecho estampado, folio 4
+28/07/2025
+$                         20.000 
+ 
+Exhorto E-6575-2025:
+ 
+Notificación personal, folio 3
+12/11/2025
+$                         50.500 
+$                    1.659.645 
+$                    2.048.010 
+$                                 -   
+$                    1.659.645 
+$                       388.365 
+El Artículo 140 del Código de Procedimiento Civil, indica que estas se avaluarán con el arreglo a la
+ley de aranceles, los cuales están contenidos en el Decreto Exento N°593/1998 del Ministerio de
+Justicia vigente hasta el 31 de agosto 2024 y en el Decreto Exento N°1725/2024 y N°1726/2024 del
+Ministerio de Justicia, vigente desde el 01 de septiembre 2024, en relación con el Artículo 393 del
+Código Orgánico de Tribunales.
+Tasación de costas procesales Decreto N° 593-1998 / Decreto N° 1725-2024
+(-) Costas personales
+Saldo de consignación al 19 de marzo de 2026
+(-) Costas procesales
+Saldo a favor del demandado al 30 de marzo de 2026
+Total crédito a liquidar al 30 de marzo de 2026
+Capital adeudado al 30 de marzo de 2026
+Total costas procesales
+Las costas personales no han sido descontadas de este saldo.
+Código: BXXGBZNMBEZ
+Este documento tiene firma electrónica
+y su original puede ser validado en
+http://verificadoc.pjud.cl
+Karin Elizabeth Seguel Zapata
+Secretario
+PJUD
+Treinta de marzo de dos mil veintiséis
+14:25 UTC-3
