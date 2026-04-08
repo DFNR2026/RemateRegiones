@@ -29,7 +29,7 @@ D:\Remates\
 ```
 D:\Remates\
 ├── filtrador_saldos.py    ← ~3500 líneas, 5 workers subprocess
-├── filtrador_saldos.bat   ← ejecución semanal (merge+F1+F2+F3)
+├── Detector_Excedentes.bat   ← ejecución semanal (merge+F1+F2+F3)
 ├── temp_workers/          ← JSONs temporales workers
 ├── audit_html/            ← outerHTML tabla Apremio
 ├── Descargas/actas/       ← PDFs de actas descargados por F2
@@ -58,8 +58,8 @@ Buscar excedentes post-remate. Documento clave: la **Liquidación** (~14 días p
 ### Flujo semanal
 ```
 1. DOCX semanal → D:\Remates\Diarios\
-2. Doble-click EJECUTAR_REMATES.bat → pipeline M1-M5 → Reportes\
-3. Doble-click filtrador_saldos.bat → F1+F2+F3 → Causas_con_liquidacion.xlsx
+2. Doble-click Regiones_docxToExcel.bat → pipeline M1-M5 → Reportes\
+3. Doble-click Detector_Excedentes.bat → F1+F2+F3 → Causas_con_liquidacion.xlsx
 ```
 
 ### Ejecución
@@ -70,7 +70,7 @@ python filtrador_saldos.py --recheck-cargo                # re-analizar PDFs loc
 python filtrador_saldos.py --skip-pdf --workers 5         # sin descarga PDFs
 python filtrador_saldos.py --solo-filtro3 --workers 5     # solo F3
 python filtrador_saldos.py --recheck-liq                  # re-analizar liquidaciones locales
-filtrador_saldos.bat                                      # doble-click: merge+F1+F2+F3
+Detector_Excedentes.bat                                      # doble-click: merge+F1+F2+F3
 ```
 
 ### Paralelización: 5 workers por Corte (subprocess)

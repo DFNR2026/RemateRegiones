@@ -34,7 +34,7 @@ Parser v2 con estrategia "Regex-Flow Haiku": regex extrae tribunal y dirección 
 ### `ojv_remates.py` (v10.0+) — MOTOR OJV BASE — NO reescribir desde cero
 ### `causas_ojv.xlsx` — BD interna: REFERENCIA (235 tribunales) + CAUSAS (historial)
 
-### `filtrador_saldos.bat`
+### `Detector_Excedentes.bat`
 Batch para ejecución semanal. Corre filtrador_saldos.py --workers 5 (merge+F1+F2+F3).
 
 ### `fix_eliminar_lote.py`
