@@ -3590,18 +3590,43 @@ def _ejecutar_paralelo(causas_para_procesar, n_workers, solo_filtro1, primera_ru
             cmd.append("--skip-pdf")
         cmd.extend(["--audit-dir", _HTML_AUDIT_DIR])
 
+        # Cada worker escribe a su propio archivo, que el orquestador anexa
+        # al log central tras terminar. Asi queda trazabilidad de errores
+        # de workers en el archivo de log principal.
+        worker_log_path = os.path.join(
+            LOGS_LIQUI_DIR,
+            f"worker_{worker_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        )
+        worker_log_handle = open(worker_log_path, 'w', encoding='utf-8', errors='replace')
         log.info("Lanzando Worker %d (%d causas)...", worker_id, len(chunk))
-        proc = subprocess.Popen(cmd, cwd=_BASE_DIR)
-        procesos.append((proc, worker_id, result_file, chunk_file))
+        proc = subprocess.Popen(
+            cmd,
+            cwd=_BASE_DIR,
+            stdout=worker_log_handle,
+            stderr=subprocess.STDOUT,
+        )
+        procesos.append((proc, worker_id, result_file, chunk_file, worker_log_handle, worker_log_path))
 
     # Esperar a que todos terminen
-    for proc, wid, _, _ in procesos:
+    for proc, wid, _, _, wlog_handle, wlog_path in procesos:
         proc.wait()
+        wlog_handle.close()
         log.info("Worker %d terminado (exit code: %d)", wid, proc.returncode)
+        # Anexar el log del worker al log central
+        try:
+            with open(wlog_path, encoding='utf-8', errors='replace') as f:
+                for linea in f:
+                    linea = linea.rstrip()
+                    if linea:
+                        # Encoding ASCII para Windows cp1252
+                        safe = linea.encode("ascii", errors="replace").decode("ascii")
+                        log.info("  [W%d] %s", wid, safe[:300])
+        except Exception as e:
+            log.warning("No se pudo anexar log de worker %d: %s", wid, e)
 
     # Leer resultados de cada worker
     all_resultados = {}
-    for _, wid, result_file, chunk_file in procesos:
+    for _, wid, result_file, chunk_file, _, _ in procesos:
         if os.path.exists(result_file):
             with open(result_file, "r", encoding="utf-8") as f:
                 resultados_json = json.load(f)
