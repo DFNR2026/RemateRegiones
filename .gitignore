@@ -2,7 +2,6 @@
 config.py
 
 # Datos de trabajo (cambian cada ejecución)
-causas_ojv.xlsx
 causas_antes.json
 causas_despues.json
 tasacion_cache.db
@@ -12,13 +11,8 @@ Diarios/*
 !Diarios/.gitkeep
 Descargas/*
 !Descargas/.gitkeep
-Reportes/*
-!Reportes/.gitkeep
-logs/*
-!logs/.gitkeep
 
 # Reportes generados
-Reporte_*.xlsx
 TEST_*.docx
 
 # Python
@@ -46,3 +40,31 @@ desktop.ini
 
 # Backups
 backup_*/
+
+# === Basura tecnica voluminosa que NO va al repo ===
+
+# Perfiles Chrome (workers) — se regeneran
+.chrome-profile/
+.chrome-profile-w*/
+
+# Logs (regenerables, a cualquier profundidad)
+**/logs/
+logs liqui/
+
+# Temporales del filtrador
+temp_workers/
+temp_workers_m2/
+
+# HTMLs de auditoria de runs (regenerables)
+audit_html/
+
+# PDFs de actas descargados (regenerables)
+Descargas/
+
+# Backups automaticos con timestamp
+*_backup_*.xlsx
+*_pretest_*.xlsx
+*.backup_*
+
+# Patches/diffs temporales
+tmp_*.patch

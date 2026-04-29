@@ -326,7 +326,7 @@ Ejemplos:
         if modulo_inicio <= 2 <= args.hasta and not args.sin_ojv:
             _sep("MÓDULO 2 — Consulta OJV y descarga de documentos")
             t = time.time()
-            causas = procesar_causas_ojv(causas)
+            causas = procesar_causas_ojv(causas, n_workers=5)
             desc = sum(1 for c in causas if c.get("descargado"))
             _ok(2, f"{desc}/{len(causas)} documentos descargados", time.time() - t)
         elif args.sin_ojv:

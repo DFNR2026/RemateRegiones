@@ -18,20 +18,21 @@ import os
 import sys
 import re
 import time
-import datetime
 import logging
 import argparse
 import tempfile
 import json
+import shutil
 import subprocess
 import math
-from datetime import timedelta
+from datetime import datetime, date, timedelta
 
 import pandas as pd
 import openpyxl
 import fitz  # PyMuPDF
 fitz.TOOLS.mupdf_display_errors(False)  # Suprimir warnings de MuPDF en consola
 from playwright.sync_api import sync_playwright
+from playwright_stealth import Stealth
 
 from ojv_remates import (
     navegar_a_consulta,
@@ -65,10 +66,11 @@ REMATES_DIR = _config.BASE_DIR
 # Logging -- dual: consola + archivo en LOGS_LIQUI_DIR
 # ---------------------------------------------------------------------------
 os.makedirs(LOGS_LIQUI_DIR, exist_ok=True)
-_LOG_FILE = os.path.join(
-    LOGS_LIQUI_DIR,
-    f"filtrador_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
-)
+
+# Detectar si somos un worker subprocess (no crear log de archivo propio).
+# Nota: el proceso principal recibe "--workers N" (plural); solo los workers reales
+# reciben "--worker-mode" (flag store_true, ver argparse mas abajo).
+_ES_WORKER = "--worker-mode" in sys.argv
 
 _root = logging.getLogger()
 for _h in _root.handlers[:]:
@@ -80,12 +82,6 @@ _FMT = logging.Formatter("%(asctime)s [FILTRADOR] %(message)s", datefmt="%H:%M:%
 _console_handler = logging.StreamHandler(sys.stdout)
 _console_handler.setFormatter(_FMT)
 _root.addHandler(_console_handler)
-
-_file_handler = logging.FileHandler(_LOG_FILE, encoding="utf-8")
-_file_handler.setFormatter(_FMT)
-_root.addHandler(_file_handler)
-
-log = logging.getLogger(__name__)
 
 
 class _TeeWriter:
@@ -109,9 +105,23 @@ class _TeeWriter:
         return self._orig.fileno()
 
 
-_log_fh = open(_LOG_FILE, "a", encoding="utf-8")
-sys.stdout = _TeeWriter(sys.__stdout__, _log_fh)
-sys.stderr = _TeeWriter(sys.__stderr__, _log_fh)
+if not _ES_WORKER:
+    _LOG_FILE = os.path.join(
+        LOGS_LIQUI_DIR,
+        f"filtrador_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
+    )
+
+    _file_handler = logging.FileHandler(_LOG_FILE, encoding="utf-8")
+    _file_handler.setFormatter(_FMT)
+    _root.addHandler(_file_handler)
+
+    _log_fh = open(_LOG_FILE, "a", encoding="utf-8")
+    sys.stdout = _TeeWriter(sys.__stdout__, _log_fh)
+    sys.stderr = _TeeWriter(sys.__stderr__, _log_fh)
+else:
+    _LOG_FILE = None  # Los workers escriben a stdout, el orquestador lo captura
+
+log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
 # Regex patterns (Filtro 2 y 3 -- requieren descarga de PDFs)
@@ -134,7 +144,7 @@ PATRON_LIQUIDACION = re.compile(
 )
 
 PATRON_SALDO = re.compile(
-    r"[Ss]aldo\s+a\s+favor\s+del\s+ejecutad[oa].*?\$\s*([\d.,]+)",
+    r"[Ss]aldo\s+a\s+favor\s+de(?:l)?\s+ejecutad[oa].*?\$\s*([\d.,]+)",
     re.DOTALL,
 )
 
@@ -248,13 +258,14 @@ def _parsear_fecha_publicacion(texto):
     for parte in reversed(partes):
         parte = parte.strip()
         tokens = parte.upper().split()
+        tokens = [t for t in tokens if t != "DE"]
         if len(tokens) >= 3:
             try:
                 dia = int(tokens[0])
                 mes = _MESES.get(tokens[1])
                 anio = int(tokens[2])
                 if mes:
-                    return datetime.date(anio, mes, dia)
+                    return date(anio, mes, dia)
             except (ValueError, KeyError):
                 pass
 
@@ -262,7 +273,7 @@ def _parsear_fecha_publicacion(texto):
     m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", texto)
     if m:
         try:
-            return datetime.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+            return date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
         except ValueError:
             pass
     return None
@@ -275,7 +286,7 @@ def _parsear_fecha_dd_mm_yyyy(texto):
     m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", str(texto))
     if m:
         try:
-            return datetime.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+            return date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
         except ValueError:
             pass
     return None
@@ -622,7 +633,7 @@ def paso0_merge_reportes():
 
 def _calcular_campos_derivados(df):
     """Agrega columnas _delta y _dias_desde_remate al DataFrame."""
-    hoy = datetime.date.today()
+    hoy = date.today()
     deltas = []
     dias = []
     for _, row in df.iterrows():
@@ -635,7 +646,7 @@ def _calcular_campos_derivados(df):
 
         fr_str = str(row.get("fecha_remate", ""))
         try:
-            fecha_r = datetime.date.fromisoformat(fr_str)
+            fecha_r = date.fromisoformat(fr_str)
             dias.append((hoy - fecha_r).days)
         except (ValueError, TypeError):
             dias.append(None)
@@ -767,7 +778,7 @@ def _guardar_excel_con_retry(wb, filepath, max_intentos=3):
                 log.error("ERROR CRITICO: No se pudo guardar despues de %d intentos.", max_intentos)
                 backup = filepath.replace(
                     ".xlsx",
-                    f"_backup_{datetime.datetime.now().strftime('%H%M%S')}.xlsx",
+                    f"_backup_{datetime.now().strftime('%H%M%S')}.xlsx",
                 )
                 try:
                     wb.save(backup)
@@ -912,11 +923,17 @@ def _guardar_excel_formateado(df):
         _escribir_hoja_revision_manual(ws_rm, df_revision, _DISPLAY_COLS_PRINCIPAL)
         log.info("  Pestana 'Revision Manual': %d causas", len(df_revision))
 
+    cols_extra = [c for c in df.columns if c and c not in _COLS_MADRE]
+    cols_a_escribir = list(_COLS_MADRE) + cols_extra
+    if cols_extra:
+        log.info("  Preservando %d columna(s) extra en _datos_internos: %s",
+                 len(cols_extra), ", ".join(cols_extra))
+
     ws_data = wb.create_sheet("_datos_internos")
-    for col_idx, col_name in enumerate(_COLS_MADRE, 1):
+    for col_idx, col_name in enumerate(cols_a_escribir, 1):
         ws_data.cell(row=1, column=col_idx, value=col_name)
     for row_idx, (_, data_row) in enumerate(df.iterrows(), 2):
-        for col_idx, col_name in enumerate(_COLS_MADRE, 1):
+        for col_idx, col_name in enumerate(cols_a_escribir, 1):
             val = data_row.get(col_name, "")
             if val is None or (isinstance(val, float) and pd.isna(val)):
                 val = ""
@@ -925,6 +942,14 @@ def _guardar_excel_formateado(df):
 
     _guardar_excel_con_retry(wb, EXCEL_MADRE)
     log.info("Excel madre guardado: %s", EXCEL_MADRE)
+
+    # Copia con fecha
+    ahora = datetime.now()
+    meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
+    nombre_fecha = f"{ahora.day}_{meses[ahora.month-1]}_{ahora.year}"
+    copia_path = os.path.join(os.path.dirname(EXCEL_MADRE), f"Causas_posible_saldo_{nombre_fecha}.xlsx")
+    shutil.copy2(EXCEL_MADRE, copia_path)
+    log.info(f"Copia con fecha: {copia_path}")
 
 
 # =========================================================================
@@ -937,13 +962,13 @@ def _leer_tabla_historial(page, fecha_remate):
 
     Input:
         page: objeto Playwright ya navegado al modal de detalle de causa
-        fecha_remate: datetime.date -- fecha del remate segun el Excel madre
+        fecha_remate: date -- fecha del remate segun el Excel madre
 
     Output:
         Tupla (filas_filtradas, total_filas, fecha_limite):
         - filas_filtradas: lista de dicts ordenada por folio desc (solo >= fecha_remate - 5d)
         - total_filas: int con el total de filas en la tabla (antes del filtro fecha)
-        - fecha_limite: datetime.date usado como corte
+        - fecha_limite: date usado como corte
 
     Estructura de cada fila en #historiaCiv (0-indexed):
         td[0] = Folio (numero)
@@ -1298,7 +1323,7 @@ def _aplicar_filtro1(tabla_historial, causa, modo_auditoria):
     """
     fecha_remate_str = str(causa.get("fecha_remate", ""))
     try:
-        fecha_remate = datetime.date.fromisoformat(fecha_remate_str)
+        fecha_remate = date.fromisoformat(fecha_remate_str)
     except (ValueError, TypeError):
         return ("PENDIENTE_ACTA",
                 "Filtro 1: fecha_remate no parseada, no se puede filtrar")
@@ -1647,7 +1672,7 @@ def filtro2_acta_remate(page, context, causa, filas_data):
     fr_str = causa.get("fecha_remate", "")
     if fr_str:
         try:
-            fecha_remate = datetime.date.fromisoformat(fr_str)
+            fecha_remate = date.fromisoformat(fr_str)
         except ValueError:
             pass
 
@@ -1666,7 +1691,7 @@ def filtro2_acta_remate(page, context, causa, filas_data):
         return (
             "PENDIENTE_ACTA",
             f"EN ESPERA: No hay filas en rango fecha_remate +3"
-            f" (ultima revision {datetime.date.today().isoformat()})",
+            f" (ultima revision {date.today().isoformat()})",
         )
 
     def _prioridad(f):
@@ -1732,7 +1757,7 @@ def filtro2_acta_remate(page, context, causa, filas_data):
     return (
         "PENDIENTE_ACTA",
         f"EN ESPERA: Acta de remate no encontrada aun"
-        f" (ultima revision {datetime.date.today().isoformat()})",
+        f" (ultima revision {date.today().isoformat()})",
     )
 
 
@@ -1751,7 +1776,7 @@ _KEYWORDS_LIQUIDACION_PDF = [
 
 # Regex principal: "Saldo a favor del ejecutado" + monto (re.DOTALL por saltos de linea PyMuPDF)
 _REGEX_SALDO_FAVOR = re.compile(
-    r'[Ss]aldo\s+a\s+favor\s+del\s+(?:[Ee]jecutado|[Dd]emandado).*?(\d{1,3}(?:\.\d{3})+)',
+    r'[Ss]aldo\s+a\s+favor\s+de(?:l)?\s+(?:[Ee]jecutado|[Dd]emandado).*?(\d{1,3}(?:\.\d{3})+)',
     re.DOTALL,
 )
 
@@ -2410,7 +2435,7 @@ def _generar_excel_liquidaciones(df):
     # ------------------------------------------------------------------
     # Detectar nuevas causas
     # ------------------------------------------------------------------
-    fecha_hoy = datetime.datetime.now().strftime("%d/%m/%Y")
+    fecha_hoy = datetime.now().strftime("%d/%m/%Y")
 
     # Excedentes
     mask_exc = df["estado"] == "EXCEDENTE_CONFIRMADO"
@@ -2577,7 +2602,7 @@ def filtro3_liquidacion(page, context, causa, filas_data):
     return (
         "PENDIENTE_LIQUIDACION",
         f"EN ESPERA: Liquidacion no encontrada aun"
-        f" (ultima revision {datetime.date.today().isoformat()})",
+        f" (ultima revision {date.today().isoformat()})",
     )
 
 
@@ -2840,7 +2865,7 @@ def _guardar_html_auditoria(page, causa, audit_dir, wtag=""):
             f.write(f"<!-- DTE: {causa.get('demandante', '')} -->\n")
             f.write(f"<!-- DDO: {causa.get('demandado', '')} -->\n")
             f.write(f"<!-- Cuaderno: Apremio -->\n")
-            f.write(f"<!-- Fecha extraccion: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} -->\n\n")
+            f.write(f"<!-- Fecha extraccion: {datetime.now().strftime('%Y-%m-%d %H:%M')} -->\n\n")
             f.write("<h3>Encabezado Causa</h3>\n")
             f.write(header_html + "\n\n")
             f.write("<h3>Tabla Historial Apremio (completa, sin filtro fecha)</h3>\n")
@@ -2886,12 +2911,12 @@ def _procesar_causa_ojv(page, context, causa, solo_filtro1=False,
             log.info("  %s%s-%s: Eliminacion manual: %s", wtag, rol, anio, razon_manual)
             return True
 
-    hoy = datetime.date.today()
+    hoy = date.today()
     fecha_remate = None
     fr_str = causa.get("fecha_remate", "")
     if fr_str:
         try:
-            fecha_remate = datetime.date.fromisoformat(str(fr_str))
+            fecha_remate = date.fromisoformat(str(fr_str))
         except ValueError:
             pass
 
@@ -3235,7 +3260,7 @@ def _procesar_causa_reaudit(page, context, causa, worker_id=0, audit_dir=None,
     tribunal = str(causa.get("TRIBUNAL", ""))
     wtag = f"W{worker_id} " if worker_id else ""
 
-    hoy = datetime.date.today()
+    hoy = date.today()
 
     # --- Eliminacion manual pre-OJV ---
     for rol_manual, anio_manual, razon_manual in CAUSAS_ELIMINAR_MANUAL:
@@ -3740,16 +3765,24 @@ def _run_worker_mode(args):
     if audit_dir:
         os.makedirs(audit_dir, exist_ok=True)
 
-    # Abrir SU PROPIO Playwright browser
+    # Abrir SU PROPIO Playwright browser (perfil por worker para no colisionar)
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=100)
-        context = browser.new_context(accept_downloads=True)
-        page = context.new_page()
+        _profile_dir = os.path.join(REMATES_DIR, f".chrome-profile-w{worker_id}")
+        context = p.chromium.launch_persistent_context(
+            _profile_dir,
+            headless=False,
+            slow_mo=100,
+            channel="chrome",
+            args=["--disable-blink-features=AutomationControlled"],
+            accept_downloads=True,
+        )
+        page = context.pages[0] if context.pages else context.new_page()
+        Stealth().apply_stealth_sync(page)
         page.set_default_timeout(15000)
 
         if not navegar_a_consulta(page):
             log.error("[W%d] No se pudo navegar a OJV. Abortando worker.", worker_id)
-            browser.close()
+            context.close()
             # Escribir resultados vacios para que el orquestador no falle
             with open(args.result_file, "w", encoding="utf-8") as f:
                 json.dump(_serializar_causas(causas_con_idx), f, ensure_ascii=False)
@@ -3774,7 +3807,7 @@ def _run_worker_mode(args):
                 skip_pdf=skip_pdf,
             )
 
-        browser.close()
+        context.close()
 
     # Serializar resultados a JSON
     resultados_lista = [(idx, causa) for idx, causa in resultados.items()]
@@ -3918,14 +3951,22 @@ def main():
 
         if effective_workers == 1:
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=False, slow_mo=100)
-                context = browser.new_context(accept_downloads=True)
-                page = context.new_page()
+                _profile_dir = os.path.join(REMATES_DIR, ".chrome-profile")
+                context = p.chromium.launch_persistent_context(
+                    _profile_dir,
+                    headless=False,
+                    slow_mo=100,
+                    channel="chrome",
+                    args=["--disable-blink-features=AutomationControlled"],
+                    accept_downloads=True,
+                )
+                page = context.pages[0] if context.pages else context.new_page()
+                Stealth().apply_stealth_sync(page)
                 page.set_default_timeout(15000)
 
                 if not navegar_a_consulta(page):
                     log.error("No se pudo navegar a OJV. Abortando reaudit.")
-                    browser.close()
+                    context.close()
                     _guardar_excel_formateado(df)
                     return
 
@@ -3939,7 +3980,7 @@ def main():
                         if col in df.columns:
                             df.at[idx, col] = causa[col]
 
-                browser.close()
+                context.close()
         else:
             all_resultados = _ejecutar_paralelo(
                 causas_reaudit, effective_workers,
@@ -4154,14 +4195,22 @@ def main():
         cnt_pendiente = 0
 
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=False, slow_mo=100)
-            context = browser.new_context(accept_downloads=True)
-            page = context.new_page()
+            _profile_dir = os.path.join(REMATES_DIR, ".chrome-profile")
+            context = p.chromium.launch_persistent_context(
+                _profile_dir,
+                headless=False,
+                slow_mo=100,
+                channel="chrome",
+                args=["--disable-blink-features=AutomationControlled"],
+                accept_downloads=True,
+            )
+            page = context.pages[0] if context.pages else context.new_page()
+            Stealth().apply_stealth_sync(page)
             page.set_default_timeout(15000)
 
             if not navegar_a_consulta(page):
                 log.error("[F3] No se pudo navegar a OJV. Abortando.")
-                browser.close()
+                context.close()
                 _guardar_excel_formateado(df)
                 return
 
@@ -4236,7 +4285,7 @@ def main():
                     except Exception:
                         pass
 
-            browser.close()
+            context.close()
 
         # Guardar resultados
         if not primera_run:
@@ -4273,13 +4322,13 @@ def main():
     indices = df[mask].index.tolist()
 
     # Filtrar no elegibles por timing (< 2 dias)
-    hoy = datetime.date.today()
+    hoy = date.today()
     cnt_no_elegible = 0
     indices_elegibles = []
     for idx in indices:
         fr_str = str(df.at[idx, "fecha_remate"])
         try:
-            fecha_r = datetime.date.fromisoformat(fr_str)
+            fecha_r = date.fromisoformat(fr_str)
             dias = (hoy - fecha_r).days
             if dias < 2:
                 cnt_no_elegible += 1
@@ -4349,14 +4398,22 @@ def main():
         if effective_workers == 1:
             # --- Modo secuencial (sin subprocesos) ---
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=False, slow_mo=100)
-                context = browser.new_context(accept_downloads=True)
-                page = context.new_page()
+                _profile_dir = os.path.join(REMATES_DIR, ".chrome-profile")
+                context = p.chromium.launch_persistent_context(
+                    _profile_dir,
+                    headless=False,
+                    slow_mo=100,
+                    channel="chrome",
+                    args=["--disable-blink-features=AutomationControlled"],
+                    accept_downloads=True,
+                )
+                page = context.pages[0] if context.pages else context.new_page()
+                Stealth().apply_stealth_sync(page)
                 page.set_default_timeout(15000)
 
                 if not navegar_a_consulta(page):
                     log.error("No se pudo navegar a OJV. Abortando.")
-                    browser.close()
+                    context.close()
                     _guardar_excel_formateado(df)
                     return
 
@@ -4372,7 +4429,7 @@ def main():
                         if col in df.columns:
                             df.at[idx, col] = causa[col]
 
-                browser.close()
+                context.close()
 
         else:
             # --- Modo paralelo (subprocess — cada worker = proceso Python) ---
@@ -4404,9 +4461,17 @@ def main():
             cnt_f3_pendiente = 0
 
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=False, slow_mo=100)
-                context = browser.new_context(accept_downloads=True)
-                page = context.new_page()
+                _profile_dir = os.path.join(REMATES_DIR, ".chrome-profile")
+                context = p.chromium.launch_persistent_context(
+                    _profile_dir,
+                    headless=False,
+                    slow_mo=100,
+                    channel="chrome",
+                    args=["--disable-blink-features=AutomationControlled"],
+                    accept_downloads=True,
+                )
+                page = context.pages[0] if context.pages else context.new_page()
+                Stealth().apply_stealth_sync(page)
                 page.set_default_timeout(15000)
 
                 if not navegar_a_consulta(page):
@@ -4478,7 +4543,7 @@ def main():
                             except Exception:
                                 pass
 
-                browser.close()
+                context.close()
 
             log.info("[F3] Resumen: %d excedentes, %d eliminadas, %d revision, %d pendientes",
                      cnt_f3_excedente, cnt_f3_eliminar, cnt_f3_revision, cnt_f3_pendiente)

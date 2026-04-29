@@ -713,7 +713,7 @@ _MESES_ES = (
     r"(?:ENERO|FEBRERO|MARZO|ABRIL|MAYO|JUNIO|"
     r"JULIO|AGOSTO|SEPT(?:IEMBRE)?|OCTUBRE|NOV(?:IEMBRE)?|DIC(?:IEMBRE)?)"
 )
-_RE_FECHA_ENCABEZADO = re.compile(rf'^\d{{1,2}}\s+{_MESES_ES}$')
+_RE_FECHA_ENCABEZADO = re.compile(rf'^\d{{1,2}}\s+(?:DE\s+)?{_MESES_ES}$')
 _RE_TITULO_SEMANA = re.compile(r'REMATES\s+SEMANA', re.IGNORECASE)
 
 

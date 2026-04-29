@@ -33,6 +33,7 @@
 # ============================================================
 
 from playwright.sync_api import sync_playwright
+from playwright_stealth import Stealth
 import pandas as pd
 import os, re, time, unicodedata
 from rapidfuzz import fuzz
@@ -166,30 +167,42 @@ def seleccionar_por_texto(page, selector_id, texto_buscar, timeout_seg=15):
 # NAVEGACIÓN
 # ============================================================
 def navegar_a_consulta(page):
-    """Navega a indexN.php para evitar el modal de avisos de home/index.php.
-    Si la OJV redirige a home/index.php, hace click en 'Consulta causas'
-    para llegar al formulario (el modal no aparece en redirecciones)."""
+    """Navega a la OJV y abre el formulario de consulta de causas."""
     print("  -> Cargando OJV...")
     try:
         page.goto(
-            "https://oficinajudicialvirtual.pjud.cl/indexN.php",
-            wait_until="domcontentloaded",
+            "https://oficinajudicialvirtual.pjud.cl/home/index.php",
+            wait_until="load",
             timeout=30000
         )
     except Exception as e:
-        print(f"  ⚠ {e}")
-        # goto puede expirar mientras el redirect indexN→home/index.php sigue en curso.
-        # Esperar a que la navegación pendiente termine antes de revisar la URL.
-        try:
-            page.wait_for_load_state("domcontentloaded", timeout=15000)
-        except Exception:
-            pass
+        print(f"  ⚠ goto: {e}")
+
+    # Click en "Consulta causas" — sin expect_navigation
     try:
-        if "home/index.php" in page.url:
-            cerrar_modal_aviso(page)
-            page.wait_for_selector("text=Consulta causas", timeout=10000)
-            page.click("text=Consulta causas")
-        page.wait_for_selector("#competencia", timeout=15000)
+        btn = page.wait_for_selector(
+            'button:has-text("Consulta causas")',
+            state="visible",
+            timeout=10000
+        )
+        if btn:
+            btn.click()
+            print("  -> Click en 'Consulta causas'...")
+            time.sleep(5)
+    except Exception as e:
+        print(f"  ⚠ Boton no encontrado: {e}")
+        return False
+
+    # Esperar formulario
+    try:
+        page.wait_for_selector("#competencia", state="visible", timeout=15000)
+        page.select_option("#competencia", value="3")
+        page.evaluate('document.getElementById("competencia").dispatchEvent(new Event("change"))')
+        time.sleep(1)
+        page.wait_for_function(
+            "document.querySelectorAll('#conCorte option').length > 2",
+            timeout=10000
+        )
         time.sleep(0.8)
         print("  ✓ Formulario listo")
         return True
@@ -719,14 +732,22 @@ def main():
     ok, parcial, error = [], [], []
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=100)
-        context = browser.new_context(accept_downloads=True)
-        page    = context.new_page()
+        _profile_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".chrome-profile")
+        context = p.chromium.launch_persistent_context(
+            _profile_dir,
+            headless=False,
+            slow_mo=100,
+            channel="chrome",
+            args=["--disable-blink-features=AutomationControlled"],
+            accept_downloads=True,
+        )
+        page = context.pages[0] if context.pages else context.new_page()
+        Stealth().apply_stealth_sync(page)
         page.set_default_timeout(15000)
 
         if not navegar_a_consulta(page):
-            print("  ✗ No se pudo abrir el formulario OJV")
-            browser.close()
+            print("  No se pudo abrir el formulario OJV")
+            context.close()
             return
 
         for i, causa in enumerate(causas, 1):
@@ -740,14 +761,14 @@ def main():
                 elif m or b:  parcial.append(f"{etiqueta} ({'M' if m else '-'}/{'B' if b else '-'})")
                 else:         error.append(etiqueta)
             except KeyboardInterrupt:
-                print("\n\n  ⏸ Detenido")
+                print("\n\n  Detenido")
                 break
             except Exception as e:
-                print(f"  ✗ ERROR: {e}")
+                print(f"  ERROR: {e}")
                 error.append(etiqueta)
             time.sleep(2)
 
-        browser.close()
+        context.close()
 
     print("\n" + "="*55)
     print("  RESUMEN")
