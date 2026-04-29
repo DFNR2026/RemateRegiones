@@ -3686,11 +3686,18 @@ def _ejecutar_paralelo(causas_para_procesar, n_workers, solo_filtro1, primera_ru
         )
         worker_log_handle = open(worker_log_path, 'w', encoding='utf-8', errors='replace')
         log.info("Lanzando Worker %d (%d causas)...", worker_id, len(chunk))
+        # PYTHONIOENCODING=utf-8 fuerza al subprocess a imprimir en utf-8.
+        # Sin esto, Windows usa cp1252 para sys.stdout cuando el stdout del
+        # subprocess se redirige a archivo, lo que rompe los print() con
+        # caracteres como '✓' o '✗' presentes en ojv_remates.py.
+        worker_env = os.environ.copy()
+        worker_env['PYTHONIOENCODING'] = 'utf-8'
         proc = subprocess.Popen(
             cmd,
             cwd=_BASE_DIR,
             stdout=worker_log_handle,
             stderr=subprocess.STDOUT,
+            env=worker_env,
         )
         procesos.append((proc, worker_id, result_file, chunk_file, worker_log_handle, worker_log_path))
 
