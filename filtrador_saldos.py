@@ -160,6 +160,10 @@ _COLS_MADRE = [
     "detalle_auditoria",
 ]
 
+# Historial de causas eliminadas fisicamente del Excel (para evitar
+# re-importarlas desde reportes M5 en runs futuros).
+HISTORIAL_ELIMINADAS = os.path.join(CAUSAS_LIQ_DIR, "causas_eliminadas_historial.csv")
+
 # Mapeo de headers M5 -> columnas madre
 _HEADER_MAP = {
     "ROL": "ROL",
@@ -535,6 +539,11 @@ def paso0_merge_reportes():
 
     reportes_importados = set(df["origen_reporte"].dropna().unique())
 
+    causas_eliminadas_historial = _cargar_historial_eliminadas()
+    if causas_eliminadas_historial:
+        log.info("  Historial de eliminadas: %d causas no se re-importaran",
+                 len(causas_eliminadas_historial))
+
     if not os.path.isdir(REPORTES_DIR):
         log.warning("Directorio no encontrado: %s", REPORTES_DIR)
         return df
@@ -575,6 +584,11 @@ def paso0_merge_reportes():
                 & (df["AÑO"].astype(str).str.strip() == anio)
             ).any()
             if existe:
+                continue
+
+            # Verificar historial de eliminadas (causas borradas fisicamente
+            # en runs anteriores, no deben re-importarse).
+            if (rol, anio) in causas_eliminadas_historial:
                 continue
 
             row = {col: "" for col in _COLS_MADRE}
@@ -806,6 +820,54 @@ def _escribir_hoja_revision_manual(ws, df, cols_spec):
     last_col = get_column_letter(len(cols_spec))
     last_row = len(df) + 1
     ws.auto_filter.ref = f"A1:{last_col}{last_row}"
+
+
+def _registrar_en_historial_eliminadas(df, mascara_eliminadas):
+    """Anexa al historial CSV las causas que se van a eliminar fisicamente.
+
+    Args:
+        df: DataFrame antes de eliminar.
+        mascara_eliminadas: boolean Series, True para filas a eliminar.
+    """
+    indices = df[mascara_eliminadas].index.tolist()
+    if not indices:
+        return
+
+    os.makedirs(os.path.dirname(HISTORIAL_ELIMINADAS), exist_ok=True)
+    header_needed = not os.path.exists(HISTORIAL_ELIMINADAS)
+    fecha_hoy = date.today().isoformat()
+
+    with open(HISTORIAL_ELIMINADAS, 'a', encoding='utf-8', newline='') as f:
+        if header_needed:
+            f.write("ROL,ANO,fecha_eliminacion,motivo\n")
+        for idx in indices:
+            rol = str(df.at[idx, "ROL"] or "").strip()
+            ano = str(df.at[idx, "AÑO"] or "").strip()
+            log_dec = str(df.at[idx, "log_decision"] or "")
+            # Primer linea del log_decision, sin saltos de linea ni comas
+            motivo = log_dec.split('\n')[0].replace(',', ';').replace('"', "'")[:200]
+            f.write(f"{rol},{ano},{fecha_hoy},{motivo}\n")
+
+
+def _cargar_historial_eliminadas():
+    """Carga el set de (ROL, ANO) de causas previamente eliminadas.
+
+    Returns:
+        set de tuplas (rol_str, ano_str). Vacio si el archivo no existe.
+    """
+    if not os.path.exists(HISTORIAL_ELIMINADAS):
+        return set()
+    eliminadas = set()
+    try:
+        with open(HISTORIAL_ELIMINADAS, encoding='utf-8') as f:
+            next(f, None)  # skip header
+            for linea in f:
+                partes = linea.strip().split(',', 3)
+                if len(partes) >= 2:
+                    eliminadas.add((partes[0].strip(), partes[1].strip()))
+    except Exception as e:
+        log.warning("No se pudo cargar historial de eliminadas: %s", e)
+    return eliminadas
 
 
 def _guardar_excel_formateado(df):
@@ -3906,10 +3968,11 @@ def main():
 
         # Eliminar causas si no es modo auditoria
         if not primera_run:
-            n_antes = len(df)
-            df = df[df["estado"] != "ELIMINADA"].reset_index(drop=True)
-            n_elim = n_antes - len(df)
+            mascara_elim = df["estado"] == "ELIMINADA"
+            n_elim = int(mascara_elim.sum())
             if n_elim:
+                _registrar_en_historial_eliminadas(df, mascara_elim)
+                df = df[~mascara_elim].reset_index(drop=True)
                 log.info("Causas eliminadas del Excel: %d", n_elim)
 
         _guardar_excel_formateado(df)
@@ -3975,10 +4038,11 @@ def main():
         log.info("[RECHECK-CARGO] %d causas revisadas, %d cambiadas a ELIMINAR", revisadas, cambios)
 
         if not primera_run and cambios > 0:
-            n_antes = len(df)
-            df = df[df["estado"] != "ELIMINADA"].reset_index(drop=True)
-            n_elim = n_antes - len(df)
+            mascara_elim = df["estado"] == "ELIMINADA"
+            n_elim = int(mascara_elim.sum())
             if n_elim:
+                _registrar_en_historial_eliminadas(df, mascara_elim)
+                df = df[~mascara_elim].reset_index(drop=True)
                 log.info("Causas eliminadas del Excel: %d", n_elim)
 
         _guardar_excel_formateado(df)
@@ -4060,10 +4124,11 @@ def main():
         log.info("[RECHECK-LIQ] %d revisadas, %d cambios", revisadas, cambios)
 
         if not primera_run and cambios > 0:
-            n_antes = len(df)
-            df = df[df["estado"] != "ELIMINADA"].reset_index(drop=True)
-            n_elim = n_antes - len(df)
+            mascara_elim = df["estado"] == "ELIMINADA"
+            n_elim = int(mascara_elim.sum())
             if n_elim:
+                _registrar_en_historial_eliminadas(df, mascara_elim)
+                df = df[~mascara_elim].reset_index(drop=True)
                 log.info("Causas eliminadas del Excel: %d", n_elim)
 
         _guardar_excel_formateado(df)
@@ -4175,10 +4240,11 @@ def main():
 
         # Guardar resultados
         if not primera_run:
-            n_antes = len(df)
-            df = df[df["estado"] != "ELIMINADA"].reset_index(drop=True)
-            n_elim_total = n_antes - len(df)
+            mascara_elim = df["estado"] == "ELIMINADA"
+            n_elim_total = int(mascara_elim.sum())
             if n_elim_total:
+                _registrar_en_historial_eliminadas(df, mascara_elim)
+                df = df[~mascara_elim].reset_index(drop=True)
                 log.info("[F3] Causas eliminadas del Excel: %d", n_elim_total)
 
         _guardar_excel_formateado(df)
@@ -4452,10 +4518,11 @@ def main():
 
     # === Eliminar causas (o no, en modo auditoria) ===
     if not primera_run:
-        n_antes = len(df)
-        df = df[df["estado"] != "ELIMINADA"].reset_index(drop=True)
-        n_elim = n_antes - len(df)
+        mascara_elim = df["estado"] == "ELIMINADA"
+        n_elim = int(mascara_elim.sum())
         if n_elim:
+            _registrar_en_historial_eliminadas(df, mascara_elim)
+            df = df[~mascara_elim].reset_index(drop=True)
             log.info("Causas eliminadas del Excel: %d", n_elim)
     else:
         log.info(
