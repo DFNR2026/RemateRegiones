@@ -3097,21 +3097,34 @@ def _procesar_causa_ojv(page, context, causa, solo_filtro1=False,
             )
             estado = "PENDIENTE_LIQUIDACION"
 
-        try:
-            seleccionar_cuaderno(page, "Apremio")
-        except Exception as e:
-            log.warning("  %sError seleccionando cuaderno Apremio: %s", wtag, e)
-
-        page.wait_for_timeout(1500)
-
-        try:
-            filas_elements = filas_del_modal(page)
-        except Exception as e:
-            log.warning("  %sError obteniendo filas del modal: %s", wtag, e)
-            filas_elements = []
+        # Hasta 3 intentos. El WAF del PJUD a veces devuelve la pagina parcial
+        # (selector existe pero tbody vacio); re-seleccionar el cuaderno fuerza
+        # un nuevo fetch del lado server.
+        filas_elements = []
+        for intento in range(1, 4):
+            try:
+                seleccionar_cuaderno(page, "Apremio")
+            except Exception as e:
+                log.warning("  %sError seleccionando cuaderno Apremio (intento %d/3): %s", wtag, intento, e)
+            # Backoff progresivo: 1.5s, 3s, 6s
+            if intento == 1:
+                page.wait_for_timeout(1500)
+            elif intento == 2:
+                page.wait_for_timeout(3000)
+            else:
+                page.wait_for_timeout(6000)
+            try:
+                filas_elements = filas_del_modal(page)
+            except Exception as e:
+                log.warning("  %sError obteniendo filas (intento %d/3): %s", wtag, intento, e)
+                filas_elements = []
+            if filas_elements:
+                if intento > 1:
+                    log.info("  %s%s: tabla recuperada en intento %d", wtag, rol, intento)
+                break
 
         if not filas_elements:
-            causa["log_decision"] = "ERROR OJV: Tabla de tramitacion vacia (cuaderno)"
+            causa["log_decision"] = "ERROR OJV: Tabla de tramitacion vacia (cuaderno) tras 3 intentos"
             _cerrar_modal(page)
             return False
 
