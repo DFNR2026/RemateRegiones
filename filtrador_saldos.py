@@ -56,6 +56,7 @@ from config import (
     CAUSAS_ELIMINAR_MANUAL,
     ACTAS_DIR,
     EXCEL_LIQUIDACIONES,
+    DESCARGAS_DIR,
 )
 
 # Ruta base del script (usada por config de directorios)
@@ -122,6 +123,21 @@ else:
     _LOG_FILE = None  # Los workers escriben a stdout, el orquestador lo captura
 
 log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Modulo 3 (extractor de monto) - opcional, usado por Paso 0.5
+# Si M3 falla al importar, el filtrador sigue corriendo sin Paso 0.5.
+# ---------------------------------------------------------------------------
+try:
+    from modulo3_extractor import (
+        _extraer_de_mandamiento,
+        _extraer_texto_pdf,
+        obtener_uf_hoy,
+    )
+    _M3_DISPONIBLE = True
+except Exception as _e_m3:
+    log.warning("M3 no disponible, Paso 0.5 deshabilitado: %s", _e_m3)
+    _M3_DISPONIBLE = False
 
 # ---------------------------------------------------------------------------
 # Regex patterns (Filtro 2 y 3 -- requieren descarga de PDFs)
@@ -624,6 +640,107 @@ def paso0_merge_reportes():
 
     log.info("Total causas nuevas importadas: %d", nuevas_total)
     log.info("Total causas en Excel madre: %d", len(df))
+    return df
+
+
+def _paso_refresh_deuda_m3(df):
+    """Paso 0.5 - Refresca MONTO_DEUDA_CLP via M3 sobre PDFs locales.
+
+    Itera causas activas con deuda vacia/$0; si el PDF de mandamiento existe
+    en Descargas/, llama a M3 para extraer el monto y actualiza la fila.
+    Recalcula _delta via _calcular_campos_derivados (formula unica) y guarda
+    el Excel antes del lanzamiento de workers (crash safety).
+    """
+    if not _M3_DISPONIBLE:
+        log.info("[PASO 0.5] Saltado (M3 no disponible)")
+        return df
+
+    estados_excluidos = {"ELIMINADA", "ELIMINAR", "EXCEDENTE_CONFIRMADO"}
+    candidatas_idx = []
+    for idx, row in df.iterrows():
+        if _deuda_a_int(row.get("MONTO_DEUDA_CLP", "")) > 0:
+            continue
+        estado = str(row.get("estado", "")).strip()
+        if estado in estados_excluidos:
+            continue
+        rol = str(row.get("ROL", "") or "").strip()
+        ano = str(row.get("AÑO", "") or "").strip()
+        if not rol or not ano:
+            continue
+        candidatas_idx.append(idx)
+
+    if not candidatas_idx:
+        log.info("[PASO 0.5] Sin candidatas (todas las causas activas tienen deuda > 0)")
+        return df
+
+    log.info("[PASO 0.5] Refresh deuda M3 - %d candidatas con MONTO_DEUDA_CLP vacio",
+             len(candidatas_idx))
+
+    n_eval = len(candidatas_idx)
+    n_sin_pdf = 0
+    n_m3_fallo = 0
+    n_actualizadas = 0
+    fecha_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    for idx in candidatas_idx:
+        rol = str(df.at[idx, "ROL"] or "").strip()
+        ano = str(df.at[idx, "AÑO"] or "").strip()
+        nombre_pdf = f"C-{rol}-{ano}_MANDAMIENTO.pdf"
+        ruta_pdf = os.path.join(DESCARGAS_DIR, nombre_pdf)
+        if not os.path.exists(ruta_pdf):
+            n_sin_pdf += 1
+            continue
+        try:
+            texto = _extraer_texto_pdf(ruta_pdf)
+            orig, valor, moneda = _extraer_de_mandamiento(texto)
+        except Exception as e:
+            log.warning("[PASO 0.5] C-%s-%s: M3 fallo - %s", rol, ano, e)
+            n_m3_fallo += 1
+            continue
+        if not orig or valor is None:
+            n_m3_fallo += 1
+            continue
+        try:
+            if moneda == "UF":
+                monto_clp = int(round(float(valor) * float(obtener_uf_hoy())))
+            else:
+                monto_clp = int(float(valor))
+        except Exception as e:
+            log.warning("[PASO 0.5] C-%s-%s: conversion fallo - %s", rol, ano, e)
+            n_m3_fallo += 1
+            continue
+        if monto_clp <= 0:
+            n_m3_fallo += 1
+            continue
+
+        # Idempotencia: si ya hay marca con mismo monto, no re-loguear ni sobreescribir
+        log_actual = str(df.at[idx, "log_decision"] or "")
+        monto_fmt = f"${monto_clp:,}".replace(",", ".")
+        if "RefreshDeudaM3" in log_actual and monto_fmt in log_actual:
+            log.info("[PASO 0.5] C-%s-%s: ya marcada con mismo monto, salteo", rol, ano)
+            continue
+
+        # El df se carga con dtype=str (L555/L558), guardar como string
+        # para consistencia con las filas existentes y con _deuda_a_int.
+        df.at[idx, "MONTO_DEUDA_CLP"] = str(monto_clp)
+        msg = (f"RefreshDeudaM3 {fecha_str}: deuda actualizada de $0 a "
+               f"{monto_fmt} (M3 sobre {nombre_pdf})")
+        nuevo_log = f"{log_actual} | {msg}".strip(" |") if log_actual else msg
+        df.at[idx, "log_decision"] = nuevo_log
+        log.info("[PASO 0.5] C-%s-%s: $0 -> %s (M3 sobre %s)",
+                 rol, ano, monto_fmt, nombre_pdf)
+        n_actualizadas += 1
+
+    log.info("[PASO 0.5] Resumen: %d evaluadas / %d sin PDF / %d M3 fallo / %d actualizadas",
+             n_eval, n_sin_pdf, n_m3_fallo, n_actualizadas)
+
+    if n_actualizadas > 0:
+        # Recalcular _delta via la formula unica del filtrador
+        df = _calcular_campos_derivados(df)
+        # Persistir antes del lanzamiento de workers (crash safety)
+        _guardar_excel_formateado(df)
+        log.info("[PASO 0.5] Excel guardado con %d actualizaciones", n_actualizadas)
+
     return df
 
 
@@ -3869,6 +3986,10 @@ def main():
         "--workers", type=int, default=5,
         help="Numero de procesos paralelos (default: 5, max: 5)",
     )
+    parser.add_argument(
+        "--skip-refresh-deuda", action="store_true",
+        help="Salta el Paso 0.5 (refresh de MONTO_DEUDA_CLP via M3 sobre PDFs locales)",
+    )
     # Args internos para modo worker (no usar manualmente)
     parser.add_argument("--worker-mode", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--chunk-file", type=str, help=argparse.SUPPRESS)
@@ -3911,6 +4032,21 @@ def main():
         _guardar_excel_formateado(df)
         log.info("Excel madre guardado (solo merge).")
         return
+
+    # === PASO 0.5: Refresh deuda via M3 (modos compatibles solamente) ===
+    # Excluir modos que no necesitan/deben recomputar deuda:
+    #   --solo-filtro1, --solo-filtro3, --recheck-cargo, --recheck-liq
+    # Incluir: run normal, --reaudit, --skip-pdf (lee PDFs locales, no descarga).
+    _modos_excluyen_05 = (
+        args.solo_filtro1 or args.solo_filtro3
+        or args.recheck_cargo or args.recheck_liq
+    )
+    if args.skip_refresh_deuda:
+        log.info("[PASO 0.5] Saltado por flag --skip-refresh-deuda")
+    elif _modos_excluyen_05:
+        log.info("[PASO 0.5] Saltado (modo --solo-* o --recheck-* incompatible)")
+    else:
+        df = _paso_refresh_deuda_m3(df)
 
     # === Modo REAUDIT: reprocesar PENDIENTE_ACTA ===
     if reaudit:
