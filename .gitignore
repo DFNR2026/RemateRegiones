@@ -66,5 +66,8 @@ Descargas/
 *_pretest_*.xlsx
 *.backup_*
 
+# Copias fechadas del Excel madre (se regeneran cada run; la viva es Causas_posible_saldo.xlsx)
+Causas_posible_saldo_*_20[0-9][0-9].xlsx
+
 # Patches/diffs temporales
 tmp_*.patch
