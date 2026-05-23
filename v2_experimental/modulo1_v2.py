@@ -287,6 +287,10 @@ _PROMPT_DIRECCION = (
 _api_calls = 0
 
 
+# DESACTIVADO [2026-04-29]: direccion es informativa en M1, no justifica costo Haiku.
+# Esta funcion y _PROMPT_DIRECCION quedan como referencia pero NO se invocan.
+# Para reactivar: restaurar el bloque de fallback en parsear_bloque (buscar el
+# log "Haiku dir desactivado"). Ver PROMPT_CC_eliminar_haiku_direccion.md
 def _extraer_direccion_haiku(bloque: str) -> tuple[str, str]:
     """
     Llama a Claude Haiku para extraer dirección y comuna.
@@ -617,7 +621,7 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
     # ── 3. Demandante: regex mejorado (Fix 3) ──
     demandante = _extraer_demandante_v2(bloque).title()
 
-    # ── 4. Dirección/comuna: regex primero, Haiku como fallback ──
+    # ── 4. Dirección/comuna: solo regex (Haiku dir desactivado 2026-04-29) ──
     direccion, comuna = extraer_direccion_comuna(bloque)
 
     # Fix 8+11: Siempre correr _extraer_comuna_v2; preferir version con articulo
@@ -644,28 +648,18 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
             log.info(f"  [{rol_completo}] Direccion regex descartada (corta/sin numero): '{direccion}'")
             direccion = ""
 
+    # DESACTIVADO [2026-04-29]: direccion es informativa en M1 (solo aparece en
+    # el DOCX del abogado; no la usan M2/M3/M5 ni el filtrador) y el fallback
+    # Haiku generaba ~32% de las llamadas. Ahora si el regex no extrae direccion
+    # valida, se deja en blanco. La comuna NO depende de este bloque: la cubren
+    # extraer_direccion_comuna (arriba), _extraer_comuna_v2 (arriba) y el Fix 12
+    # (extrae del tribunal, mas abajo). Para reactivar: restaurar el bloque que
+    # llamaba a _extraer_direccion_haiku. Ver PROMPT_CC_eliminar_haiku_direccion.md
     haiku_used = False
     if not direccion:
-        # Log del texto que regex evalúa (diagnóstico regex dirección)
-        log.debug(f"  [{rol_completo}] Texto para regex direccion (200 chars): '{bloque[:200]}'")
-        # Fallback: Claude Haiku para dirección + comuna
-        log.info(f"  [{rol_completo}] Regex no encontro direccion valida -- llamando Haiku...")
-        dir_h, com_h = _extraer_direccion_haiku(bloque)
-        haiku_used = True
-        if dir_h:
-            log.info(f"  [{rol_completo}] Haiku extrajo direccion: '{dir_h}'")
-            # Validación anti-alucinación
-            palabras_dir = [p for p in dir_h.split() if len(p) > 3][:3]
-            bloque_lower = bloque.lower()
-            if palabras_dir:
-                encontradas = sum(1 for p in palabras_dir if p.lower() in bloque_lower)
-                if encontradas >= min(2, len(palabras_dir)):
-                    direccion = dir_h
-                else:
-                    log.warning(f"  [{rol_completo}] Haiku direccion descartada (anti-alucinacion): {dir_h}")
-        # Fix 10: Usar comuna de Haiku como fallback si regex no la encontro
-        if not comuna and com_h:
-            comuna = com_h
+        # Diagnostico del regex de direccion (para futura mejora del regex)
+        log.debug(f"  [{rol_completo}] Regex no extrajo direccion. Texto (200 chars): '{bloque[:200]}'")
+        log.info(f"  [{rol_completo}] Direccion regex vacia -- se deja en blanco (Haiku dir desactivado)")
 
     direccion = _normalizar_direccion(direccion)
 
