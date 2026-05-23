@@ -235,10 +235,16 @@ Ejemplos:
                         help="Carpeta alternativa de PDFs de entrada (default: Diarios/)")
     parser.add_argument("--docx",     type=str, default=None, metavar="RUTA",
                         help="Ruta al DOCX semanal consolidado (reemplaza PDFs diarios)")
+    parser.add_argument("--docx-dir", type=str, default=None, metavar="RUTA",
+                        help="Carpeta con varios DOCX semanales. Procesa todos los .docx "
+                             "que contenga y los elimina al terminar el pipeline.")
     parser.add_argument("--v1",       action="store_true",
                         help="Forzar parser v1 (Sonnet) para DOCX. "
                              "Por defecto --docx usa v2 (Regex+Haiku, ~60x mas barato).")
     args = parser.parse_args()
+
+    if args.docx and args.docx_dir:
+        parser.error("--docx y --docx-dir son mutuamente excluyentes")
 
     if args.silencio:
         # Suprimir todos los loggers excepto el de main
@@ -248,6 +254,7 @@ Ejemplos:
     t_total = time.time()
     ruta_reporte = ""
     causas: list[dict] = []
+    docx_procesados_paths: list[str] = []  # DOCX a borrar tras pipeline completo (modo --docx-dir)
 
     _sep("SISTEMA DE ANÁLISIS DE REMATES JUDICIALES")
     print(f"  Log: {_LOG_FILE}")
@@ -263,7 +270,58 @@ Ejemplos:
 
         # ── Módulo 1: Parser PDFs  o  DOCX semanal ──────────────────
         if modulo_inicio <= 1 <= args.hasta:
-            if args.docx and args.v1:
+            if args.docx_dir:
+                # ── Modo carpeta: procesar TODOS los .docx de la carpeta ──
+                if args.v1:
+                    _sep("MÓDULO 1 v1 — Parsear carpeta de DOCX (Sonnet)")
+                    _parser_docx = parsear_docx_semanal
+                    _tag = "M1"
+                else:
+                    from v2_experimental.modulo1_v2 import parsear_docx_v2
+                    _sep("MÓDULO 1 v2 — Parsear carpeta de DOCX (Regex+Haiku)")
+                    _parser_docx = parsear_docx_v2
+                    _tag = "M1v2"
+                print(f"  [{_tag}] Carpeta DOCX: {args.docx_dir}")
+                if args.limpiar_historial:
+                    print(f"  [{_tag}] Modo testing: historial CAUSAS ignorado (Excel intacto)")
+
+                # Listar .docx (case-insensitive), ignorar temporales de Word (~$)
+                docx_files = sorted(
+                    f for f in os.listdir(args.docx_dir)
+                    if f.lower().endswith(".docx") and not f.startswith("~$")
+                )
+                if not docx_files:
+                    print(f"  [{_tag}] Sin DOCX en {args.docx_dir}")
+                    return
+
+                t = time.time()
+                causas = []
+                roles_vistos = set()
+                for _nombre in docx_files:
+                    _ruta = os.path.join(args.docx_dir, _nombre)
+                    _nuevas = _parser_docx(_ruta, ignorar_historial=args.limpiar_historial)
+                    # Dedup dentro del lote por (ROL, AÑO): el historial persistido
+                    # no se actualiza hasta que corre M2+, asi que dos DOCX del mismo
+                    # lote podrian traer el mismo ROL.
+                    _filtradas = []
+                    for _c in _nuevas:
+                        _clave = (str(_c.get("rol", "")).strip(),
+                                  str(_c.get("año", "")).strip())
+                        if _clave in roles_vistos:
+                            continue
+                        roles_vistos.add(_clave)
+                        _filtradas.append(_c)
+                    causas.extend(_filtradas)
+                    print(f"  [{_tag}] Procesando: {_nombre} -> {len(_filtradas)} causas nuevas")
+
+                print(f"  [{_tag}] Total acumulado: {len(causas)} causas nuevas de {len(docx_files)} DOCX")
+                _ok(1, f"{len(causas)} causas nuevas ({len(docx_files)} DOCX)", time.time() - t)
+
+                # Registrar rutas para borrarlas SOLO al final del pipeline (M1->M5).
+                # No se borran aca: si M2/M3/M5 fallan, los DOCX quedan para reintentar.
+                docx_procesados_paths = [os.path.join(args.docx_dir, n) for n in docx_files]
+
+            elif args.docx and args.v1:
                 # Forzar v1 (Sonnet) para DOCX
                 _sep("MÓDULO 1 v1 — Parsear DOCX semanal (Sonnet)")
                 print(f"  [M1] Archivo DOCX: {args.docx}")
@@ -303,13 +361,12 @@ Ejemplos:
 
             if not causas:
                 print()
-                print("  Sin causas nuevas. Verificar PDFs en Diarios/")
-                print("  Si los PDFs ya están procesados, usa --desde con M2.")
+                print("  Sin causas nuevas. Todos los registros ya estaban en el historial.")
                 return
 
             # Mover PDFs procesados a Diarios_Procesados/
             # (solo si se usó la carpeta por defecto; carpeta custom y DOCX no se tocan)
-            if not args.diarios and not args.docx:
+            if not args.diarios and not args.docx and not args.docx_dir:
                 from config import DIARIOS_DIR, DIARIOS_PROCESADOS_DIR
                 os.makedirs(DIARIOS_PROCESADOS_DIR, exist_ok=True)
                 pdfs_movidos = 0
@@ -382,6 +439,23 @@ Ejemplos:
         actualizar_historial(causas)
         ruta_reporte = generar_reporte(causas)
         _ok(5, f"Reporte generado: {ruta_reporte}", time.time() - t)
+
+        # Borrar los DOCX procesados SOLO tras completar el pipeline (M1->M5).
+        # Si un modulo posterior a M1 hubiera fallado, una excepcion habria
+        # saltado este bloque y los DOCX quedarian para reintentar.
+        # Solo se borran los archivos que se procesaron en esta corrida.
+        if docx_procesados_paths:
+            _dtag = "M1" if args.v1 else "M1v2"
+            _docx_borrados = 0
+            for _p in docx_procesados_paths:
+                try:
+                    if os.path.exists(_p):
+                        os.remove(_p)
+                        _docx_borrados += 1
+                except OSError as _e:
+                    print(f"  [{_dtag}] No se pudo borrar {os.path.basename(_p)}: {_e}")
+            if _docx_borrados:
+                print(f"  [{_dtag}] {_docx_borrados} DOCX procesados eliminados de la carpeta")
 
     except KeyboardInterrupt:
         print()

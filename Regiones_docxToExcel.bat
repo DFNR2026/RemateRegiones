@@ -14,9 +14,8 @@ echo  ============================================================
 echo    Carpeta: %BASE_DIR%
 echo.
 
-:: Buscar el DOCX mas reciente en Diarios/
+:: Verificar que haya DOCX en Diarios/ (se procesan TODOS)
 set "DOCX_DIR=%BASE_DIR%\Diarios"
-set "DOCX_FILE="
 
 if not exist "%DOCX_DIR%" (
     echo  [ERROR] No existe la carpeta Diarios\
@@ -26,30 +25,31 @@ if not exist "%DOCX_DIR%" (
     exit /b 1
 )
 
-for /f "delims=" %%F in ('dir /b /o-d "%DOCX_DIR%\*.docx" 2^>nul') do (
-    if not defined DOCX_FILE set "DOCX_FILE=%%F"
+set "DOCX_COUNT=0"
+for /f "delims=" %%F in ('dir /b "%DOCX_DIR%\*.docx" 2^>nul') do (
+    set /a DOCX_COUNT+=1
 )
 
-if not defined DOCX_FILE (
+if %DOCX_COUNT%==0 (
     echo  [ERROR] No se encontro ningun archivo .docx en:
     echo          %DOCX_DIR%
     echo.
-    echo  Coloca el DOCX semanal en esa carpeta e intenta de nuevo.
+    echo  Coloca los DOCX semanales en esa carpeta e intenta de nuevo.
     echo.
     pause
     exit /b 1
 )
 
-echo  Archivo encontrado: %DOCX_FILE%
+echo  DOCX encontrados: %DOCX_COUNT%
 echo.
 echo  Presiona cualquier tecla para iniciar el pipeline...
 echo  (Ctrl+C para cancelar)
 echo.
 pause >nul
 
-:: Ejecutar pipeline
+:: Ejecutar pipeline (modo carpeta: procesa TODOS los DOCX y los elimina al terminar)
 cd /d "%BASE_DIR%"
-python main.py --docx "%DOCX_DIR%\%DOCX_FILE%"
+python main.py --docx-dir "%DOCX_DIR%"
 
 echo.
 echo  ============================================================
