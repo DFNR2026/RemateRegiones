@@ -1502,10 +1502,23 @@ def _ocr_pdf(doc):
         for path in tesseract_paths:
             if os.path.exists(path):
                 pytesseract.pytesseract.tesseract_cmd = path
+                # Fix OCR actas [2026-05-24]: Tesseract no encontraba spa.traineddata
+                # porque TESSDATA_PREFIX no estaba seteado (buscaba en ruta relativa
+                # D:\Remates\.tessdata). Apuntar a la carpeta tessdata de la instalacion.
+                tessdata_dir = os.path.join(os.path.dirname(path), "tessdata")
+                if os.path.isdir(tessdata_dir):
+                    os.environ["TESSDATA_PREFIX"] = tessdata_dir
+                else:
+                    log.warning("  tessdata no encontrado en %s -- OCR puede fallar", tessdata_dir)
                 break
+        else:
+            # Ninguna ruta de tesseract existe: avisar fuerte (antes fallaba en silencio)
+            log.warning("  Tesseract.exe NO encontrado en rutas conocidas -- OCR no disponible")
 
         texto_total = ""
-        for page_num in range(len(doc)):
+        total_paginas = len(doc)
+        paginas_fallidas = 0
+        for page_num in range(total_paginas):
             try:
                 page = doc[page_num]
                 pix = page.get_pixmap(dpi=150)  # 150 DPI: más rápido, suficiente calidad
@@ -1514,8 +1527,14 @@ def _ocr_pdf(doc):
                 texto_pagina = pytesseract.image_to_string(img, lang='spa', timeout=30)
                 texto_total += texto_pagina + "\n"
             except Exception as e:
+                paginas_fallidas += 1
                 log.warning("    OCR pagina %d fallo: %s", page_num, e)
                 continue
+
+        # Fix OCR actas [2026-05-24]: si TODAS las paginas fallan, OCR esta roto
+        # (antes pasaba inadvertido con warnings discretos por pagina).
+        if total_paginas > 0 and paginas_fallidas == total_paginas:
+            log.error("  OCR fallo en TODAS las paginas (%d). Revisar TESSDATA_PREFIX/idioma.", total_paginas)
 
         return texto_total
 
