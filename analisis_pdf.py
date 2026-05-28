@@ -14,6 +14,24 @@ _CARGO_REGEX = re.compile(r'cargo\s+(?:a\s+(?:su|sus|los?)|al)\s+cr[eé]ditos?',
 _REGEX_MONTO_CLP = re.compile(r'\$\s*([\d]+(?:\.[\d]{3})*(?:,[\d]+)?)\s*(?:\.\-|\.-)?')
 
 
+# Regex de adjudicacion efectiva (Audit10 Regla 1).
+# Captura el bloque del adjudicatario (representante + representado) desde
+# "se adjudico [la propiedad] a" hasta el primer monto en pesos.
+_ADJUDICACION_REAL_REGEX = re.compile(
+    r'se\s+adjudic[óo]\s+(?:la\s+propiedad\s+)?a(?:l)?\s+'
+    r'(.{3,500}?)'
+    r'\$\s*[\d.]+',
+    re.IGNORECASE | re.DOTALL
+)
+
+# Tokens cuya presencia en el adjudicatario sugiere que es el banco
+# ejecutante (no un tercero).
+_TOKENS_EJECUTANTE = re.compile(
+    r'\b(?:ejecutante|demandante|banco|financiera|cooperativa|'
+    r's\.?\s*a\.?\b|s\.?\s*p\.?\s*a\.?\b)',
+    re.IGNORECASE
+)
+
 def _extraer_texto_pdf(ruta):
     """Extrae texto de un PDF con PyMuPDF. Retorna string vacio si falla."""
     from filtrador_saldos import log
@@ -94,6 +112,23 @@ def _ocr_pdf(doc):
         return ""
 
 
+
+def _detectar_adjudicatario(texto):
+    """Clasifica al adjudicatario efectivo del Bloque 3 del acta.
+
+    Returns:
+        "tercero": adjudicacion a persona/entidad distinta del ejecutante.
+        "ejecutante": adjudicacion al banco/ejecutante.
+        "indeterminado": no se detecto el patron de adjudicacion efectiva.
+    """
+    m = _ADJUDICACION_REAL_REGEX.search(texto)
+    if not m:
+        return "indeterminado"
+    nombre = m.group(1)
+    if _TOKENS_EJECUTANTE.search(nombre):
+        return "ejecutante"
+    return "tercero"
+
 def _analizar_pdf_acta(filepath):
     """Analiza un PDF de acta de remate. Usa OCR si el PDF es imagen escaneada.
 
@@ -153,8 +188,17 @@ def _analizar_pdf_acta(filepath):
     texto_lower = texto.lower()
 
     # === 1. Detectar "cargo al credito" (regex flexible) ===
+    # Bug C-1855 [Audit10 Regla 1]: el match puede provenir de una clausula
+    # condicional de bases ("el ejecutante esta autorizado para adjudicarse
+    # con cargo al credito"), NO de la adjudicacion real. Verificamos quien
+    # fue el adjudicatario efectivo: si fue un tercero, descartamos el match.
     if _CARGO_REGEX.search(texto):
-        resultado["cargo_al_credito"] = True
+        adjudicatario = _detectar_adjudicatario(texto)
+        if adjudicatario == "tercero":
+            resultado["cargo_al_credito"] = False
+        else:
+            # "ejecutante" o "indeterminado": conservador, mantenemos True.
+            resultado["cargo_al_credito"] = True
 
     # === 2. Extraer monto de adjudicacion (posicional) ===
     # Buscar todos los montos >= 1 millon en el texto
