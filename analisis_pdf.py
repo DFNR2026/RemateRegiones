@@ -3,6 +3,7 @@
 import io
 import os
 import re
+import unicodedata
 
 import fitz
 import pytesseract
@@ -14,23 +15,37 @@ _CARGO_REGEX = re.compile(r'cargo\s+(?:a\s+(?:su|sus|los?)|al)\s+cr[eé]ditos?',
 _REGEX_MONTO_CLP = re.compile(r'\$\s*([\d]+(?:\.[\d]{3})*(?:,[\d]+)?)\s*(?:\.\-|\.-)?')
 
 
-# Regex de adjudicacion efectiva (Audit10 Regla 1).
-# Captura el bloque del adjudicatario (representante + representado) desde
-# "se adjudico [la propiedad] a" hasta el primer monto en pesos.
-_ADJUDICACION_REAL_REGEX = re.compile(
-    r'se\s+adjudic[óo]\s+(?:la\s+propiedad\s+)?a(?:l)?\s+'
-    r'(.{3,500}?)'
-    r'\$\s*[\d.]+',
+# Discriminador de adjudicatario de 3 vias (Audit11).
+# _ADJUDICACION_REGEX captura desde "se adjudica" hasta el primer "$"
+# (bloque del adjudicatario). Usar la ULTIMA ocurrencia en el texto.
+_ADJUDICACION_REGEX = re.compile(
+    r'\bse\s+adjudic\w*\b(.{3,400}?)\$',
     re.IGNORECASE | re.DOTALL
 )
 
-# Tokens cuya presencia en el adjudicatario sugiere que es el banco
-# ejecutante (no un tercero).
-_TOKENS_EJECUTANTE = re.compile(
-    r'\b(?:ejecutante|demandante|banco|financiera|cooperativa|'
-    r's\.?\s*a\.?\b|s\.?\s*p\.?\s*a\.?\b)',
+# _CARATULADO_REGEX extrae la parte del caratulado ANTES del "/" o "con" o "c/"
+# para obtener el nombre del ejecutante/demandante.
+_CARATULADO_REGEX = re.compile(
+    r'caratulad\w*\s*["\']?\s*(.{3,120}?)\s*(?:/|\bcon\b|\bc/)',
     re.IGNORECASE
 )
+
+# Palabras de ejecutante/demandante en el bloque de adjudicacion o caratula.
+_EJECUTANTE_WORD = re.compile(r'\b(?:ejecutante|demandante)\b', re.IGNORECASE)
+
+# Palabras vacias que no identifican al ejecutante (minusculas, sin tildes).
+# "a", "en", "n", "u": preposiciones y artefactos OCR (e.g. "S.A" -> "s a",
+# "unica" -> "u nica") que provocan falsas intersecciones.
+_GENERICOS = {"a", "banco", "chile", "credito", "creditos", "de", "del",
+              "el", "en", "la", "n", "s", "sa", "spa", "u", "y"}
+
+
+def _norm(s):
+    """Minuscula, sin tildes, sin puntuacion."""
+    s = str(s or "").lower().strip()
+    s = unicodedata.normalize("NFKD", s)
+    s = re.sub(r'[^\w\s]', ' ', s)
+    return " ".join(s.split())
 
 def _extraer_texto_pdf(ruta):
     """Extrae texto de un PDF con PyMuPDF. Retorna string vacio si falla."""
@@ -114,20 +129,41 @@ def _ocr_pdf(doc):
 
 
 def _detectar_adjudicatario(texto):
-    """Clasifica al adjudicatario efectivo del Bloque 3 del acta.
+    """Clasifica al adjudicatario efectivo con logica de 3 vias (Audit11).
+
+    Via 1: busca la ULTIMA ocurrencia de _ADJUDICACION_REGEX (bloque entre
+           "se adjudica" y "$"). Si el bloque contiene "ejecutante"/"demandante"
+           -> "ejecutante". Si no -> tokens NO genericos vs caratulado.
+
+    Via 2: _CARATULADO_REGEX extrae el ejecutante del caratulo. Si el
+           adjudicatario comparte palabras no genericas con el caratulado
+           -> "ejecutante".
+
+    Via 3: sin match de adjudicacion -> "indeterminado".
 
     Returns:
-        "tercero": adjudicacion a persona/entidad distinta del ejecutante.
-        "ejecutante": adjudicacion al banco/ejecutante.
-        "indeterminado": no se detecto el patron de adjudicacion efectiva.
+        "ejecutante", "tercero", o "indeterminado".
     """
-    m = _ADJUDICACION_REAL_REGEX.search(texto)
-    if not m:
-        return "indeterminado"
-    nombre = m.group(1)
-    if _TOKENS_EJECUTANTE.search(nombre):
-        return "ejecutante"
-    return "tercero"
+    # --- Via 1: bloque de adjudicacion (ULTIMA ocurrencia) ---
+    bloques = list(_ADJUDICACION_REGEX.finditer(texto))
+    if bloques:
+        bloque = bloques[-1].group(1)  # ULTIMA adjudicacion del acta
+        if _EJECUTANTE_WORD.search(bloque):
+            return "ejecutante"
+        # Tokenizar el bloque: palabras no genericas del adjudicatario
+        tokens_bloque = set(_norm(bloque).split()) - _GENERICOS
+
+        # --- Via 2: comparar contra caratulado ---
+        m_carat = _CARATULADO_REGEX.search(texto)
+        if m_carat:
+            tokens_carat = set(_norm(m_carat.group(1)).split()) - _GENERICOS
+            if tokens_bloque and tokens_carat and tokens_bloque & tokens_carat:
+                return "ejecutante"
+
+        # Si el bloque existe pero no matchea ejecutante -> tercero
+        return "tercero"
+
+    return "indeterminado"
 
 def _analizar_pdf_acta(filepath):
     """Analiza un PDF de acta de remate. Usa OCR si el PDF es imagen escaneada.
@@ -148,6 +184,7 @@ def _analizar_pdf_acta(filepath):
         "cargo_al_credito": False,
         "monto_adjudicacion": None,
         "texto_monto": None,
+        "adjudicatario": "indeterminado",
     }
     try:
         doc = fitz.open(filepath)
@@ -187,18 +224,14 @@ def _analizar_pdf_acta(filepath):
 
     texto_lower = texto.lower()
 
-    # === 1. Detectar "cargo al credito" (regex flexible) ===
-    # Bug C-1855 [Audit10 Regla 1]: el match puede provenir de una clausula
-    # condicional de bases ("el ejecutante esta autorizado para adjudicarse
-    # con cargo al credito"), NO de la adjudicacion real. Verificamos quien
-    # fue el adjudicatario efectivo: si fue un tercero, descartamos el match.
+    # === 1. Detectar adjudicatario (3 vias, Audit11) y "cargo al credito" ===
+    adj = _detectar_adjudicatario(texto)
+    resultado["adjudicatario"] = adj
+
     if _CARGO_REGEX.search(texto):
-        adjudicatario = _detectar_adjudicatario(texto)
-        if adjudicatario == "tercero":
-            resultado["cargo_al_credito"] = False
-        else:
-            # "ejecutante" o "indeterminado": conservador, mantenemos True.
-            resultado["cargo_al_credito"] = True
+        # Compatibilidad F2: cargo_al_credito = True cuando ejecutante o indeterminado,
+        # False cuando tercero (la clausula de cargo era de las bases, no del acta real).
+        resultado["cargo_al_credito"] = (adj != "tercero")
 
     # === 2. Extraer monto de adjudicacion (posicional) ===
     # Buscar todos los montos >= 1 millon en el texto
