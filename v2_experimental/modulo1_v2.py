@@ -10,6 +10,7 @@ Estrategia de reducción de costos:
 Costo estimado: ~$0.05/run vs ~$3.00/run (v1 usa Sonnet para TODO)
 """
 
+import csv
 import json
 import os
 import re
@@ -29,6 +30,7 @@ from config import (
     SHEET_REFERENCIA, SHEET_CAUSAS,
     DEMANDANTES_EXCLUIDOS, CORTES_RM,
 )
+from filtro_cbr import evaluar_antiguedad_cbr, _CBR_ANIO_CORTE
 from modulo1_parser import (
     # Funciones públicas reutilizables
     limpiar_texto,
@@ -592,6 +594,12 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
 
     rol_completo = f"C-{rol}-{anio}"
 
+    # ── Audit 11: Filtro de Antigüedad CBR ──
+    _cbr = evaluar_antiguedad_cbr(bloque)
+    if _cbr["decision"] == "EXCLUIR":
+        log.info(f"  [{rol_completo}] Descartada por CBR: dominio inscrito {_cbr['cbr_anio']} >= {_CBR_ANIO_CORTE}")
+        return None
+
     # ── 2. Tribunal: regex puro (v1 strategies + v2 fallback + Haiku) ──
     tribunal_raw = extraer_tribunal_texto(bloque)
     if tribunal_raw:
@@ -696,6 +704,9 @@ def parsear_bloque_v2(bloque_raw: str, df_ref: pd.DataFrame,
         "minimo": extraer_minimo(bloque),
         "_haiku_used": haiku_used,
         "_bloque": bloque[:300],
+        "cbr_anio": _cbr["cbr_anio"],
+        "cbr_flag_revision": _cbr["cbr_flag_revision"],
+        "cbr_motivo": _cbr["cbr_motivo"],
     }
 
 
@@ -788,15 +799,35 @@ def parsear_docx_v2(ruta_docx: str,
     # PASO 3.5: Pre-filtro --descartar bloques sin ROL (GRATIS, sin API)
     bloques_con_rol = []
     bloques_sin_rol_prefiltro = 0
+    descartes_prefiltro = []
     for texto_bloque, fecha in bloques_expandidos:
         if _RE_TIENE_ROL.search(texto_bloque):
             bloques_con_rol.append((texto_bloque, fecha))
         else:
             bloques_sin_rol_prefiltro += 1
+            descartes_prefiltro.append({
+                "fecha_publicacion": fecha or "",
+                "texto": texto_bloque[:300],
+            })
 
     log.info(f"Bloques expandidos: {len(bloques_expandidos)} | "
              f"Pre-filtro sin ROL: {bloques_sin_rol_prefiltro} | "
              f"Con ROL: {len(bloques_con_rol)}")
+
+    if descartes_prefiltro:
+        _ts = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        _csv_desc = os.path.join("logs", f"descartes_prefiltro_v2_{_ts}.csv")
+        os.makedirs("logs", exist_ok=True)
+        with open(_csv_desc, "w", newline="", encoding="utf-8-sig") as _f:
+            _w = csv.DictWriter(_f, fieldnames=["fecha_publicacion", "texto"],
+                                quoting=csv.QUOTE_ALL)
+            _w.writeheader()
+            _w.writerows(descartes_prefiltro)
+        log.warning(
+            "PREFILTRO v2 — REVISIÓN MANUAL: %d bloque(s) descartado(s) sin ROL → %s",
+            len(descartes_prefiltro),
+            _csv_desc,
+        )
 
     # PASO 4: Procesar bloques
     causas_semana: dict[str, dict] = {}
