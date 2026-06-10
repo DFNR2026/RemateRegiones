@@ -43,7 +43,9 @@ from filtro_cbr import (
 # Réplica de _RE_TIENE_ROL de v2_experimental/modulo1_v2.py línea 83
 # (no se importa el módulo v2 para evitar efectos de import en un
 #  harness sin API). Mantener sincronizado si v2 lo cambia.
-_RE_TIENE_ROL = re.compile(r'[CcVvAa]\s*[-–—]\s*\d+\s*[-–—]\s*\d{4}')
+# Superconjunto de extraer_rol: admite puntos de miles y espacios
+# en el número (ej. C-2.243-2020), igual que _RE_ROL de modulo1_parser
+_RE_TIENE_ROL = re.compile(r'[CcVvAa]\s*[-–—]\s*\d[\d.\s]*[-–—]\s*\d{4}')
 
 # ---------------------------------------------------------------------------
 # Instrumentación: captura TODOS los candidatos de año (la función original

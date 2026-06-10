@@ -81,7 +81,9 @@ def _setup_logging() -> str:
 # ────────────────────────────────────────────────────────────────
 
 # Pre-filtro: bloques que NO contienen un ROL judicial se descartan sin API
-_RE_TIENE_ROL = re.compile(r'[CcVvAa]\s*[-–—]\s*\d+\s*[-–—]\s*\d{4}')
+# Superconjunto de extraer_rol: admite puntos de miles y espacios
+# en el número (ej. C-2.243-2020), igual que _RE_ROL de modulo1_parser
+_RE_TIENE_ROL = re.compile(r'[CcVvAa]\s*[-–—]\s*\d[\d.\s]*[-–—]\s*\d{4}')
 
 # Regex para mínimo de subasta
 _RE_MINIMO = re.compile(
