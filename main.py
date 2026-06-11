@@ -10,7 +10,6 @@ Uso:
     python main.py --hasta 3    # detiene el pipeline después del Módulo N
     python main.py --silencio   # suprime logs de módulos (solo muestra resúmenes)
     python main.py --docx "RESUMEN.docx"          # DOCX semanal (v2 Regex+Haiku por defecto)
-    python main.py --v1 --docx "RESUMEN.docx"     # DOCX semanal forzando Sonnet (v1)
 
 # ===========================================================================
 # ANTES DE CADA CORRIDA DE PRUEBA — limpiar estado previo:
@@ -94,8 +93,6 @@ sys.stderr = _TeeWriter(sys.__stderr__, _log_fh)
 # ─────────────────────────────────────────────────────────────────
 # Imports de módulos del proyecto
 # ─────────────────────────────────────────────────────────────────
-from modulo1_parser       import parsear_diarios, parsear_docx_semanal
-
 from modulo2_ojv          import procesar_causas_ojv
 from modulo3_extractor    import extraer_montos
 from modulo5_reporte      import generar_reporte, actualizar_historial
@@ -217,7 +214,6 @@ Ejemplos:
   python main.py --limpiar-historial    # M1 ignora historial CAUSAS (testing)
   python main.py --diarios "D:\\Remates\\Diarios test"  # carpeta alternativa de PDFs
   python main.py --docx "D:\\Remates\\RESUMEN.docx"     # DOCX semanal (v2 por defecto)
-  python main.py --v1 --docx "D:\\Remates\\RESUMEN.docx"  # DOCX forzando Sonnet (v1)
         """,
     )
     parser.add_argument("--demo",     action="store_true",
@@ -238,9 +234,6 @@ Ejemplos:
     parser.add_argument("--docx-dir", type=str, default=None, metavar="RUTA",
                         help="Carpeta con varios DOCX semanales. Procesa todos los .docx "
                              "que contenga y los elimina al terminar el pipeline.")
-    parser.add_argument("--v1",       action="store_true",
-                        help="Forzar parser v1 (Sonnet) para DOCX. "
-                             "Por defecto --docx usa v2 (Regex+Haiku, ~60x mas barato).")
     args = parser.parse_args()
 
     if args.docx and args.docx_dir:
@@ -272,15 +265,10 @@ Ejemplos:
         if modulo_inicio <= 1 <= args.hasta:
             if args.docx_dir:
                 # ── Modo carpeta: procesar TODOS los .docx de la carpeta ──
-                if args.v1:
-                    _sep("MÓDULO 1 v1 — Parsear carpeta de DOCX (Sonnet)")
-                    _parser_docx = parsear_docx_semanal
-                    _tag = "M1"
-                else:
-                    from v2_experimental.modulo1_v2 import parsear_docx_v2
-                    _sep("MÓDULO 1 v2 — Parsear carpeta de DOCX (Regex+Haiku)")
-                    _parser_docx = parsear_docx_v2
-                    _tag = "M1v2"
+                from v2_experimental.modulo1_v2 import parsear_docx_v2
+                _sep("MÓDULO 1 v2 — Parsear carpeta de DOCX (Regex+Haiku)")
+                _parser_docx = parsear_docx_v2
+                _tag = "M1v2"
                 print(f"  [{_tag}] Carpeta DOCX: {args.docx_dir}")
                 if args.limpiar_historial:
                     print(f"  [{_tag}] Modo testing: historial CAUSAS ignorado (Excel intacto)")
@@ -321,18 +309,6 @@ Ejemplos:
                 # No se borran aca: si M2/M3/M5 fallan, los DOCX quedan para reintentar.
                 docx_procesados_paths = [os.path.join(args.docx_dir, n) for n in docx_files]
 
-            elif args.docx and args.v1:
-                # Forzar v1 (Sonnet) para DOCX
-                _sep("MÓDULO 1 v1 — Parsear DOCX semanal (Sonnet)")
-                print(f"  [M1] Archivo DOCX: {args.docx}")
-                if args.limpiar_historial:
-                    print("  [M1] Modo testing: historial CAUSAS ignorado (Excel intacto)")
-                t = time.time()
-                causas = parsear_docx_semanal(
-                    args.docx,
-                    ignorar_historial=args.limpiar_historial,
-                )
-                _ok(1, f"{len(causas)} causas nuevas (v1 Sonnet)", time.time() - t)
             elif args.docx:
                 # Default: v2 (Regex+Haiku) para DOCX
                 from v2_experimental.modulo1_v2 import parsear_docx_v2
@@ -347,17 +323,10 @@ Ejemplos:
                 )
                 _ok(1, f"{len(causas)} causas nuevas (v2 Regex+Haiku)", time.time() - t)
             else:
-                _sep("MÓDULO 1 — Parsear PDFs del Diario P&L")
-                if args.limpiar_historial:
-                    print("  [M1] Modo testing: historial CAUSAS ignorado (Excel intacto)")
-                if args.diarios:
-                    print(f"  [M1] Carpeta de entrada: {args.diarios}")
-                t = time.time()
-                m1_kwargs = {"ignorar_historial": args.limpiar_historial}
-                if args.diarios:
-                    m1_kwargs["directorio"] = args.diarios
-                causas = parsear_diarios(**m1_kwargs)
-                _ok(1, f"{len(causas)} causas nuevas detectadas", time.time() - t)
+                parser.error(
+                    "Se requiere --docx o --docx-dir: la ruta PDF (parsear_diarios) fue "
+                    "eliminada en la Tanda D. El pipeline opera solo sobre DOCX (v2)."
+                )
 
             if not causas:
                 print()
@@ -445,7 +414,7 @@ Ejemplos:
         # saltado este bloque y los DOCX quedarian para reintentar.
         # Solo se borran los archivos que se procesaron en esta corrida.
         if docx_procesados_paths:
-            _dtag = "M1" if args.v1 else "M1v2"
+            _dtag = "M1v2"
             _docx_borrados = 0
             for _p in docx_procesados_paths:
                 try:
