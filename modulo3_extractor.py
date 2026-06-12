@@ -475,25 +475,6 @@ if __name__ == "__main__":
 
     else:
         # Modo pipeline completo M1 → M2 → M3
-        from modulo1_parser import parsear_diarios
-        from modulo2_ojv import procesar_causas_ojv
-
-        print("Pipeline M1 → M2 → M3")
-        causas = parsear_diarios()
-        print(f"M1: {len(causas)} causas")
-
-        causas = procesar_causas_ojv(causas)
-        desc = sum(1 for c in causas if c.get("descargado"))
-        print(f"M2: {desc} documentos descargados")
-
-        causas = extraer_montos(causas)
-        print(f"\n{'='*55}")
-        print("RESULTADO MÓDULO 3:")
-        for c in causas:
-            if c.get("monto_deuda_clp"):
-                estado = f"${c['monto_deuda_clp']:,}"
-            elif c.get("descargado"):
-                estado = "SIN MONTO (parseado fallido)"
-            else:
-                estado = "SIN PDF"
-            print(f"  C-{c['rol']}-{c['año']} | {estado} | {c.get('monto_original', '')}")
+        print("Modo standalone v1 deshabilitado (Tanda D). Usa los flags "
+              "del módulo o el pipeline completo: python main.py --docx ...")
+        raise SystemExit(0)

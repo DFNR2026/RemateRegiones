@@ -759,19 +759,6 @@ if __name__ == "__main__":
         sys.exit(0)
 
     # Standalone testing (original)
-    from modulo1_parser import parsear_diarios
-
-    print("Ejecutando Modulo 1 para obtener causas...")
-    causas = parsear_diarios()
-    print(f"Modulo 1: {len(causas)} causas")
-
-    print("\nEjecutando Modulo 2 (OJV)...")
-    causas = procesar_causas_ojv(causas)
-
-    print(f"\n{'='*55}")
-    print("RESULTADO MODULO 2:")
-    for c in causas:
-        estado = "OK" if c.get("descargado") else "FAIL"
-        proc   = c.get("tipo_procedimiento", "?")
-        doc    = c.get("tipo_documento", "?")
-        print(f"  {estado} C-{c['rol']}-{c['año']} | {proc} | {doc}")
+    print("Modo standalone v1 deshabilitado (Tanda D). Usa los flags "
+          "del módulo o el pipeline completo: python main.py --docx ...")
+    raise SystemExit(0)

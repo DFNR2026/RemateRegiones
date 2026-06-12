@@ -465,15 +465,6 @@ if __name__ == "__main__":
 
     else:
         # Pipeline completo M1 → M5
-        from modulo1_parser    import parsear_diarios
-        from modulo2_ojv       import procesar_causas_ojv
-        from modulo3_extractor import extraer_montos
-
-        print("Pipeline completo M1 → M5")
-        causas = parsear_diarios()
-        causas = procesar_causas_ojv(causas)
-        causas = extraer_montos(causas)
-
-        actualizar_historial(causas)
-        ruta = generar_reporte(causas)
-        print(f"Reporte: {ruta}")
+        print("Modo standalone v1 deshabilitado (Tanda D). Usa los flags "
+              "del módulo o el pipeline completo: python main.py --docx ...")
+        raise SystemExit(0)
