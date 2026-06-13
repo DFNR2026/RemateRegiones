@@ -74,3 +74,15 @@ tmp_*.patch
 
 # Zips de trabajo (scratch, no van al repo)
 actas_sin_monto.zip
+
+# === Tanda E (2026-06): residuos de runtime y flujo Claude/Cline ===
+Causas con liq/liquidaciones/
+Causas con liq/liquidaciones_raw/
+Reportes/
+MD_Cline/
+*.bak_*
+dry_run*
+dryrun*
+log_dryrun*
+auditoria_cbr_*.csv
+.chrome-profile-*/
