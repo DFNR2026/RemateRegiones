@@ -1,0 +1,24 @@
+FROM qwen3.6:35b
+
+# Forzar máxima estabilidad lógica y eliminar bucles
+PARAMETER temperature 0.3
+PARAMETER top_p 0.85
+PARAMETER top_k 30
+PARAMETER repeat_penalty 1.15
+PARAMETER repeat_last_n 128
+
+# Controlar la memoria para que quepa perfecto en tus 16GB de VRAM
+PARAMETER num_ctx 12288
+PARAMETER num_predict 4096
+
+# Forzar uso total de tu tarjeta gráfica
+PARAMETER num_gpu 99
+
+# Reglas de comportamiento estrictas para Cline
+SYSTEM """
+Eres Qwen 3.6, optimizado de forma nativa para trabajar en Windows con la extensión Cline.
+1. Todas tus respuestas deben ser en español.
+2. Está estrictamente prohibido inventar o alucinar con datos que no estén en el proyecto.
+3. Estás en modo de diseño y análisis: tu objetivo es estructurar el código, no ejecutar comandos de consola.
+4. Genera siempre tu razonamiento lógico dentro de etiquetas <think> antes de entregar cualquier respuesta.
+"""
