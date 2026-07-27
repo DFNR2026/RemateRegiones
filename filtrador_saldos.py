@@ -190,7 +190,7 @@ _MESES = {
 # ---------------------------------------------------------------------------
 _COLS_MADRE = [
     "ROL", "AÑO", "CORTE", "TRIBUNAL", "DEMANDANTE", "DEMANDADO",
-    "DIRECCIÓN", "COMUNA", "MONTO_DEUDA_CLP",
+    "DIRECCIÓN", "COMUNA", "MONTO_DEUDA_CLP", "CBR_MOTIVO",
     # Tracking
     "estado", "fecha_remate", "monto_acta_remate", "monto_liquidacion_saldo",
     "monto_credito_liquidado", "ruta_liquidacion",
@@ -214,6 +214,7 @@ _HEADER_MAP = {
     "Comuna": "COMUNA", "COMUNA": "COMUNA",
     "Deuda (CLP)": "MONTO_DEUDA_CLP", "MONTO_DEUDA_CLP": "MONTO_DEUDA_CLP",
     "Fechas Public.": "FECHA_PUBLICACION", "FECHA_PUBLICACION": "FECHA_PUBLICACION",
+    "CBR Motivo": "CBR_MOTIVO", "CBR_MOTIVO": "CBR_MOTIVO",
 }
 
 # ---------------------------------------------------------------------------
@@ -621,7 +622,11 @@ def paso0_merge_reportes():
                 if col in causa and causa[col] is not None:
                     row[col] = str(causa[col])
 
-            row["estado"] = "PENDIENTE_FILTRO1"
+            if row.get("CBR_MOTIVO", "").strip():
+                row["estado"] = "PENDIENTE_REVISION_MANUAL"
+                row["log_decision"] = f"Audit11 CBR: {row['CBR_MOTIVO']}"
+            else:
+                row["estado"] = "PENDIENTE_FILTRO1"
             row["origen_reporte"] = archivo
 
             fecha = _parsear_fecha_publicacion(

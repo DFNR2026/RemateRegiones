@@ -156,3 +156,30 @@ ROL,ANO,fecha_eliminacion,motivo
 3107,2023,2026-05-23,REAUDIT F2: Cargo al credito (folio 36). Sin excedente.
 3135,2024,2026-05-23,REAUDIT: Reprogramado: 'Fija nuevo día y hora remate' (folio 61; 2026-04-08)
 3601,2025,2026-05-23,REAUDIT: Suspension/Reprograma: 'Suspende/Reprograma Remate' (folio 19; 2026-05-15)
+197,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1201,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1053,2022,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+2403,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1902,2019,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+4536,2024,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+919,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+2282,2025,2026-05-24,FixOcrActas [2026-05-24]: monto $18.500.000 < deuda $28.741.542 -> ELIMINADA
+2322,2022,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+2184,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+58,2023,2026-05-24,FixOcrActas [2026-05-24]: monto $55.000.000 < deuda $83.942.487 -> ELIMINADA
+1528,2024,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1648,2023,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+4105,2024,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1968,2023,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1192,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1501,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+733,2024,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+5268,2022,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1842,2023,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+2908,2024,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1195,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+138,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+2328,2019,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+3148,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+1377,2025,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA
+678,2023,2026-05-24,FixOcrActas [2026-05-24]: cargo al credito -> ELIMINADA

@@ -140,6 +140,7 @@ _COLUMNAS = [
     ("Deuda (CLP)",     "monto_deuda_clp",    17,  '#,##0'),
     ("Fechas Public.",  "fechas_publicacion", 18,  None),
     ("Motivo Fallo",    "motivo_fallo",       32,  None),
+    ("CBR Motivo",      "cbr_motivo",         22,  None),
 ]
 
 
